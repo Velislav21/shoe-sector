@@ -3,27 +3,12 @@
 
 @import url("./global.css");
 @import url("./header.css");
-@import url("./shoe-details.css");
-@import url("./register.css");
-@import url("./login.css");
+/* @import url("./all-shoes.css"); */
+/* @import url("./shoe-details.css"); */
+/* @import url("./register.css"); */
+/* @import url("./login.css"); */
+@import url("./cart-modal.css");
 
-.shoe-cards-container {
-    max-width: 90em;
-    margin: 1em auto 4em auto;
-    display: flex;
-    justify-content: center;
-    gap: 2em;
-    flex-wrap: wrap;
-}
-
-img {
-    width: 450px;
-    height: auto;
-    aspect-ratio: 1/1;
-    border-radius: 0.3rem;
-}
-
-/* Footer  */
 footer {
     font-size: 1.2em;
     margin-top: auto;
