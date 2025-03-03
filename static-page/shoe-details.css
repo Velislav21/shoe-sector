@@ -1,0 +1,78 @@
+.shoe-details-container {
+    display: flex;
+    gap: 3em;
+    text-align: center;
+    margin: 4em auto auto auto;
+    max-width: 60em;
+    padding: 2em;
+    border-radius: 0.3rem;
+    box-shadow: 0em 0.2em 0.5em rgba(0, 0, 0, 0.1);
+}
+.shoe-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.shoe-details p {
+    margin-bottom: 0.5em;
+    align-self: flex-start;
+}
+
+p.price {
+    font-size: 1.2em;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.size-selector {
+    display: flex;
+    gap: 0.7em;
+    flex-wrap: wrap;
+}
+
+.size-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 3em;
+    height: auto;
+    aspect-ratio: 1/1;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.size-label input {
+    display: none;
+}
+
+.size-label span {
+    display: inline-block;
+    padding: 0.7em 1em;
+    border-radius: 0.3rem;
+}
+
+
+.size-label input:checked + span {
+    background-color: rgb(131, 131, 131);
+    color: white;
+    border-color: rgb(131, 131, 131);
+}
+
+.buttons {
+    display: flex;
+    gap: 1em;
+}
+
+.buttons button.add-btn {
+    margin-top: 2em;
+    border: 1.5px solid #eee;
+    border-radius: 0.3rem;
+    box-shadow: 0.1em 0.1em 0.1em rgba(0,0,0, 0.25);
+    background: transparent;
+    padding: 1em;
+    cursor: pointer;
+}
+

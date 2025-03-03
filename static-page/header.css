@@ -1,0 +1,44 @@
+.site-header {
+    max-width: 90em;
+    margin: 0 auto;
+    display: flex;
+    gap: 40em;
+    align-items: center;
+    padding: 0.8em;
+}
+
+.site-header .logo {
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid #bababa;
+    color: #4c4b45;
+    font-size: 1.5em;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+    padding: 0.3em 0.6em;
+    border-radius: 0.3rem;
+}
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.nav-list li {
+    padding: 0.5em 0.7em;
+    border-radius: 0.3rem;
+    border: 1px solid #a3a3a3;
+
+    &:hover {
+        background-color: red;
+    }
+    & a:hover {
+        color: blue;
+    }
+    /* !add hover */
+}
+
+.nav-list li > a {
+    display: block;
+    color: #5a5a5a;
+    &:hover {
+    }
+}

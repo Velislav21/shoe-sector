@@ -10,5 +10,5 @@
 - [ ] Create Page
 - [ ] Edit Page
 - [x] All Products Page
-- [ ] Details Page
+- [x] Details Page
 - [ ] Profile Page
