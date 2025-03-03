@@ -1,3 +1,7 @@
+.img-container {
+    margin: auto 0;
+}
+
 .shoe-details-container {
     display: flex;
     gap: 3em;
@@ -44,6 +48,10 @@ p.price {
     transition: all 0.3s ease;
 }
 
+.size-label:hover {
+    background-color: #e7e7e7;
+}
+
 .size-label input {
     display: none;
 }
@@ -54,25 +62,35 @@ p.price {
     border-radius: 0.3rem;
 }
 
-
 .size-label input:checked + span {
     background-color: rgb(131, 131, 131);
     color: white;
     border-color: rgb(131, 131, 131);
 }
 
-.buttons {
+.buttons-container {
     display: flex;
-    gap: 1em;
+    gap: 2.5em;
 }
 
-.buttons button.add-btn {
-    margin-top: 2em;
+.buttons-container button.add-btn {
+    margin: 2em 0;
     border: 1.5px solid #eee;
     border-radius: 0.3rem;
-    box-shadow: 0.1em 0.1em 0.1em rgba(0,0,0, 0.25);
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.25);
     background: transparent;
     padding: 1em;
     cursor: pointer;
 }
+.buttons-container button:hover {
+    box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.6);
+}
 
+button i {
+    padding: 0 0.3em;
+}
+
+p.description {
+    text-align: start;
+    max-width: 66ch;
+}

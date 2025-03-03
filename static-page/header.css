@@ -25,20 +25,17 @@
 .nav-list li {
     padding: 0.5em 0.7em;
     border-radius: 0.3rem;
-    border: 1px solid #a3a3a3;
+    border: 1px solid #a59b9b;
 
     &:hover {
-        background-color: red;
+        box-shadow: 0.1em 0.2em 1em rgba(0,0,0, 0.2);
     }
     & a:hover {
-        color: blue;
+        color: rgb(255, 255, 255);
     }
-    /* !add hover */
 }
 
 .nav-list li > a {
     display: block;
-    color: #5a5a5a;
-    &:hover {
-    }
+    color: #5c5c5c;
 }

@@ -3,12 +3,11 @@
 # Developing steps.
 1. Add server
 2. Add static html 
-- [ ] Home Page
+- [x] Home Page
 - [ ] About Page
 - [ ] Login Page
-- [ ] Register Page
+- [x] Register Page
 - [ ] Create Page
 - [ ] Edit Page
-- [x] All Products Page
 - [x] Details Page
 - [ ] Profile Page

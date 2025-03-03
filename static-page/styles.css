@@ -4,6 +4,7 @@
 @import url("./global.css");
 @import url("./header.css");
 @import url("./shoe-details.css");
+@import url("./register.css");
 
 .shoe-cards-container {
     max-width: 90em;
@@ -24,6 +25,9 @@ img {
 /* Footer  */
 footer {
     font-size: 1.2em;
-    margin: auto auto 2em auto;
+    margin-top: auto;
+    margin-bottom: 2em;
+    text-align: center;
+    width: 100%;
 }
 
