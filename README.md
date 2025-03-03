@@ -1,6 +1,5 @@
-<<<<<<< Updated upstream
 # Softuni React Project Defense
-=======
+
 # Developing steps.
 1. Add server
 2. Add static html 
@@ -13,4 +12,3 @@
 - [x] All Products Page
 - [ ] Details Page
 - [ ] Profile Page
->>>>>>> Stashed changes
