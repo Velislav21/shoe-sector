@@ -1,3 +1,3 @@
-Developing steps.
-[1] Add server.
-[2] Add static html 
+# Developing steps.
+1. Add server
+2. Add static html 
