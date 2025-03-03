@@ -1,4 +1,4 @@
-.register-form {
+.login-form {
     max-width: 30em;
     margin: 5em auto;
     display: flex;
@@ -10,7 +10,7 @@
     padding: 0.5em 1em;
 }
 
-.register-form h1 {
+.login-form h1 {
     font-size: 1.5em;
     color: #4a4a4a;
     margin: 0.5em 0;
@@ -18,7 +18,7 @@
 }
 
 .inputs-container {
-    margin: 1em 0;
+    margin: 2em 0;
     padding: 0 3em;
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@ input {
     border-bottom: 2px solid rgb(150, 150, 150);
 }
 
-.register-btn {
+.login-btn {
     cursor: pointer;
     border: none;
     background: transparent;
@@ -59,15 +59,15 @@ input {
     padding: 0.7em 2em;
     margin-bottom: 1.3em;
 }
-.register-btn:hover {
+.login-btn:hover {
     color: #262626;
 }
-.register-form p:last-of-type {
+.login-form p:last-of-type {
     margin-bottom: 0.5em;
     font-size: 1.1em;
 }
 
-.register-form a {
+.login-form a {
     color: #4960d6;
     text-decoration: underline;
 }

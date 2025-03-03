@@ -5,6 +5,7 @@
 @import url("./header.css");
 @import url("./shoe-details.css");
 @import url("./register.css");
+@import url("./login.css");
 
 .shoe-cards-container {
     max-width: 90em;
