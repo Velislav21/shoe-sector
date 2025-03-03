@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+html {
+    box-sizing: border-box;
+    font: clamp(12px, 12px + 0.2vw, 18px) / 1.5 "Montserrat", "serif";
+}
+body,
+input,
+textarea,
+table {
+    font: inherit;
+}
+body {
+    background: linear-gradient(160deg, #e8e7e7, #cabc96, #e8e7e7, #8a836e);
+    /* background-color: #cabc96; */
+}
+div.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+h1,
+h2,
+h3,
+h4 {
+    font-size: 1em;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+li {
+    list-style: none;
+}

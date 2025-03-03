@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .container {
+                text-align: center;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                margin-bottom: 15px;
+                font-size: 22px;
+            }
+
+            .size-selector {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .size-label {
+                display: inline-block;
+                cursor: pointer;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                background-color: white;
+                transition: all 0.3s ease;
+            }
+
+            .size-label input {
+                display: none;
+            }
+
+            /* When selected, apply styles */
+            .size-label input:checked + span {
+                background-color: rgb(131, 131, 131);
+                color: white;
+                border-color: rgb(131, 131, 131);
+            }
+
+            /* Default button appearance */
+            .size-label span {
+                display: inline-block;
+                padding: 10px 15px;
+                border-radius: 8px;
+            }
+
+            /* Hover effect */
+            .size-label:hover span {
+                border-color: black;
+            }
+
+            #selected-size {
+                margin-top: 15px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class="size-selector">
+            <label class="size-label">
+                <input type="radio" name="shoe-size" value="6" />
+                <span>6</span>
+            </label>
+            <label class="size-label">
+                <input type="radio" name="shoe-size" value="7" />
+                <span>7</span>
+            </label>
+            <label class="size-label">
+                <input type="radio" name="shoe-size" value="8" />
+                <span>8</span>
+            </label>
+            <label class="size-label">
+                <input type="radio" name="shoe-size" value="9" />
+                <span>9</span>
+            </label>
+            <label class="size-label">
+                <input type="radio" name="shoe-size" value="10" />
+                <span>10</span>
+            </label>
+            <label class="size-label">
+                <input type="radio" name="shoe-size" value="11" />
+                <span>11</span>
+            </label>
+            <label class="size-label">
+                <input type="radio" name="shoe-size" value="12" />
+                <span>12</span>
+            </label>
+        </div>
+    </body>
+</html>
