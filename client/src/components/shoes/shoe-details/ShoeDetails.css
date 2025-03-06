@@ -1,0 +1,10 @@
+.shoe-details-container {
+    display: flex;
+    gap: 3em;
+    text-align: center;
+    margin: 4em auto auto auto;
+    max-width: 60em;
+    padding: 2em;
+    border-radius: 0.3rem;
+    box-shadow: 0em 0.2em 0.5em rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,89 @@
+div.img-container img {
+    width: 450px;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 0.3rem;
+}
+
+.shoe-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.shoe-details p {
+    margin-bottom: 0.5em;
+    align-self: flex-start;
+}
+
+p.price {
+    font-size: 1.2em;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.size-selector {
+    display: flex;
+    gap: 0.7em;
+    flex-wrap: wrap;
+}
+
+.size-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 3em;
+    height: auto;
+    aspect-ratio: 1/1;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.size-label:hover {
+    background-color: #e7e7e7;
+}
+
+.size-label input {
+    display: none;
+}
+
+.size-label span {
+    display: inline-block;
+    padding: 0.7em 1em;
+    border-radius: 0.3rem;
+}
+
+.size-label input:checked + span {
+    background-color: rgb(131, 131, 131);
+    color: white;
+    border-color: rgb(131, 131, 131);
+}
+
+.buttons-container {
+    display: flex;
+    gap: 2.5em;
+}
+
+.buttons-container button.add-btn {
+    margin: 2em 0;
+    border: 1.5px solid #eee;
+    border-radius: 0.3rem;
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.25);
+    background: transparent;
+    padding: 1em;
+    cursor: pointer;
+}
+.buttons-container button:hover {
+    box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.6);
+}
+
+button i {
+    padding: 0 0.3em;
+}
+
+p.description {
+    text-align: start;
+    max-width: 66ch;
+}

@@ -14,6 +14,7 @@ userController.post('/register', async (req, res) => {
         });
         res.json(response);
 
+        
     } catch (err) {
         const error = getError(err);
         res.status(400).json({ message: error })
