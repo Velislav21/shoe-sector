@@ -1,3 +1,8 @@
+import { Link } from "react-router"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
+
 import styles from "./Header.module.css"
 
 export default function Header() {
@@ -6,20 +11,21 @@ export default function Header() {
             <div className={styles["logos-container"]}>
                 <a href="#" className={styles["logo"]}>My Logo</a>
             </div>
-
+            {/* Maybe use NavLink instead */}
             <nav>
                 <ul className={styles["nav-list"]}>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Logout</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Create</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/shoes">All Products</Link></li>
+                    <li><Link to="/login">Login</Link></li>
+                    <li><Link to="/register">Register</Link></li>
+                    <li><Link to="#">Logout</Link></li>
+                    <li><Link to="/profile">Profile</Link></li>
+                    <li><Link to="/create">Create</Link></li>
                     <li>
                         <a href="#"
                         >My Cart
-                            <i className="fa-solid fa-cart-shopping"></i> 
+                            <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
                             {/* Check the styling of the icons when added */}
                         </a>
                     </li>

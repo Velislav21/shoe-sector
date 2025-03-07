@@ -1,3 +1,5 @@
+import { Route, Routes } from "react-router"
+
 import Footer from "./components/footer/Footer"
 import Header from "./components/header/Header"
 import ShoesList from "./components/shoes/shoes-list/ShoesList"
@@ -13,12 +15,16 @@ function App() {
         <>
             <Header />
             <main>
-                {/* <ShoesList /> */}
+                <Routes>
+                    <Route path="/" element={<ShoesList />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                </Routes>
                 {/* <ShoeDetails/> */}
                 {/* <Register/> */}
-                <CartModal/>
+                {/* <CartModal /> */}
             </main>
-            <Footer/>
+            <Footer />
         </>
     )
 }
