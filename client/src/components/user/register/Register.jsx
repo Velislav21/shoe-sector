@@ -1,3 +1,4 @@
+import ErrorMessage from "../../errors/ErrorMessage"
 import "./Register.css"
 
 export default function Register() {
@@ -14,7 +15,6 @@ export default function Register() {
                         id="name"
                         required
                     />
-                    <p className="error-msg">Errorasdsadasdasda.</p>
                 </div>
                 <div className="input-container">
                     <input

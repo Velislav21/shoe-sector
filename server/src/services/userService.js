@@ -3,29 +3,27 @@ import jwt from '../jwt.js';
 import User from '../models/User.js'
 
 const userService = {
-    async register(username, email, password, confirmPassword) {
+    async register(username, email, password, rePassword) {
 
         const user = await User.findOne({ $or: [{ email }, { username }] });
 
         if (user) {
             throw new Error('User is already registered');
         }
-        if (password !== confirmPassword) {
+        if (password !== rePassword) {
             throw new Error('Passwords must match!');
         }
         const newUser = await User.create({ username, email, password });
 
         return generateResponse(newUser)
     },
-    async login(username, password) {
+    async login(email, password) {
 
-        const user = await User.findOne({ username });
-
+        const user = await User.findOne({ email }); 
         if (!user) {
             throw new Error('Invalid email or password!');
         }
         const isValid = await bcrypt.compare(password, user.password);
-
         if (!isValid){
             throw new Error('Invalid email or password!')
         }
@@ -33,7 +31,7 @@ const userService = {
     },
 }
 
-function generateResponse(user) { 
+async function generateResponse(user) { 
     const payload = {
         _id: user._id,
         email: user.email,
@@ -42,7 +40,8 @@ function generateResponse(user) {
 
     const header = { expiresIn: '2h' };
 
-    const token = jwt.sign(payload, 'TEST', header)
+    const token = await jwt.sign(payload, 'TEST', header)
+    console.log(token)
     return {
         _id: user._id,
         username: user.username,
