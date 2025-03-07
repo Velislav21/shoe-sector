@@ -37,11 +37,11 @@ async function generateResponse(user) {
         email: user.email,
         username: user.username,
     }
+ 
+    const header = { expiresIn: '1d' };
 
-    const header = { expiresIn: '2h' };
-
-    const token = await jwt.sign(payload, 'TEST', header)
-    console.log(token)
+    console.log(process.env.JWT_SECRET)
+    const token = await jwt.sign(payload, process.env.JWT_SECRET, header)
     return {
         _id: user._id,
         username: user.username,
