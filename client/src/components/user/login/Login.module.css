@@ -33,9 +33,9 @@ input {
     width: 100%;
     padding: 0.5em;
     border: none;
-    background: transparent;
     border-bottom: 2px solid rgb(150, 150, 150);
 }
+
 
 .login-btn {
     cursor: pointer;

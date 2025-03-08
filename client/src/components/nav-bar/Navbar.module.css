@@ -39,8 +39,8 @@
 
     & button {
         display: flex;
-        gap: 0.4em;
         align-items: center;
+        gap: 0.4em;
         cursor: pointer;
         border: none;
         background-color: transparent;

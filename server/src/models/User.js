@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt';
 import { SALT_ROUNDS } from '../constants.js';
 
 const userSchema = new Schema({
-    username: {
+    name: {
         type: String,
-        required: [true, 'Username is required'],
+        required: [true, 'Name is required'],
         // minLength: 2,
         // maxLenght: 20
     },

@@ -15,7 +15,8 @@ html {
 body,
 input,
 textarea,
-table {
+table,
+button {
   font: inherit;
 }
 body {

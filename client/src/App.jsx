@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router"
 
 import Footer from "./components/footer/Footer"
-import Header from "./components/header/Header"
+import Navbar from "./components/nav-bar/Navbar"
 import ShoesList from "./components/shoes/shoes-list/ShoesList"
 
 import ShoeDetails from "./components/shoes/shoe-details/ShoeDetails"
@@ -16,7 +16,7 @@ function App() {
         <>
             <AuthContextProvider>
 
-                <Header />
+                <Navbar />
                 <main>
                     <Routes>
                         <Route path="/shoes" element={<ShoesList />} />
