@@ -5,7 +5,7 @@ import User from '../models/User.js'
 const userService = {
     async register(name, email, password, rePassword) {
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).select('email');
 
         if (user) {
             throw new Error('User is already registered');
@@ -19,28 +19,27 @@ const userService = {
     },
     async login(email, password) {
 
-        const user = await User.findOne({ email }); 
+        const user = await User.findOne({ email });
         if (!user) {
             throw new Error('Incorrect email address!');
         }
         const isValid = await bcrypt.compare(password, user.password);
-        if (!isValid){
+        if (!isValid) {
             throw new Error('Invalid password!')
         }
         return generateResponse(user);
     },
 }
 
-async function generateResponse(user) { 
+async function generateResponse(user) {
     const payload = {
         _id: user._id,
         name: user.name,
         email: user.email,
     }
- 
+
     const header = { expiresIn: '1d' };
 
-    console.log(process.env.JWT_SECRET)
     const token = await jwt.sign(payload, process.env.JWT_SECRET, header)
     return {
         _id: user._id,

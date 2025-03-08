@@ -41,8 +41,12 @@ shoeController.patch('/update/:shoeId', isAuth, async (req, res) => {
     const shoeData = req.body;
 
     try {
-        const shoe = await shoeService.getOne(shoeId) //.select('-owner');
-        if (shoe.owner.toString() !== userId.toString()) {
+        // const shoe = await shoeService.getOne(shoeId)
+        // if (shoe.owner.toString() !== userId.toString()) {
+
+        const ownerId = await shoeService.getOne(shoeId).select('owner');
+        
+        if (ownerId.toString() !== userId.toString()) {
             return res.status(403).json({ message: 'Unauthorized!' });
         }
         

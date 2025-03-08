@@ -8,7 +8,7 @@ const initialFormValues = { email: "", password: "" }
 
 export default function Login() {
     const [values, setValues] = useState(initialFormValues)
-    const { user, dispatch } = useContext(AuthContext)
+    const { dispatch } = useContext(AuthContext)
 
     function handleInputChange(e) {
         setValues((prevValues) => ({
@@ -24,14 +24,15 @@ export default function Login() {
             method: "POST",
             credentials: "include",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json", // DONT FORGET TO ATTACH "Authentication" header with value of "user.accessToken" to authorized requests
             },
             body: JSON.stringify(values)
         })
+
         const data = await response.json();
         localStorage.setItem('user', JSON.stringify(data))
+
         dispatch({ type: "LOGIN", payload: data })
-        console.log(data)
     }
     return (
         <form onSubmit={handleFormSubmit} className={styles["login-form"]}>

@@ -5,9 +5,11 @@
 2. Add static html 
 - [x] Home Page
 - [ ] About Page
-- [ ] Login Page
+- [x] All Products Page
+- [x] Login Page
 - [x] Register Page
-- [ ] Create Page
-- [ ] Edit Page
+- [ ] Create Product Page
+- [ ] Edit Product Page
+- [ ] Edit Profile Page
 - [x] Details Page
 - [ ] Profile Page
