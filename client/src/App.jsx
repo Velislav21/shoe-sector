@@ -17,6 +17,7 @@ function App() {
             <AuthContextProvider>
 
                 <Navbar />
+
                 <main>
                     <Routes>
                         <Route path="/shoes" element={<ShoesList />} />
@@ -27,6 +28,7 @@ function App() {
                     {/* <Register/> */}
                     {/* <CartModal /> */}
                 </main>
+                
                 <Footer />
             </AuthContextProvider>
         </>
