@@ -24,15 +24,27 @@
     gap: 1em;
 }
 .nav-list li {
+    cursor: pointer;
     padding: 0.5em 0.7em;
     border-radius: 0.3rem;
     border: 1px solid #a59b9b;
 
     &:hover {
-        box-shadow: 0.1em 0.2em 1em rgba(0,0,0, 0.2);
+        box-shadow: 0.1em 0.2em 1em rgba(0, 0, 0, 0.2);
     }
-    & a:hover {
+    & a:hover,
+    button:hover {
         color: rgb(255, 255, 255);
+    }
+
+    & button {
+        display: flex;
+        gap: 0.4em;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        color: #707070;
     }
 }
 

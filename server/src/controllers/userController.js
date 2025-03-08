@@ -8,15 +8,15 @@ const userController = Router();
 userController.post('/register', async (req, res) => {
     const { username, email, password, rePassword } = req.body;
     try {
-        const response = await userService.register(username, email, password, rePassword); //confirmPassword
-        res.cookie(AUTH_COOKIE_NAME, response.accessToken,
+        const user = await userService.register(username, email, password, rePassword); //confirmPassword
+        res.cookie(AUTH_COOKIE_NAME, user.accessToken,
             {
                 httpOnly: true,
                 secure: true,
                 sameSite: 'strict',
                 maxAge: 24 * 60 * 60 * 1000 // 24 hours
             });
-        res.status(200).json(response);
+        res.status(200).json(user);
 
     } catch (err) {
         const error = getError(err);
@@ -28,14 +28,14 @@ userController.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const response = await userService.login(email, password);
-        res.cookie(AUTH_COOKIE_NAME, response.accessToken, {
+        const user = await userService.login(email, password);
+        res.cookie(AUTH_COOKIE_NAME, user.accessToken, {
             httpOnly: true,
             secure: true,
             sameSite: 'strict',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         });
-        res.status(200).json(response);
+        res.status(200).json(user);
 
     } catch (err) {
         console.log(err);

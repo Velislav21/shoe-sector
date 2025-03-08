@@ -23,11 +23,11 @@ export default function Header() {
                     <li><Link to="/profile">Profile</Link></li>
                     <li><Link to="/create">Create</Link></li>
                     <li>
-                        <a href="#"
-                        >My Cart
+                        <button>
+                            My Cart
                             <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
                             {/* Check the styling of the icons when added */}
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </nav>

@@ -1,20 +1,23 @@
-import './ShoeDetails.css'
+import styles from './ShoeDetails.module.css'
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 export default function ShoeDetails() {
     return (
-        <article className="shoe-details-container">
-            <div className="img-container">
+        <article className={styles["shoe-details-container"]}>
+            <div className={styles["img-container"]}>
                 <img
                     src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/72e40c8f-7099-48aa-aaf1-536654f849f8/WMNS+NIKE+MOTIVA+PRM.png"
                     alt=""
                 />
             </div>
-            <div className="shoe-details">
-                <p className="model-name">Nike some model</p>
-                <p className="type">Women's Shoes</p>
-                <p className="price">BGN 219.99</p>
+            <div className={styles["shoe-details"]}>
+                <p className={styles["model-name"]}>Nike some model</p>
+                <p className={styles["type"]}>Women's Shoes</p>
+                <p className={styles["price"]}>BGN 219.99</p>
 
-                <div className="size-selector">
+                <div className={styles["size-selector"]}>
                     <label className="size-label" htmlFor="shoe-size">
                         <input
                             type="radio"
@@ -160,17 +163,17 @@ export default function ShoeDetails() {
                         <span>48</span>
                     </label>
                 </div>
-                <div className="buttons-container">
-                    <button className="add-btn">
+                <div className={styles["buttons-container"]}>
+                    <button className={styles["add-btn"]}>
                         Add to Cart
-                        <i className="fa-solid fa-cart-shopping"></i>
+                        <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                     </button>
-                    <button className="add-btn">
+                    <button className={styles["add-btn"]}>
                         Add to Cart
-                        <i className="fa-solid fa-cart-shopping"></i>
+                        <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                     </button>
                 </div>
-                <p className="description">
+                <p className={styles["description"]}>
                     Lorem ipsum dolor sit amet consectetur
                     adipisicing elit. Deleniti laborum dolorum iure
                     assumenda autem veritatis esse rem sequi

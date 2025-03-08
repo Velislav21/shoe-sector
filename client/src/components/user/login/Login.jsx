@@ -1,11 +1,13 @@
-import "./Login.css"
+import styles from "./Login.module.css"
+import ErrorMessage from "../../errors/ErrorMessage"
+
 
 export default function Login() {
     return (
-        <form action="#" className="login-form">
+        <form action="#" className={styles["login-form"]}>
             <h1>Login</h1>
-            <div className="inputs-container">
-                <div className="input-container">
+            <div className={styles["inputs-container"]}>
+                <div className={styles["input-container"]}>
                     <input
                         type="email"
                         placeholder="Email Address"
@@ -13,9 +15,9 @@ export default function Login() {
                         id="email"
                         required
                     />
-                    <p className="error-msg">Error.</p>
+                    <ErrorMessage>Error.</ErrorMessage>
                 </div>
-                <div className="input-container">
+                <div className={styles["input-container"]}>
                     <input
                         type="password"
                         placeholder="Password"
@@ -23,11 +25,11 @@ export default function Login() {
                         id="password"
                         required
                     />
-                    <p className="error-msg">Error.</p>
+                    <ErrorMessage>Error.</ErrorMessage>
                 </div>
             </div>
 
-            <button className="login-btn">LOGIN</button>
+            <button className={styles["login-btn"]}>LOGIN</button>
             <p>You don't have an account ? <a href="#">Register here.</a></p>
         </form>
     )

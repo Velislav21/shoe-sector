@@ -1,9 +1,0 @@
-p.error-msg {
-    display: inline-block;
-    margin-top: 0.3em;
-    padding: 0.3em 0.5em;
-    border-radius: 0.2rem;
-    border: 1px solid red;
-    background-color: rgb(248, 181, 181);
-    color: rgb(176, 81, 81);
-}

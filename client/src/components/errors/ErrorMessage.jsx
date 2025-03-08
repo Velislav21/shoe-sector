@@ -1,7 +1,7 @@
-import "./ErrorMessage.css"
+import styles from "./ErrorMessage.module.css"
 
-export default function ErrorMessage({ error, props}) {
+export default function ErrorMessage({ children: errorMessage, props}) {
     return (
-        <p {...props}>{error}</p>
+        <p className={styles["error-msg"]} {...props}>{errorMessage}</p>
     )
 }

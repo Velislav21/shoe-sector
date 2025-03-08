@@ -21,11 +21,11 @@ const userService = {
 
         const user = await User.findOne({ email }); 
         if (!user) {
-            throw new Error('Invalid email or password!');
+            throw new Error('Incorrect email address!');
         }
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid){
-            throw new Error('Invalid email or password!')
+            throw new Error('Invalid password!')
         }
         return generateResponse(user);
     },

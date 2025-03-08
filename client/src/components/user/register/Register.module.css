@@ -1,6 +1,6 @@
-.login-form {
+.register-form {
     max-width: 30em;
-    margin: 5em auto;
+    margin: 3em auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,7 @@
     padding: 0.5em 1em;
 }
 
-.login-form h1 {
+.register-form h1 {
     font-size: 1.5em;
     color: #4a4a4a;
     margin: 0.5em 0;
@@ -18,7 +18,7 @@
 }
 
 .inputs-container {
-    margin: 2em 0;
+    margin: 1em 0;
     padding: 0 3em;
     display: flex;
     flex-direction: column;
@@ -28,15 +28,6 @@ div.input-container {
     margin-bottom: 1.5em;
 }
 
-div.input-container p.error-msg {
-    display: inline-block;
-    margin-top: 0.3em;
-    padding: 0.3em 0.5em;
-    border-radius: 0.2rem;
-    border: 1px solid red;
-    background-color: rgb(248, 181, 181);
-    color: rgb(176, 81, 81);
-}
 
 input {
     display: inline-block;
@@ -47,7 +38,7 @@ input {
     border-bottom: 2px solid rgb(150, 150, 150);
 }
 
-.login-btn {
+.register-btn {
     cursor: pointer;
     border: none;
     background: transparent;
@@ -59,16 +50,15 @@ input {
     padding: 0.7em 2em;
     margin-bottom: 1.3em;
 }
-.login-btn:hover {
+.register-btn:hover {
     color: #262626;
 }
-.login-form p:last-of-type {
-    color: #616161;
+.register-form p:last-of-type {
     margin-bottom: 0.5em;
     font-size: 1.1em;
 }
 
-.login-form a {
+.register-form a {
     margin-left: 0.5em;
     color: #4960d6;
     text-decoration: underline;
