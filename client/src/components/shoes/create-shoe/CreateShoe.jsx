@@ -29,8 +29,8 @@ export default function CreateShoe() {
 
     async function handleFormSubmit(e) {
         e.preventDefault();
-        
-        const response = await fetch("http://localhost:3000/shoes/create", {
+
+         await fetch("http://localhost:3000/shoes/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
