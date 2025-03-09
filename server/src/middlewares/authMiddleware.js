@@ -3,7 +3,7 @@ import jwt from "../jwt.js";
 
 export const authMiddleware = async (req, res, next) => {
 
-    const token = req.header('Authentication')
+    const token = req.header('Authentication').split(' ')[1];
     console.log(token)
     if (!token) {
         req.isAuthenticated = false;

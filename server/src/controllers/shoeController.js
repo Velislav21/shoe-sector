@@ -20,18 +20,20 @@ shoeController.get('/details/:shoeId', async (req, res) => {
 })
 
 shoeController.post('/create', isAuth, async (req, res) => {
-    
-    try {
-        const shoeData = {
-            ...req.body,
-            owner: req.user._id
-        };
-        const shoe = await shoeService.create(shoeData);
-        res.status(200).json(shoe);
-    } catch (err) {
-        const error = getError(err);
-        res.status(400).json({ message: error });
-    }
+    console.log(req.body)
+    console.log(req.user._id)
+    console.log(req.header('Authentication'))
+    // try {
+    //     const shoeData = {
+    //         ...req.body,
+    //         owner: req.user._id
+    //     };
+    //     const shoe = await shoeService.create(shoeData);
+    //     res.status(200).json(shoe);
+    // } catch (err) {
+    //     const error = getError(err);
+    //     res.status(400).json({ message: error });
+    // }
 })
 
 shoeController.patch('/update/:shoeId', isAuth, async (req, res) => {

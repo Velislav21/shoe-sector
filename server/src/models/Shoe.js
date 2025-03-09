@@ -1,17 +1,21 @@
 import { model, Schema, Types } from 'mongoose';
 
 const shoeSchema = new Schema({
-    name: {
+    modelName: {
         type: String,
         minLength: 2,
         required: true,
     },
-    gender: {
+    brand: {
         type: String,
-        enum: ['men', 'women'],
         required: true,
     },
-    image: {
+    gender: {
+        type: String,
+        enum: ['male', 'female', 'unisex'],
+        required: true,
+    },
+    imageUrl: {
         type: String,
         required: true,
         // validate: /^https?:\/\//
@@ -20,6 +24,10 @@ const shoeSchema = new Schema({
         type: String,
         minLength: 10,
         maxLength: 100,
+        required: true,
+    },
+    price: {
+        type: Number,
         required: true,
     },
     likedList: [{
