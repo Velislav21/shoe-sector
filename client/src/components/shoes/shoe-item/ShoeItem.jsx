@@ -9,9 +9,11 @@ export default function ShoeItem() {
                     alt=""
                 />
             </div>
-            <h2 className={styles["model-name"]}>Nike some model</h2>
-            <p className={styles["type"]}>Women's Shoes</p>
-            <p className={styles["price"]}>BGN 219.99</p>
+            <div>
+                <h2 className={styles["model-name"]}>Nike some model</h2>
+                <p className={styles["type"]}>Women's Shoes</p>
+                <p className={styles["price"]}>BGN 219.99</p>
+            </div>
         </article>
     )
 }
