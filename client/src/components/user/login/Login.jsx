@@ -1,7 +1,10 @@
 import { useState, useContext } from "react"
-import { AuthContext } from "../../../context/AuthContext"
 import { Link } from "react-router"
+
 import styles from "./Login.module.css"
+import { AuthContext } from "../../../context/AuthContext"
+import userService from "../../../services/userService";
+
 import ErrorMessage from "../../errors/ErrorMessage"
 
 const initialFormValues = { email: "", password: "" }
@@ -20,19 +23,11 @@ export default function Login() {
     async function handleFormSubmit(e) {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:3000/users/login", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json", // DONT FORGET TO ATTACH "Authentication" header with value of "user.accessToken" to authorized requests
-            },
-            body: JSON.stringify(values)
-        })
+        const user = await userService.login(values)
 
-        const data = await response.json();
-        localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('user', JSON.stringify(user))
 
-        dispatch({ type: "LOGIN", payload: data })
+        dispatch({ type: "LOGIN", payload: user })
     }
     return (
         <form onSubmit={handleFormSubmit} className={styles["login-form"]}>
@@ -41,7 +36,7 @@ export default function Login() {
                 <div className={styles["input-container"]}>
                     <input
                         type="email"
-                        placeholder="Email Address"
+                        placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
                         onChange={handleInputChange}

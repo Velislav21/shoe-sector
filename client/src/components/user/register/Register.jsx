@@ -45,7 +45,7 @@ export default function Register() {
                 <div className={styles["input-container"]}>
                     <input
                         type="text"
-                        placeholder="Your Name"
+                        placeholder="e.g. John Doe"
                         name="name"
                         id="name"
                         onChange={handleInputChange}
@@ -57,7 +57,7 @@ export default function Register() {
                 <div className={styles["input-container"]}>
                     <input
                         type="email"
-                        placeholder="Email Address"
+                        placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
                         onChange={handleInputChange}

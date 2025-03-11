@@ -1,15 +1,14 @@
-import { AUTH_COOKIE_NAME } from "../constants.js";
 import jwt from "../jwt.js";
 
 export const authMiddleware = async (req, res, next) => {
 
-    const token = req.header('Authentication').split(' ')[1];
+    const token = req.header('Authentication')?.split(' ')[1];
     console.log(token)
     if (!token) {
         req.isAuthenticated = false;
         return next();
     }
-
+ 
     try {
         const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
         req.user = decodedToken;

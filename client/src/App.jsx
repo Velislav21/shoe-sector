@@ -22,15 +22,14 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/shoes" element={<ShoesList />} />
+                        <Route path="shoes/:shoeId/details" element={<ShoeDetails />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/create" element={<CreateShoe/>}/>
+                        <Route path="/create" element={<CreateShoe />} />
                     </Routes>
-                    {/* <ShoeDetails/> */}
-                    {/* <Register/> */}
                     {/* <CartModal /> */}
                 </main>
-                
+
                 <Footer />
             </AuthContextProvider>
         </>
