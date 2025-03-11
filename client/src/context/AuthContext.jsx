@@ -21,10 +21,11 @@ export function AuthContextProvider({ children }) {
     const [state, dispatch] = useReducer(authReducer, { user: null });
 
     useEffect(() => {
-        const user = localStorage.getItem("user");
 
+        const user = localStorage.getItem("user");
+        
         if (user) {
-            dispatch({ type: "LOGIN", payload: user })
+            dispatch({ type: "LOGIN", payload: JSON.parse(user) })
         };
     }, []);
 
