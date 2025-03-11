@@ -24,12 +24,11 @@
     flex-direction: column;
     width: 100%;
 }
-div.input-container {
+div.register-input-container {
     margin-bottom: 1.5em;
 }
 
-
-input {
+div.register-input-container > input {
     display: inline-block;
     width: 100%;
     padding: 0.5em;

@@ -37,7 +37,7 @@ export default function Register() {
             <h1>Register</h1>
             <p>Please, fill in this form to create an acoount.</p>
             <div className={styles["inputs-container"]}>
-                <div className={styles["input-container"]}>
+                <div className={styles["register-input-container"]}>
                     <input
                         type="text"
                         placeholder="e.g. John Doe"
@@ -49,7 +49,7 @@ export default function Register() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["input-container"]}>
+                <div className={styles["register-input-container"]}>
                     <input
                         type="email"
                         placeholder="e.g. john.doe@gmail.com"
@@ -61,7 +61,7 @@ export default function Register() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["input-container"]}>
+                <div className={styles["register-input-container"]}>
                     <input
                         type="password"
                         placeholder="Password"
@@ -73,7 +73,7 @@ export default function Register() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["input-container"]}>
+                <div className={styles["register-input-container"]}>
                     <input
                         type="password"
                         placeholder="Repeat Password"

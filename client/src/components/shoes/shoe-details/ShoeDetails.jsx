@@ -18,7 +18,7 @@ export default function ShoeDetails() {
                 <p className={styles["price"]}>BGN 219.99</p>
 
                 <div className={styles["size-selector"]}>
-                    <label className="size-label" htmlFor="shoe-size">
+                    <label className={styles["size-label"]} htmlFor="shoe-size">
                         <input
                             type="radio"
                             name="shoe-size"
@@ -26,7 +26,7 @@ export default function ShoeDetails() {
                         />
                         <span>31</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -34,7 +34,7 @@ export default function ShoeDetails() {
                         />
                         <span>32</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -42,7 +42,7 @@ export default function ShoeDetails() {
                         />
                         <span>33</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -50,7 +50,7 @@ export default function ShoeDetails() {
                         />
                         <span>34</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -58,7 +58,7 @@ export default function ShoeDetails() {
                         />
                         <span>35</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -66,7 +66,7 @@ export default function ShoeDetails() {
                         />
                         <span>36</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -74,7 +74,7 @@ export default function ShoeDetails() {
                         />
                         <span>37</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -82,7 +82,7 @@ export default function ShoeDetails() {
                         />
                         <span>38</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -90,7 +90,7 @@ export default function ShoeDetails() {
                         />
                         <span>39</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -98,7 +98,7 @@ export default function ShoeDetails() {
                         />
                         <span>40</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -106,7 +106,7 @@ export default function ShoeDetails() {
                         />
                         <span>41</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -114,7 +114,7 @@ export default function ShoeDetails() {
                         />
                         <span>42</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -122,7 +122,7 @@ export default function ShoeDetails() {
                         />
                         <span>43</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -130,7 +130,7 @@ export default function ShoeDetails() {
                         />
                         <span>44</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -138,7 +138,7 @@ export default function ShoeDetails() {
                         />
                         <span>45</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -146,7 +146,7 @@ export default function ShoeDetails() {
                         />
                         <span>46</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -154,7 +154,7 @@ export default function ShoeDetails() {
                         />
                         <span>47</span>
                     </label>
-                    <label className="size-label">
+                    <label className={styles["size-label"]}>
                         <input
                             type="radio"
                             name="shoe-size"
@@ -164,11 +164,11 @@ export default function ShoeDetails() {
                     </label>
                 </div>
                 <div className={styles["buttons-container"]}>
-                    <button className={styles["add-btn"]}>
+                    <button className={styles["shoe-details-btn"]}>
                         Add to Cart
                         <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                     </button>
-                    <button className={styles["add-btn"]}>
+                    <button className={styles["shoe-details-btn"]}>
                         Add to Cart
                         <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                     </button>

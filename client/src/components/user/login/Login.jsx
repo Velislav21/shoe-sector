@@ -34,7 +34,7 @@ export default function Login() {
         <form onSubmit={handleFormSubmit} className={styles["login-form"]}>
             <h1>Login</h1>
             <div className={styles["inputs-container"]}>
-                <div className={styles["input-container"]}>
+                <div className={styles["login-input-container"]}>
                     <input
                         type="email"
                         placeholder="e.g. john.doe@gmail.com"
@@ -46,7 +46,7 @@ export default function Login() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["input-container"]}>
+                <div className={styles["login-input-container"]}>
                     <input
                         type="password"
                         placeholder="Password"

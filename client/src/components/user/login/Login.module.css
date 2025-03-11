@@ -24,15 +24,16 @@
     flex-direction: column;
     width: 100%;
 }
-div.input-container {
+div.login-input-container {
     margin-bottom: 1.5em;
 }
 
-input {
+div.login-input-container > input {
     display: inline-block;
     width: 100%;
     padding: 0.5em;
     border: none;
+    background: transparent;
     border-bottom: 2px solid rgb(150, 150, 150);
 }
     

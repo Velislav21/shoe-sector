@@ -90,14 +90,14 @@ export default function CreateShoe() {
                         value="Men"
                         checked={gender === "Men"}
                         onChange={setGenderHandler}
-                    /> Male</label>
+                    /> Men</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Women"
                         checked={gender === "Women"}
                         onChange={setGenderHandler}
-                    /> Female</label>
+                    /> Women</label>
                     <label><input
                         type="radio"
                         name="gender"
