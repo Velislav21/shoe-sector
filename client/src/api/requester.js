@@ -1,16 +1,20 @@
-export default async function request(method, url, data) {
+async function request(method, url, data) {
 
-    let options = {
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    };
+    let options = {}
+
+    if (method !== "GET") {
+        options = {
+            method,
+        }
+    }
 
     if (data) {
         options = {
             ...options,
-            method
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
         }
     }
 
@@ -22,7 +26,12 @@ export default async function request(method, url, data) {
 
     } catch (error) {
         console.log(error);
-        return error.message
     }
+};
 
+export default {
+    get: request.bind(null, "GET"),
+    post: request.bind(null, "POST"),
+    put: request.bind(null, "PUT"),
+    delete: request.bind(null, "DELETE"),
 }

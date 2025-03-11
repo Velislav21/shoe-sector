@@ -3,7 +3,7 @@ import { Link } from "react-router"
 
 import styles from "./Login.module.css"
 import { AuthContext } from "../../../context/AuthContext"
-import userService from "../../../services/userService";
+import  userService  from "../../../services/userService";
 
 import ErrorMessage from "../../errors/ErrorMessage"
 
@@ -23,11 +23,12 @@ export default function Login() {
     async function handleFormSubmit(e) {
         e.preventDefault();
 
-        const user = await userService.login(values)
+        const user = await userService.login(values);
 
-        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('user', JSON.stringify(user));
 
-        dispatch({ type: "LOGIN", payload: user })
+        dispatch({ type: "LOGIN", payload: user });
+        // !TODO: add error handling
     }
     return (
         <form onSubmit={handleFormSubmit} className={styles["login-form"]}>

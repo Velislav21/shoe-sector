@@ -4,6 +4,7 @@ import { Link } from "react-router"
 import styles from "./Register.module.css"
 import ErrorMessage from "../../errors/ErrorMessage"
 import { useAuthContext } from "../../../hooks/useAuthContext"
+import userService from "../../../services/userService"
 
 const initialFormValues = { name: "", email: "", password: "", rePassword: "" }
 
@@ -22,18 +23,12 @@ export default function Register() {
     async function handleFormSubmit(e) {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:3000/users/register", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(values)
-        })
-        const data = await response.json();
-        localStorage.setItem('user', JSON.stringify(data))
-        dispatch({ type: "LOGIN", payload: data })
-        console.log(data)
+        const user = await userService.register(values);
+
+        localStorage.setItem('user', JSON.stringify(user));
+
+        dispatch({ type: "LOGIN", payload: user });
+        // !TODO: error handling 
     }
 
 
