@@ -87,27 +87,27 @@ export default function CreateShoe() {
                     <label><input
                         type="radio"
                         name="gender"
-                        value="male"
-                        checked={gender === "male"}
+                        value="Men"
+                        checked={gender === "Men"}
                         onChange={setGenderHandler}
                     /> Male</label>
                     <label><input
                         type="radio"
                         name="gender"
-                        value="female"
-                        checked={gender === "female"}
+                        value="Women"
+                        checked={gender === "Women"}
                         onChange={setGenderHandler}
                     /> Female</label>
                     <label><input
                         type="radio"
                         name="gender"
-                        value="unisex"
-                        checked={gender === "unisex"}
+                        value="Unisex"
+                        checked={gender === "Unisex"}
                         onChange={setGenderHandler}
                     /> Unisex</label>
                 </div>
             </div>
-
+            {/* !TODO: fix gender texts */}
             <div className={styles["form-group"]}>
                 <label>Image URL</label>
                 <input

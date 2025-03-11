@@ -3,6 +3,6 @@ import request from "../api/requester";
 
 export default {
     getAll() {
-        return
+        return request.get(`${BASE_URL}/shoes`);
     }
 }
