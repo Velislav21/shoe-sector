@@ -7,7 +7,7 @@ article.shoe-card {
     }
 }
 
-article div:last-of-type {
+article p:last-of-type:not(p p) {
     margin: 1em 0;
     padding-left: 1em;
 }

@@ -1,21 +1,48 @@
-import styles from './ShoeDetails.module.css'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { useParams } from "react-router"
+import { useEffect, useState } from "react"
+
+import shoeService from "../../../services/shoeService"
+import styles from './ShoeDetails.module.css'
+
+const initialShoeData = {
+    modelName: "",
+    brand: "",
+    gender: "",
+    imageUrl: null,
+    description: "",
+    price: ""
+}
 
 export default function ShoeDetails() {
+    const [shoeData, setShoeData] = useState(initialShoeData)
+    const { shoeId } = useParams();
+
+    useEffect(() => {
+
+        shoeService.getOne(shoeId).then(setShoeData)
+
+    }, [shoeId])
     return (
         <article className={styles["shoe-details-container"]}>
-            <div className={styles["img-container"]}>
-                <img
-                    src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/72e40c8f-7099-48aa-aaf1-536654f849f8/WMNS+NIKE+MOTIVA+PRM.png"
-                    alt=""
-                />
+            <div>
+                <div className={styles["img-container"]}>
+                    <img
+                        src={shoeData.imageUrl}
+                        alt="Invalid Image Url"
+                    />
+                </div>
+                <div className={styles["buttons-container"]}>
+                    <button className={`${styles["edit-btn"]} ${styles["btn"]}`}>EDIT</button>
+                    <button className={`${styles["delete-btn"]} ${styles["btn"]}`}>DELETE</button>
+                </div>
             </div>
+
             <div className={styles["shoe-details"]}>
-                <p className={styles["model-name"]}>Nike some model</p>
-                <p className={styles["type"]}>Women's Shoes</p>
-                <p className={styles["price"]}>BGN 219.99</p>
+                <p className={styles["model-name"]}>{shoeData.modelName}</p>
+                <p className={styles["type"]}>{shoeData.gender}'s Shoes</p>
+                <p className={styles["price"]}>BGN {shoeData.price}</p>
 
                 <div className={styles["size-selector"]}>
                     <label className={styles["size-label"]} htmlFor="shoe-size">
@@ -173,14 +200,7 @@ export default function ShoeDetails() {
                         <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                     </button>
                 </div>
-                <p className={styles["description"]}>
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Deleniti laborum dolorum iure
-                    assumenda autem veritatis esse rem sequi
-                    corporis debitis! Possimus, aspernatur error
-                    eaque aperiam assumenda praesentium laboriosam
-                    nulla magnam?
-                </p>
+                <p className={styles["description"]}>{shoeData.description}</p>
             </div>
         </article>
     )

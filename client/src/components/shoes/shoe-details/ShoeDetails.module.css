@@ -8,7 +8,8 @@
     border-radius: 0.3rem;
     box-shadow: 0em 0.2em 0.5em rgba(0, 0, 0, 0.1);
 }
-div.img-container img {
+div.img-container > img {
+    padding: 0;
     width: 450px;
     height: auto;
     aspect-ratio: 1/1;
@@ -72,8 +73,24 @@ p.price {
 }
 
 .buttons-container {
+    margin-top: 1em;
     display: flex;
     gap: 2.5em;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    border-radius: 0.3rem;
+    padding: 0.5em 0.8em;
+    transition: 0.2s ease;
+    &:hover {
+        transform: translateY(-0.15em);
+    }
 }
 
 .buttons-container button.shoe-details-btn {
@@ -85,18 +102,33 @@ p.price {
     border-radius: 0.3rem;
     box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.25);
     background: transparent;
-    padding: 1em;
+    padding: 0.7em;
     cursor: pointer;
     transition: 0.2s ease;
     &:hover {
         transform: translateY(-0.5em);
     }
 }
-.buttons-container button:hover {
+.buttons-container button.shoe-details-btn:hover {
     box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.6);
 }
 
 p.description {
     text-align: start;
     max-width: 66ch;
+}
+
+button.edit-btn {
+    background-color: rgb(173, 153, 127);
+
+    &:hover {
+        background-color: rgb(201, 178, 148);
+    }
+}
+button.delete-btn {
+    background-color: rgb(218, 45, 45);
+
+    &:hover {
+        background-color: rgb(221, 73, 73);
+    }
 }
