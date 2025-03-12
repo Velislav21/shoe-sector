@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
 import styles from "./Register.module.css"
 import ErrorMessage from "../../errors/ErrorMessage"
@@ -12,6 +12,8 @@ export default function Register() {
 
     const [values, setValues] = useState(initialFormValues)
     const { dispatch } = useAuthContext()
+    const navigate = useNavigate();
+
 
     function handleInputChange(e) {
         setValues((prevValues) => ({
@@ -28,6 +30,8 @@ export default function Register() {
         localStorage.setItem('user', JSON.stringify(user));
 
         dispatch({ type: "LOGIN", payload: user });
+
+        navigate('/shoes')
         // !TODO: error handling 
     }
 

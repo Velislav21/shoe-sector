@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
 import styles from "./Login.module.css"
 import { AuthContext } from "../../../context/AuthContext"
@@ -12,6 +12,8 @@ const initialFormValues = { email: "", password: "" }
 export default function Login() {
     const [values, setValues] = useState(initialFormValues)
     const { dispatch } = useContext(AuthContext)
+    const navigate = useNavigate();
+
 
     function handleInputChange(e) {
         setValues((prevValues) => ({
@@ -28,6 +30,8 @@ export default function Login() {
         localStorage.setItem('user', JSON.stringify(user));
 
         dispatch({ type: "LOGIN", payload: user });
+
+        navigate('/shoes')
         // !TODO: add error handling
     }
     return (
