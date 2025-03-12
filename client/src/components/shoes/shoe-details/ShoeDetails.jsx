@@ -3,6 +3,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useParams } from "react-router"
 import { useEffect, useState } from "react"
 
+import { useAuthContext } from "../../../hooks/useAuthContext"
 import shoeService from "../../../services/shoeService"
 import styles from './ShoeDetails.module.css'
 
@@ -17,7 +18,11 @@ const initialShoeData = {
 
 export default function ShoeDetails() {
     const [shoeData, setShoeData] = useState(initialShoeData)
+    const { user } = useAuthContext();
     const { shoeId } = useParams();
+
+    const isOwner = user?._id === shoeData.owner;
+    console.log(isOwner)
 
     useEffect(() => {
 
@@ -33,10 +38,12 @@ export default function ShoeDetails() {
                         alt="Invalid Image Url"
                     />
                 </div>
-                <div className={styles["buttons-container"]}>
-                    <button className={`${styles["edit-btn"]} ${styles["btn"]}`}>EDIT</button>
-                    <button className={`${styles["delete-btn"]} ${styles["btn"]}`}>DELETE</button>
-                </div>
+                {isOwner &&
+                    <div className={styles["buttons-container"]}>
+                        <button className={`${styles["edit-btn"]} ${styles["btn"]}`}>EDIT</button>
+                        <button className={`${styles["delete-btn"]} ${styles["btn"]}`}>DELETE</button>
+                    </div>
+                }
             </div>
 
             <div className={styles["shoe-details"]}>
