@@ -7,5 +7,8 @@ export default {
     },
     getOne(shoeId) {
         return request.get(`${BASE_URL}/shoes/details/${shoeId}`)
+    },
+    create(shoeData, token) {
+        return request.post(`${BASE_URL}/shoes/create`, shoeData, token)
     }
 }

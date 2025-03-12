@@ -23,7 +23,6 @@ const shoeSchema = new Schema({
     description: {
         type: String,
         minLength: 10,
-        maxLength: 100,
         required: true,
     },
     price: {

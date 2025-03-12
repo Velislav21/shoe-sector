@@ -127,8 +127,8 @@ button.edit-btn {
 }
 button.delete-btn {
     background-color: rgb(218, 45, 45);
-
+    
     &:hover {
-        background-color: rgb(221, 73, 73);
+        background-color: rgb(169, 46, 46);
     }
 }

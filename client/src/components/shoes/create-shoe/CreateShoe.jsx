@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router"
 import styles from "./CreateShoe.module.css"
+import shoeService from "../../../services/shoeService";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const initialValues = {
@@ -11,10 +13,12 @@ const initialValues = {
 }
 
 export default function CreateShoe() {
-    const { user } = useAuthContext();
 
     const [gender, setGender] = useState("");
     const [values, setValues] = useState(initialValues);
+    const { user } = useAuthContext();
+
+    const navigate = useNavigate();
 
     function setGenderHandler(e) {
         setGender(e.target.value)
@@ -30,15 +34,10 @@ export default function CreateShoe() {
     async function handleFormSubmit(e) {
         e.preventDefault();
 
-         await fetch("http://localhost:3000/shoes/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authentication": `Bearer ${JSON.parse(user).accessToken}`
-            },
-            body: JSON.stringify({...values, gender})
-        })
+        await shoeService.create({ ...values, gender }, user.accessToken)
 
+        navigate('/shoes')
+        //!TODO add error handling
     }
 
     return (

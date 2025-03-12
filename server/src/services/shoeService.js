@@ -4,7 +4,6 @@ const shoeService = {
 
     getAll(filter = {}) {
         const query = Shoe.find()
-
         if (filter.name) {
             query.find({ name: { $regex: filter.name, $options: 'i' } })
         }
@@ -15,7 +14,7 @@ const shoeService = {
         return Shoe.findById(shoeId);
     },
     create(shoeData) {
-        return Shoe.create({ ...shoeData }); // owner: userId
+        return Shoe.create(shoeData); // owner: userId
     },
     remove(shoeId) {
         return Shoe.findByIdAndDelete(shoeId);

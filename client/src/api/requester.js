@@ -1,4 +1,4 @@
-async function request(method, url, data) {
+async function request(method, url, data, accessToken) {
 
     let options = {}
 
@@ -8,7 +8,19 @@ async function request(method, url, data) {
         }
     }
 
-    if (data) {
+    if (accessToken) {
+        options = {
+            ...options,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(data),
+        }
+
+    }
+
+    if (data && !accessToken) {
         options = {
             ...options,
             headers: {

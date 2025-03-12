@@ -21,13 +21,10 @@ shoeController.get('/details/:shoeId', async (req, res) => {
 
 shoeController.post('/create', isAuth, async (req, res) => {
 
+    const shoeData = req.body
+    const ownerId = req.user._id
     try {
-        const shoeData = {
-            ...req.body,
-            owner: req.user._id
-        };
-        const shoe = await shoeService.create(shoeData);
-        console.log({...shoe})
+        const shoe = await shoeService.create({...shoeData, owner: ownerId});
         res.status(200).json(shoe);
     } catch (err) {
         const error = getError(err);

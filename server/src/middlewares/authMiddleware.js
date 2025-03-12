@@ -2,8 +2,8 @@ import jwt from "../jwt.js";
 
 export const authMiddleware = async (req, res, next) => {
 
-    const token = req.header('Authentication')?.split(' ')[1];
-    console.log(token)
+    const token = req.headers.authorization?.split(' ')[1];
+
     if (!token) {
         req.isAuthenticated = false;
         return next();
@@ -24,13 +24,6 @@ export const authMiddleware = async (req, res, next) => {
 export const isAuth = (req, res, next) => {
     if (!req.isAuthenticated) {
         return res.status(401).json({ message: 'Please login!' });
-    }
-    next();
-};
-
-export const isGuest = (req, res, next) => {
-    if (req.isAuthenticated) {
-        return res.status(403).json({ message: 'Logged in users can\'t visit this page! ' });
     }
     next();
 };
