@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router"
+import { useState, use } from "react";
+import { useNavigate, useSearchParams } from "react-router"
 import styles from "./CreateShoe.module.css"
 import shoeService from "../../../services/shoeService";
 import { useAuthContext } from "../../../hooks/useAuthContext";
@@ -130,7 +130,7 @@ export default function CreateShoe() {
                     required
                 ></textarea>
             </div>
-            <button className={styles["submit-button"]}>Submit</button>
+            <button className={styles["submit-button"]}>ADD MODEL</button>
         </form>
     )
 }

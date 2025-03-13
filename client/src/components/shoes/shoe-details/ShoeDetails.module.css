@@ -118,7 +118,7 @@ p.description {
     max-width: 66ch;
 }
 
-button.edit-btn {
+a.edit-btn {
     background-color: rgb(173, 153, 127);
 
     &:hover {

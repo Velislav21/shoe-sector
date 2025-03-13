@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { useParams } from "react-router"
+import { useParams, Link } from "react-router"
 import { useEffect, useState } from "react"
 
 import { useAuthContext } from "../../../hooks/useAuthContext"
@@ -40,7 +40,7 @@ export default function ShoeDetails() {
                 </div>
                 {isOwner &&
                     <div className={styles["buttons-container"]}>
-                        <button className={`${styles["edit-btn"]} ${styles["btn"]}`}>EDIT</button>
+                        <Link to={`/shoes/${shoeData._id}/edit`} className={`${styles["edit-btn"]} ${styles["btn"]}`}>EDIT</Link>
                         <button className={`${styles["delete-btn"]} ${styles["btn"]}`}>DELETE</button>
                     </div>
                 }
