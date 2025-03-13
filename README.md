@@ -20,6 +20,17 @@ To run the application, open the main project folder (containing both `client` a
 
 ## Running the React Application (Frontend)
 
-1. Open the terminal and navigate to the `client` folder:
+Open the terminal and navigate to the `client` folder:
    ```bash
-   cd client
+    1. open terminal -> cd client, 
+    2. install the dependencies -> npm install,
+    3. to start the client server -> npm run dev,
+   ```
+## Running the Express Application (Backend)
+
+Open the terminal and navigate to the `server` folder:
+   ```bash
+    1. open terminal -> cd client, 
+    2. install the dependencies -> npm install,
+    3. to start the backend server -> npm run dev,
+   ```
