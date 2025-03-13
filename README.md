@@ -32,5 +32,5 @@ Open the terminal and navigate to the `server` folder:
    ```bash
     1. open terminal -> cd server, 
     2. install the dependencies -> npm install,
-    3. to start the backend server -> npm run dev,
+    3. to start the backend server -> npm run dev / npm run start
    ```
