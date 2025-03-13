@@ -8,7 +8,12 @@ export default {
     getOne(shoeId) {
         return request.get(`${BASE_URL}/shoes/details/${shoeId}`)
     },
-    create(shoeData, token) {
-        return request.post(`${BASE_URL}/shoes/create`, shoeData, token)
+    create(shoeData) {
+        console.log(`in service`,shoeData)
+        return request.post(`${BASE_URL}/shoes/create`, shoeData)
+    },
+    edit(shoeData) {
+        console.log(`in service`,shoeData)
+        return request.patch(`${BASE_URL}/shoes/update/${shoeData._id}`, shoeData)
     }
 }

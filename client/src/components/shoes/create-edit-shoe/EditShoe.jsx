@@ -9,41 +9,33 @@ const initialValues = {
     brand: "",
     price: "",
     imageUrl: "",
-    description: ""
+    description: "",
 }
 
 export default function EditShoe() {
-    const { user } = useAuthContext();
-    const [gender, setGender] = useState("");
     const [values, setValues] = useState(initialValues);
-    const { shoeId: currentShoeId } = useParams();
+    const { shoeId } = useParams();
 
     useEffect(() => { 
 
-        shoeService.getOne(currentShoeId).then(setValues)
-
-    }, [currentShoeId])
-    console.log(values)
+        shoeService.getOne(shoeId).then(setValues)
+    }, [shoeId]);
 
     const navigate = useNavigate();
-
-    function setGenderHandler(e) {
-        setGender(e.target.value)
-    }
 
     function handleInputChange(e) {
         setValues((prevValues) => ({
             ...prevValues,
             [e.target.name]: e.target.value
         }))
+        console.log(values)
     }
-
     async function handleFormSubmit(e) {
         e.preventDefault();
+        console.log(`from handleSubmit: ${values}`)
+        await shoeService.edit(values)
 
-        await shoeService.create({ ...values, gender }, user.accessToken)
-
-        navigate(`/shoes/`)
+        // navigate(`/shoes/`)
         //!TODO add error handling
     }
 
@@ -95,21 +87,21 @@ export default function EditShoe() {
                         name="gender"
                         value="Men"
                         checked={values.gender === "Men"}
-                        onChange={setGenderHandler}
+                        onChange={handleInputChange}
                     /> Men</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Women"
                         checked={values.gender === "Women"}
-                        onChange={setGenderHandler}
+                        onChange={handleInputChange}
                     /> Women</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Unisex"
                         checked={values.gender === "Unisex"}
-                        onChange={setGenderHandler}
+                        onChange={handleInputChange}
                     /> Unisex</label>
                 </div>
             </div>

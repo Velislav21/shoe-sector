@@ -1,36 +1,34 @@
-async function request(method, url, data, accessToken) {
 
-    let options = {}
+import { getAccessToken } from "../utils/authUtil";
 
-    if (method !== "GET") {
-        options = {
-            method,
-        }
-    }
+async function request(method, url, data) {
 
+    const options = {}
+    
+    const accessToken = getAccessToken();
     if (accessToken) {
-        options = {
-            ...options,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify(data),
-        }
-
-    }
-
-    if (data && !accessToken) {
-        options = {
-            ...options,
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+        options.headers = {
+            ...options.headers,
+            'Authorization': `Bearer ${accessToken}`,
         }
     }
+
+
+    if (method !== 'GET') {
+        options.method = method
+    }
+
+    if (data) {
+        options.headers = {
+            ...options.headers,
+            'Content-Type': 'application/json'
+        }
+        options.body = JSON.stringify(data)
+    }
+
 
     try {
+        console.log(options)
         const response = await fetch(url, options);
         const result = await response.json();
 
@@ -45,5 +43,6 @@ export default {
     get: request.bind(null, "GET"),
     post: request.bind(null, "POST"),
     put: request.bind(null, "PUT"),
+    patch: request.bind(null, "PATCH"),
     delete: request.bind(null, "DELETE"),
 }

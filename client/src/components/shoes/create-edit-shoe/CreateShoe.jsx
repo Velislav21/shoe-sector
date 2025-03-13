@@ -9,20 +9,14 @@ const initialValues = {
     brand: "",
     price: "",
     imageUrl: "",
-    description: ""
+    description: "",
+    gender: ""
 }
 
 export default function CreateShoe() {
 
-    const [gender, setGender] = useState("");
     const [values, setValues] = useState(initialValues);
-    const { user } = useAuthContext();
-
     const navigate = useNavigate();
-
-    function setGenderHandler(e) {
-        setGender(e.target.value)
-    }
 
     function handleInputChange(e) {
         setValues((prevValues) => ({
@@ -33,8 +27,7 @@ export default function CreateShoe() {
 
     async function handleFormSubmit(e) {
         e.preventDefault();
-
-        await shoeService.create({ ...values, gender }, user.accessToken)
+        await shoeService.create(values)
 
         navigate('/shoes')
         //!TODO add error handling
@@ -87,26 +80,25 @@ export default function CreateShoe() {
                         type="radio"
                         name="gender"
                         value="Men"
-                        checked={gender === "Men"}
-                        onChange={setGenderHandler}
+                        checked={values.gender === "Men"}
+                        onChange={handleInputChange}
                     /> Men</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Women"
-                        checked={gender === "Women"}
-                        onChange={setGenderHandler}
+                        checked={values.gender === "Women"}
+                        onChange={handleInputChange}
                     /> Women</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Unisex"
-                        checked={gender === "Unisex"}
-                        onChange={setGenderHandler}
+                        checked={values.gender === "Unisex"}
+                        onChange={handleInputChange}
                     /> Unisex</label>
                 </div>
             </div>
-            {/* !TODO: fix gender texts */}
             <div className={styles["form-group"]}>
                 <label>Image URL</label>
                 <input
