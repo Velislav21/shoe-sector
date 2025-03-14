@@ -28,7 +28,7 @@ export default function Navbar() {
                     <li><Link to="/shoes">All Products</Link></li>
                     {user ?
                         <>
-                            <li><Link to="/create">Create</Link></li>
+                            <li><Link to="/shoes/create">Create</Link></li>
                             <li>
                                 <button>
                                     My Cart

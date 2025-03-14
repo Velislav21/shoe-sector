@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from "react-router";
 
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function UnAuthorizedRoutes() {
 

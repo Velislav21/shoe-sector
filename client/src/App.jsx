@@ -12,8 +12,9 @@ import CreateShoe from "./components/shoes/create-edit-shoe/CreateShoe"
 import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
 import { AuthContextProvider } from "./context/AuthContext"
 
-import AuthorizedRoutes from "./utils/route-guards/AuthorizedRoutes"
-import UnAuthorizedRoutes from "./utils/route-guards/UnAuthorizedRoutes"
+import AuthorizedRoutes from "./route-guards/AuthorizedRoutes"
+import UnAuthorizedRoutes from "./route-guards/UnAuthorizedRoutes"
+import RecordOwnerRoutes from "./route-guards/RecordOwnerRoutes"
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/shoes" element={<ShoesList />} />
+                        <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
 
                         <Route element={<UnAuthorizedRoutes />}>
                             <Route path="/login" element={<Login />} />
@@ -33,10 +35,12 @@ function App() {
                         </Route>
 
                         <Route element={<AuthorizedRoutes />}>
-                            <Route path="/create" element={<CreateShoe />} />
-                            <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
+                            <Route path="/shoes/create" element={<CreateShoe />} />
                             <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
                         </Route>
+{/*                     Doesnt work as intended.
+                        <Route element={<RecordOwnerRoutes />}>
+                        </Route> */}
 
                     </Routes>
                     {/* <CartModal /> */}
