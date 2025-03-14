@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import shoeService from "../../../services/shoeService"
 import styles from './ShoeDetails.module.css'
+import useGetShoe from "../../../hooks/useGetShoe"
 
 const initialShoeData = {
     modelName: "",
@@ -18,17 +19,12 @@ const initialShoeData = {
 
 export default function ShoeDetails() {
     const navigate = useNavigate();
-    const [shoeData, setShoeData] = useState(initialShoeData)
+    const shoeData = useGetShoe();
+    // const [shoeData, setShoeData] = useState(initialShoeData)
     const { user } = useAuthContext();
     const { shoeId } = useParams();
 
     const isOwner = user?._id === shoeData.owner;
-
-    useEffect(() => {
-
-        shoeService.getOne(shoeId).then(setShoeData)
-
-    }, [shoeId]);
 
     async function deleteHandler() {
         await shoeService.delete(shoeId);
