@@ -12,7 +12,8 @@ import CreateShoe from "./components/shoes/create-edit-shoe/CreateShoe"
 import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
 import { AuthContextProvider } from "./context/AuthContext"
 
-import ProtectedRoutes from "./utils/ProtectedRoutes"
+import AuthorizedRoutes from "./utils/route-guards/AuthorizedRoutes"
+import UnAuthorizedRoutes from "./utils/route-guards/UnAuthorizedRoutes"
 
 function App() {
 
@@ -26,10 +27,12 @@ function App() {
                     <Routes>
                         <Route path="/shoes" element={<ShoesList />} />
 
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        
-                        <Route element={<ProtectedRoutes />}>
+                        <Route element={<UnAuthorizedRoutes />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </Route>
+
+                        <Route element={<AuthorizedRoutes />}>
                             <Route path="/create" element={<CreateShoe />} />
                             <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
                             <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
