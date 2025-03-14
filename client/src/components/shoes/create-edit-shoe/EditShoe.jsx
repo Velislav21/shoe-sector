@@ -13,10 +13,11 @@ const initialValues = {
 }
 
 export default function EditShoe() {
+    const { user } = useAuthContext()
     const [values, setValues] = useState(initialValues);
     const { shoeId } = useParams();
 
-    useEffect(() => { 
+    useEffect(() => {
 
         shoeService.getOne(shoeId).then(setValues)
     }, [shoeId]);
@@ -28,14 +29,13 @@ export default function EditShoe() {
             ...prevValues,
             [e.target.name]: e.target.value
         }))
-        console.log(values)
     }
     async function handleFormSubmit(e) {
         e.preventDefault();
-        console.log(`from handleSubmit: ${values}`)
-        await shoeService.edit(values)
 
-        // navigate(`/shoes/`)
+        await shoeService.edit(values);
+
+        navigate(`/shoes/${values._id}/details`);
         //!TODO add error handling
     }
 

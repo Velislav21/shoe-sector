@@ -27,9 +27,10 @@ export default function CreateShoe() {
 
     async function handleFormSubmit(e) {
         e.preventDefault();
+        console.log(values)
         await shoeService.create(values)
 
-        navigate('/shoes')
+        // navigate('/shoes')
         //!TODO add error handling
     }
 

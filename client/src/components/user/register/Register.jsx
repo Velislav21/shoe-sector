@@ -24,7 +24,6 @@ export default function Register() {
 
     async function handleFormSubmit(e) {
         e.preventDefault();
-
         const user = await userService.register(values);
 
         localStorage.setItem('user', JSON.stringify(user));

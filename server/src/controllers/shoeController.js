@@ -36,15 +36,15 @@ shoeController.patch('/update/:shoeId', isAuth, async (req, res) => {
     const shoeId = req.params.shoeId;
     const userId = req.user._id;
     const shoeData = req.body;
-    console.log(`shoeId: ${shoeId}`, `userId: ${userId}`, `shoeData: ${req.body}`)
 
-    // try {
-    //     const result = await shoeService.update(shoeId, shoeData);
-    //     res.status(200).json(result);
-    // } catch (err) {
-    //     const error = getError(err);
-    //     res.status(400).json({ message: error });
-    // }
+    try {
+        // can make a check if user sending the request and if record owner are the same
+        const result = await shoeService.update(shoeId, shoeData);
+        res.status(200).json(result);
+    } catch (err) {
+        const error = getError(err);
+        res.status(400).json({ message: error });
+    }
 })
 
 export default shoeController
