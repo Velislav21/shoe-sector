@@ -13,7 +13,9 @@ export default {
         return request.post(`${BASE_URL}/shoes/create`, shoeData)
     },
     edit(shoeData) {
-        console.log(`in service`,shoeData)
         return request.patch(`${BASE_URL}/shoes/update/${shoeData._id}`, shoeData)
+    },
+    delete(shoeId) {
+        return request.delete(`${BASE_URL}/shoes/delete/${shoeId}`)
     }
 }

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { useParams, Link } from "react-router"
+import { useParams, Link, useNavigate } from "react-router"
 import { useEffect, useState } from "react"
 
 import { useAuthContext } from "../../../hooks/useAuthContext"
@@ -17,18 +17,24 @@ const initialShoeData = {
 }
 
 export default function ShoeDetails() {
+    const navigate = useNavigate();
     const [shoeData, setShoeData] = useState(initialShoeData)
     const { user } = useAuthContext();
     const { shoeId } = useParams();
 
     const isOwner = user?._id === shoeData.owner;
-    console.log(isOwner)
 
     useEffect(() => {
 
         shoeService.getOne(shoeId).then(setShoeData)
 
-    }, [shoeId])
+    }, [shoeId]);
+
+    async function deleteHandler() {
+        await shoeService.delete(shoeId);
+        navigate("/shoes")
+    }
+
     return (
         <article className={styles["shoe-details-container"]}>
             <div>
@@ -40,8 +46,16 @@ export default function ShoeDetails() {
                 </div>
                 {isOwner &&
                     <div className={styles["buttons-container"]}>
-                        <Link to={`/shoes/${shoeData._id}/edit`} className={`${styles["edit-btn"]} ${styles["btn"]}`}>EDIT</Link>
-                        <button className={`${styles["delete-btn"]} ${styles["btn"]}`}>DELETE</button>
+                        <Link
+                            to={`/shoes/${shoeData._id}/edit`}
+                            className={`${styles["edit-btn"]} ${styles["btn"]}`}>
+                            EDIT
+                        </Link>
+                        <button
+                            onClick={deleteHandler}
+                            className={`${styles["delete-btn"]} ${styles["btn"]}`}>
+                            DELETE
+                        </button>
                     </div>
                 }
             </div>

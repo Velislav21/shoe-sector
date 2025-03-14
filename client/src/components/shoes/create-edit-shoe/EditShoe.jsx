@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router"
 import styles from "./CreateShoe.module.css"
 import shoeService from "../../../services/shoeService";
-import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const initialValues = {
     modelName: "",
@@ -13,16 +12,13 @@ const initialValues = {
 }
 
 export default function EditShoe() {
-    const { user } = useAuthContext()
     const [values, setValues] = useState(initialValues);
     const { shoeId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
-
         shoeService.getOne(shoeId).then(setValues)
     }, [shoeId]);
-
-    const navigate = useNavigate();
 
     function handleInputChange(e) {
         setValues((prevValues) => ({

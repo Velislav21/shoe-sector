@@ -24,7 +24,7 @@ shoeController.post('/create', isAuth, async (req, res) => {
     const shoeData = req.body
     const ownerId = req.user._id
     try {
-        const shoe = await shoeService.create({...shoeData, owner: ownerId});
+        const shoe = await shoeService.create({ ...shoeData, owner: ownerId });
         res.status(200).json(shoe);
     } catch (err) {
         const error = getError(err);
@@ -41,6 +41,20 @@ shoeController.patch('/update/:shoeId', isAuth, async (req, res) => {
         // can make a check if user sending the request and if record owner are the same
         const result = await shoeService.update(shoeId, shoeData);
         res.status(200).json(result);
+    } catch (err) {
+        const error = getError(err);
+        res.status(400).json({ message: error });
+    }
+})
+
+shoeController.delete('/delete/:shoeId', isAuth, async (req, res) => {
+    const shoeId = req.params.shoeId;
+    const userId = req.user._id;
+
+    try {
+        // can make a check if user sending the request and if record owner are the same
+        await shoeService.remove(shoeId);
+        res.status(200).json({message: "successfuly deleted"});
     } catch (err) {
         const error = getError(err);
         res.status(400).json({ message: error });

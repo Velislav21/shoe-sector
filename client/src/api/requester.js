@@ -6,6 +6,7 @@ async function request(method, url, data) {
     const options = {}
     
     const accessToken = getAccessToken();
+    
     if (accessToken) {
         options.headers = {
             ...options.headers,
@@ -28,7 +29,6 @@ async function request(method, url, data) {
 
 
     try {
-        console.log(options)
         const response = await fetch(url, options);
         const result = await response.json();
 

@@ -30,7 +30,7 @@ export default function CreateShoe() {
         console.log(values)
         await shoeService.create(values)
 
-        // navigate('/shoes')
+        navigate('/shoes')
         //!TODO add error handling
     }
 
