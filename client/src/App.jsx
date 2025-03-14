@@ -12,6 +12,8 @@ import CreateShoe from "./components/shoes/create-edit-shoe/CreateShoe"
 import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
 import { AuthContextProvider } from "./context/AuthContext"
 
+import ProtectedRoutes from "./utils/ProtectedRoutes"
+
 function App() {
 
     return (
@@ -23,11 +25,16 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/shoes" element={<ShoesList />} />
-                        <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
-                        <Route path="/shoes/:shoeId/edit" element={<EditShoe/>} />
+
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/create" element={<CreateShoe/>} />
+                        
+                        <Route element={<ProtectedRoutes />}>
+                            <Route path="/create" element={<CreateShoe />} />
+                            <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
+                            <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
+                        </Route>
+
                     </Routes>
                     {/* <CartModal /> */}
                 </main>
