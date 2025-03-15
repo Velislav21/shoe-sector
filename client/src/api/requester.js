@@ -3,9 +3,9 @@ import { getAccessToken } from "../utils/authUtil";
 async function request(method, url, data) {
 
     const options = {}
-    
-    const accessToken = getAccessToken();
-    
+
+    const { accessToken } = getAccessToken();
+
     if (accessToken) {
         options.headers = {
             ...options.headers,
@@ -27,15 +27,17 @@ async function request(method, url, data) {
     }
 
 
-    try {
-        const response = await fetch(url, options);
-        const result = await response.json();
+    const response = await fetch(url, options);
 
-        return result;
-
-    } catch (error) {
-        console.log(error);
+    if (!response.ok) {
+        const error = new Error('An error has occured during fetching!')
+        error.code = response.status;
+        error.info = await response.json();
+        throw error;
     }
+    const result = await response.json();
+    return result;
+
 };
 
 export default {

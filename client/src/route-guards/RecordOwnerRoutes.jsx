@@ -9,11 +9,10 @@ export default function RecordOwnerRoutes() {
     const [shoeData] = useGetShoe();
 
     console.log(shoeData)
-    
+
     if (!user) {
         return <Navigate to="/login" />
     }
-
     const isOwner = user._id === shoeData.owner;
 
     return isOwner ? <Outlet /> : <Navigate to={"/shoes"} />

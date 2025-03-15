@@ -1,9 +1,9 @@
 export const getAccessToken = () => {
-    const authJSON = localStorage.getItem('user');
+    const user = localStorage.getItem('user');
 
-    if(!authJSON) {
+    if(!user) {
         return '';
     }
-    const authData = JSON.parse(authJSON);
-    return authData?.accessToken;
+    const userData = JSON.parse(user);
+    return userData;
 }

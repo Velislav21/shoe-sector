@@ -17,9 +17,9 @@ export default function EditShoe() {
     async function handleFormSubmit(e) {
         e.preventDefault();
 
-        await shoeService.edit(values);
+        await shoeService.edit(shoeData);
 
-        navigate(`/shoes/${values._id}/details`);
+        navigate(`/shoes/${shoeData._id}/details`);
         //!TODO add error handling
     }
 

@@ -47,6 +47,7 @@ export default function ShoeDetails() {
             </div>
 
             <div className={styles["shoe-details"]}>
+                <p className={styles["model-name"]}>{shoeData.brand}</p>
                 <p className={styles["model-name"]}>{shoeData.modelName}</p>
                 <p className={styles["type"]}>{shoeData.gender}'s shoes</p>
                 <p className={styles["price"]}>BGN {shoeData.price}</p>

@@ -9,6 +9,7 @@ const initialShoeData = {
     imageUrl: "",
     description: "",
     price: "",
+    owner: "",
     _id: "",
 }
 
