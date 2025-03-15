@@ -20,7 +20,6 @@ const shoeService = {
         return Shoe.findByIdAndDelete(shoeId);
     },
     update(shoeId, shoeData) {
-
         return Shoe.findByIdAndUpdate(shoeId, shoeData,
             {
                 runValidators: true,

@@ -3,12 +3,11 @@ import jwt from "../jwt.js";
 export const authMiddleware = async (req, res, next) => {
 
     const token = req.headers.authorization?.split(' ')[1];
-
     if (!token) {
         req.isAuthenticated = false;
         return next();
     }
- 
+
     try {
         const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
         req.user = decodedToken;

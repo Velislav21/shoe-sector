@@ -11,5 +11,8 @@ export default {
     },
     logout() {
         localStorage.removeItem("user")
+    },
+    getProfile(userId) {
+        return request.get(`${BASE_URL}/users/profile/${userId}`)
     }
 }
