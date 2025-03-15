@@ -1,6 +1,6 @@
 # SoftUni React Project Defense
 
-This is a **SoftUni React project defense** presentation. The project is a **Full Stack Application** using the following technologies:
+This is a **SoftUni React project defense** application. The project is a **Full Stack Application** using the following technologies:
 
 - **Frontend:** React 19  
 - **Backend:** Node.js, Express.js, MongoDB
