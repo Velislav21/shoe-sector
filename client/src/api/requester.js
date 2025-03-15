@@ -1,4 +1,3 @@
-
 import { getAccessToken } from "../utils/authUtil";
 
 async function request(method, url, data) {

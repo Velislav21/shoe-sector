@@ -21,7 +21,6 @@ export default function Navbar() {
             <div className={styles["logos-container"]}>
                 <Link to="#" className={styles["logo"]}>My Logo</Link>
             </div>
-            {/* Maybe use NavLink instead */}
             <nav>
                 <ul className={styles["nav-list"]}>
                     <li><Link to="/">Home</Link></li>

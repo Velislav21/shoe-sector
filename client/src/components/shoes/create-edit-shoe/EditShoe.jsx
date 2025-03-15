@@ -1,27 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router"
+import { useNavigate } from "react-router"
 import styles from "./CreateShoe.module.css"
 import shoeService from "../../../services/shoeService";
-
-const initialValues = {
-    modelName: "",
-    brand: "",
-    price: "",
-    imageUrl: "",
-    description: "",
-}
+import useGetShoe from "../../../hooks/useGetShoe";
 
 export default function EditShoe() {
-    const [values, setValues] = useState(initialValues);
-    const { shoeId } = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        shoeService.getOne(shoeId).then(setValues)
-    }, [shoeId]);
+    const [shoeData, setShoeData] = useGetShoe();
 
     function handleInputChange(e) {
-        setValues((prevValues) => ({
+        setShoeData((prevValues) => ({
             ...prevValues,
             [e.target.name]: e.target.value
         }))
@@ -48,7 +36,7 @@ export default function EditShoe() {
                     name="modelName"
                     className={styles["input-field"]}
                     onChange={handleInputChange}
-                    value={values.modelName}
+                    value={shoeData.modelName}
                     required />
             </div>
 
@@ -60,7 +48,7 @@ export default function EditShoe() {
                     name="brand"
                     className={styles["input-field"]}
                     onChange={handleInputChange}
-                    value={values.brand}
+                    value={shoeData.brand}
                     required />
             </div>
             <div className={styles["form-group"]}>
@@ -71,7 +59,7 @@ export default function EditShoe() {
                     name="price"
                     className={styles["input-field"]}
                     onChange={handleInputChange}
-                    value={values.price}
+                    value={shoeData.price}
                     required />
             </div>
 
@@ -82,21 +70,21 @@ export default function EditShoe() {
                         type="radio"
                         name="gender"
                         value="Men"
-                        checked={values.gender === "Men"}
+                        checked={shoeData.gender === "Men"}
                         onChange={handleInputChange}
                     /> Men</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Women"
-                        checked={values.gender === "Women"}
+                        checked={shoeData.gender === "Women"}
                         onChange={handleInputChange}
                     /> Women</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Unisex"
-                        checked={values.gender === "Unisex"}
+                        checked={shoeData.gender === "Unisex"}
                         onChange={handleInputChange}
                     /> Unisex</label>
                 </div>
@@ -109,7 +97,7 @@ export default function EditShoe() {
                     name="imageUrl"
                     className={styles["input-field"]}
                     onChange={handleInputChange}
-                    value={values.imageUrl}
+                    value={shoeData.imageUrl}
                     required />
             </div>
 
@@ -120,7 +108,7 @@ export default function EditShoe() {
                     name="description"
                     className={styles["textarea-field"]}
                     onChange={handleInputChange}
-                    value={values.description}
+                    value={shoeData.description}
                     required
                 ></textarea>
             </div>

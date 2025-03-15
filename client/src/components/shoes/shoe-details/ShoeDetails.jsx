@@ -1,28 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useParams, Link, useNavigate } from "react-router"
-import { useEffect, useState } from "react"
 
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import shoeService from "../../../services/shoeService"
 import styles from './ShoeDetails.module.css'
 import useGetShoe from "../../../hooks/useGetShoe"
 
-const initialShoeData = {
-    modelName: "",
-    brand: "",
-    gender: "",
-    imageUrl: null,
-    description: "",
-    price: ""
-}
-
 export default function ShoeDetails() {
+
     const navigate = useNavigate();
-    const shoeData = useGetShoe();
-    // const [shoeData, setShoeData] = useState(initialShoeData)
-    const { user } = useAuthContext();
     const { shoeId } = useParams();
+    const { user } = useAuthContext();
+    const [shoeData] = useGetShoe();
 
     const isOwner = user?._id === shoeData.owner;
 
@@ -36,7 +26,7 @@ export default function ShoeDetails() {
             <div>
                 <div className={styles["img-container"]}>
                     <img
-                        src={shoeData.imageUrl}
+                        src={shoeData.imageUrl || null}
                         alt="Invalid Image Url"
                     />
                 </div>

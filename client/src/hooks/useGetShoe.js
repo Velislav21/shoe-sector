@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import shoeService from "../services/shoeService";
 
-
 const initialShoeData = {
     modelName: "",
     brand: "",
     gender: "",
-    imageUrl: null,
+    imageUrl: "",
     description: "",
     price: "",
     _id: "",
@@ -19,14 +18,8 @@ export default function useGetShoe() {
     const [shoeData, setShoeData] = useState(initialShoeData)
 
     useEffect(() => {
+        shoeService.getOne(shoeId).then(setShoeData)
+    }, [shoeId]);
 
-        async function getShoe() {
-            const shoe = await shoeService.getOne(shoeId);
-            setShoeData(shoe);
-        }
-        getShoe();
-
-    }, [shoeId])
-    console.log(shoeData)
-    return shoeData;
+    return [shoeData, setShoeData];
 }
