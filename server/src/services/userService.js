@@ -29,6 +29,17 @@ const userService = {
         }
         return generateResponse(user);
     },
+    async edit(userId, userData) {
+        const updatedUser = User.findByIdAndUpdate(userId, userData,
+            {
+                runValidators: true,
+                new: true
+            }).select("-password");
+        return updatedUser;
+    },
+    async getProfile(userId) {
+        return await User.findById(userId).select("-password").lean();
+    }
 }
 
 async function generateResponse(user) {

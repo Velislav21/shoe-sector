@@ -34,7 +34,7 @@ export default function Navbar() {
                                     <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
                                 </button>
                             </li>
-                            <li><Link to="/profile">Profile</Link></li>
+                            <li><Link to={`/profile/${user._id}`}>Profile</Link></li>
                             <li><button onClick={logoutHandler}>Logout</button></li>
                         </>
                         :

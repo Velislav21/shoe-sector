@@ -1,12 +1,12 @@
 import styles from "./ShoesList.module.css";
 
 import ShoeItem from "../shoe-item/ShoeItem";
-import useAllGetShoes from "../../../hooks/useGetAllShoes";
+import useGetAllShoes from "../../../hooks/useGetAllShoes";
 
 
 export default function ShoesList() {
 
-    const [shoes] = useAllGetShoes();
+    const [shoes] = useGetAllShoes();
 
     return (
         <section className={styles["shoe-items-container"]}>

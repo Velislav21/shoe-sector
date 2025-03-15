@@ -1,42 +1,34 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPen } from "@fortawesome/free-solid-svg-icons"
+
 import styles from './UserProfile.module.css'
+import useGetProfile from "../../../hooks/useGetProfile"
+
 
 export default function UserProfile() {
+
+    const [profileData, setProfileData] = useGetProfile();
+
     return (
         <div className={styles.profilePage}>
             <div className={styles.imgContainer}>
                 <img
-                    src="https://randomuser.me/api/portraits/women/44.jpg"
+                    src="https://randomuser.me/api/portraits/women/43.jpg"
                     alt="Profile"
                 />
             </div>
-            <h2 className={styles.name}>Jessica Alba</h2>
-            <p className={styles.handle}>
-                @jennywilson
-            </p>
+            <h2 className={styles.name}>{profileData.name}</h2>
 
             <div className={styles.infoSection}>
                 <div className={styles.infoRow}>
-                    <span className={styles.label}>Username</span>
-                    <span className={styles.value}>Jessica</span>
+                    <p className={styles.label}>Name</p>
+                    <p className={styles.value}>{profileData.name} <button><FontAwesomeIcon icon={faPen} /></button></p>
                 </div>
                 <div className={styles.infoRow}>
-                    <span className={styles.label}>Email</span>
-                    <span className={styles.value}>jenny@gmail.com</span>
-                </div>
-                <div className={styles.infoRow}>
-                    <span className={styles.label}>Address</span>
-                    <span className={styles.value}> New York, USA
-                    </span>
-                </div>
-                <div className={styles.infoRow}>
-                    <span className={styles.label}>Nickname</span>
-                    <span className={styles.value}> Sky Angel</span>
-                </div>
-                <div className={styles.infoRow}>
-                    <span className={styles.label}>DOB</span>
-                    <span className={styles.value}>April 28, 1981</span>
+                    <p className={styles.label}>Email</p>
+                    <p className={styles.value}>{profileData.email} <button><FontAwesomeIcon icon={faPen} /></button></p>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

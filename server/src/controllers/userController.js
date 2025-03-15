@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { isAuth } from "../middlewares/authMiddleware.js";
 import userService from "../services/userService.js";
 import getError from "../utils/error.js";
 
@@ -28,11 +29,29 @@ userController.post('/login', async (req, res) => {
     }
 })
 
+userController.patch('/edit/:userId', isAuth, async (req, res) => {
+    const values = req.body;
+    const userId = req.params.userId
+
+    try {
+        const updatedUser = await userService.edit(userId, values);
+        res.status(200).json(updatedUser);
+    } catch (err) {
+        const error = getError(err);
+        res.status(400).json({ message: error })
+    }
+})
+
+userController.get('/profile/:userId', isAuth, async (req, res) => {
+    const userId = req.params.userId
+    try {
+        const user = await userService.getProfile(userId);
+        res.status(200).json(user);
+
+    } catch (err) {
+        const error = getError(err);
+        res.status(400).json({ message: error })
+    }
+})
+
 export default userController
-// res.cookie(AUTH_COOKIE_NAME, user.accessToken,
-//     {
-//         httpOnly: true,
-//         secure: true,
-//         sameSite: 'strict',
-//         maxAge: 24 * 60 * 60 * 1000 // 24 hours
-//     });

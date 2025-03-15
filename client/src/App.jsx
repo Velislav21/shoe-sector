@@ -38,8 +38,9 @@ function App() {
                         <Route element={<AuthorizedRoutes />}>
                             <Route path="/shoes/create" element={<CreateShoe />} />
                             <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
+                            <Route path="/profile/:userId" element={<UserProfile />} />
+                            <Route path="/profile/:userId/edit" element={<UserProfile />} />
 
-                            <Route path="/profile" element={<UserProfile />} />
                         </Route>
 
                         {/* <Route element={<RecordOwnerRoutes />}> */}

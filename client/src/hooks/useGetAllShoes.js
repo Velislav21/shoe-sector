@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import shoeService from "../services/shoeService";
 
-export default function useAllGetShoes() {
+export default function useGetAllShoes() {
     
     const [shoes, setShoes] = useState([])
 
