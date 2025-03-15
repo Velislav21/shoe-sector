@@ -20,7 +20,6 @@ export default function useGetShoe() {
 
     useEffect(() => {
         shoeService.getOne(shoeId).then(setShoeData)
-        console.log(shoeData)
     }, [shoeId]);
 
     return [shoeData, setShoeData];

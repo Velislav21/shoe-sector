@@ -15,6 +15,7 @@ import { AuthContextProvider } from "./context/AuthContext"
 import AuthorizedRoutes from "./route-guards/AuthorizedRoutes"
 import UnAuthorizedRoutes from "./route-guards/UnAuthorizedRoutes"
 import RecordOwnerRoutes from "./route-guards/RecordOwnerRoutes"
+import UserProfile from "./components/user/profile/UserProfile"
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
                         <Route element={<AuthorizedRoutes />}>
                             <Route path="/shoes/create" element={<CreateShoe />} />
                             <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
+
+                            <Route path="/profile" element={<UserProfile />} />
                         </Route>
 
                         {/* <Route element={<RecordOwnerRoutes />}> */}

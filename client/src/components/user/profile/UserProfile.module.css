@@ -1,0 +1,56 @@
+.profilePage {
+    padding: 2em;
+    border-radius: 0.3rem;
+    width: 30em;
+    margin: 0 auto;
+    text-align: center;
+    background-color: transparent;
+    font-family: "Segoe UI", sans-serif;
+    box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.5);
+}
+
+.imgContainer img {
+    width: 7em;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1em;
+}
+
+.name {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 0.25em;
+}
+
+.handle {
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 1.5em;
+}
+
+.infoSection {
+    text-align: left;
+    margin-top: 1em;
+}
+
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.label {
+    font-weight: 600;
+    color: #333;
+}
+
+.value {
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
