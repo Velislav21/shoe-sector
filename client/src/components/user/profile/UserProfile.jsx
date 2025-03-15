@@ -13,7 +13,7 @@ export default function UserProfile() {
         <div className={styles.profilePage}>
             <div className={styles.imgContainer}>
                 <img
-                    src="https://randomuser.me/api/portraits/women/43.jpg"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLdmbyEaQPfV4HDykFBnSuPd5LqZo_3cTJcg&s"
                     alt="Profile"
                 />
             </div>

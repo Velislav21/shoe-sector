@@ -1,0 +1,7 @@
+a.edit-btn {
+    background-color: rgb(173, 153, 127);
+
+    &:hover {
+        background-color: rgb(201, 178, 148);
+    }
+}

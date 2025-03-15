@@ -2,10 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useParams, Link, useNavigate } from "react-router"
 
+import styles from './ShoeDetails.module.css'
+
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import shoeService from "../../../services/shoeService"
-import styles from './ShoeDetails.module.css'
 import useGetShoe from "../../../hooks/useGetShoe"
+import EditButton from "../../reusable-buttons/edit-button/EditButton"
+import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton"
 
 export default function ShoeDetails() {
 
@@ -32,16 +35,8 @@ export default function ShoeDetails() {
                 </div>
                 {isOwner &&
                     <div className={styles["buttons-container"]}>
-                        <Link
-                            to={`/shoes/${shoeData._id}/edit`}
-                            className={`${styles["edit-btn"]} ${styles["btn"]}`}>
-                            EDIT
-                        </Link>
-                        <button
-                            onClick={deleteHandler}
-                            className={`${styles["delete-btn"]} ${styles["btn"]}`}>
-                            DELETE
-                        </button>
+                        <EditButton id={shoeData._id}>EDIT</EditButton>
+                        <DeleteButton deleteHandler={deleteHandler}>DELETE</DeleteButton>
                     </div>
                 }
             </div>

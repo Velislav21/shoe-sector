@@ -1,0 +1,14 @@
+.btn {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    border-radius: 0.3rem;
+    padding: 0.5em 0.8em;
+    transition: 0.2s ease;
+    &:hover {
+        transform: translateY(-0.15em);
+    }
+}

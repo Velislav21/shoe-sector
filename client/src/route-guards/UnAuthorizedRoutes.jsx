@@ -4,7 +4,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function UnAuthorizedRoutes() {
 
-    const { user } = useAuthContext();
-
+    const { user } = useAuthContext(); 
     return user ? <Navigate to={"/shoes"} /> : <Outlet />
 }
