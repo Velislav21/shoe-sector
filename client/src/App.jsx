@@ -38,9 +38,9 @@ function App() {
                             <Route path="/shoes/create" element={<CreateShoe />} />
                             <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
                         </Route>
-{/*                     Doesnt work as intended.
-                        <Route element={<RecordOwnerRoutes />}>
-                        </Route> */}
+
+                        {/* <Route element={<RecordOwnerRoutes />}> */}
+                        {/* </Route> */}
 
                     </Routes>
                     {/* <CartModal /> */}

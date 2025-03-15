@@ -1,4 +1,4 @@
-import { Outlet, Navigate, useParams } from "react-router";
+import { Outlet, Navigate } from "react-router";
 
 import { useAuthContext } from "../hooks/useAuthContext";
 import useGetShoe from "../hooks/useGetShoe";
@@ -6,7 +6,9 @@ import useGetShoe from "../hooks/useGetShoe";
 export default function RecordOwnerRoutes() {
 
     const { user } = useAuthContext();
-    const shoeData = useGetShoe();
+    const [shoeData] = useGetShoe();
+
+    console.log(shoeData)
     
     if (!user) {
         return <Navigate to="/login" />
