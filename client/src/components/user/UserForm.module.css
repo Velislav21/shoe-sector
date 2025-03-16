@@ -36,7 +36,7 @@ div.user-input-container > input {
     background: transparent;
     border-bottom: 2px solid rgb(150, 150, 150);
 }
-    
+
 .action-btn {
     cursor: pointer;
     border: none;
@@ -62,4 +62,12 @@ div.user-input-container > input {
     margin-left: 0.5em;
     color: #4960d6;
     text-decoration: underline;
+}
+.imgContainer img {
+    width: 7em;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1em;
 }

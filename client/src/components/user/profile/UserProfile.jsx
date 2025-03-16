@@ -2,16 +2,14 @@ import styles from './UserProfile.module.css'
 import EditButton from "../../reusable-buttons/edit-button/EditButton";
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton";
 import userService from '../../../services/userService';
-import { useParams } from 'react-router';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 
 
 export default function UserProfile() {
     const { user, dispatch } = useAuthContext();
-    const { userId } = useParams();
 
     async function deleteHandler() {
-        await userService.deleteProfile(userId);
+        await userService.deleteProfile(user._id);
 
         dispatch({ type: "LOGOUT" })
     }

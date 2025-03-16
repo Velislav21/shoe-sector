@@ -28,29 +28,33 @@ const userService = {
             throw new Error('Invalid password!')
         }
         return generateResponse(user);
+    }, 
+
+    async getProfile(userId) {
+        return await User.findById(userId).select("-password").lean();
     },
+
     async edit(userId, userData) {
         const updatedUser = User.findByIdAndUpdate(userId, userData,
             {
                 runValidators: true,
                 new: true
-            }).select("-password");
+            }).select("-password").lean();
         return updatedUser;
     },
     async delete(userId) {
         return await User.findByIdAndDelete(userId);
     },
-    async getProfile(userId) {
-        return await User.findById(userId).select("-password").lean();
-    }
 }
-
+ 
 async function generateResponse(user) {
     const payload = {
         _id: user._id,
         name: user.name,
         email: user.email,
     }
+
+    console.log(user.name, user.email, user._id)
 
     const header = { expiresIn: '1d' };
 

@@ -9,13 +9,13 @@ export default {
     register(data) {
         return request.post(`${BASE_URL}/users/register`, data)
     },
-    logout() {
-        localStorage.removeItem("user")
-    },
     deleteProfile(userId) {
         return request.delete(`${BASE_URL}/users/profile/${userId}`);
     },
     getProfile(userId) {
         return request.get(`${BASE_URL}/users/profile/${userId}`);
+    },
+    updateProfile(userId, userData) {
+        return request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
     }
 }

@@ -9,6 +9,7 @@ export function authReducer(state, action) {
             return { user: action.payload };
 
         case "LOGOUT":
+            localStorage.removeItem("user")
             return { user: null };
 
         default:

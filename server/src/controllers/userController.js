@@ -29,19 +29,6 @@ userController.post('/login', async (req, res) => {
     }
 })
 
-userController.patch('/edit/:userId', isAuth, async (req, res) => {
-    const values = req.body;
-    const userId = req.params.userId
-
-    try {
-        const updatedUser = await userService.edit(userId, values);
-        res.status(200).json(updatedUser);
-    } catch (err) {
-        const error = getError(err);
-        res.status(400).json({ message: error })
-    }
-})
-
 userController.get('/profile/:userId', isAuth, async (req, res) => {
     const userId = req.params.userId
     try {
@@ -53,6 +40,19 @@ userController.get('/profile/:userId', isAuth, async (req, res) => {
         res.status(400).json({ message: error })
     }
 })
+
+userController.patch('/edit/:userId', async (req, res) => {
+    const values = req.body;
+    const userId = req.params.userId
+    try {
+        const updatedUser = await userService.edit(userId, values);
+        res.status(200).json(updatedUser);
+    } catch (err) {
+        const error = getError(err);
+        res.status(400).json({ message: error })
+    }
+})
+
 
 userController.delete('/profile/:userId', isAuth, async (req, res) => {
     const userId = req.params.userId

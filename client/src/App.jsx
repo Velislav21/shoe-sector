@@ -9,6 +9,7 @@ import Register from "./components/user/register/Register"
 import UserProfile from "./components/user/profile/UserProfile"
 import CreateShoe from "./components/shoes/create-edit-shoe/CreateShoe"
 import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
+import UserEdit from "./components/user/profile/UserEdit"
 
 import AuthorizedRoutes from "./route-guards/AuthorizedRoutes"
 import UnAuthorizedRoutes from "./route-guards/UnAuthorizedRoutes"
@@ -38,7 +39,7 @@ function App() {
                             <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
 
                             <Route path="/profile/:userId" element={<UserProfile />} />
-                            <Route path="/profile/:userId/edit" element={<UserProfile />} />
+                            <Route path="/profile/:userId/edit" element={<UserEdit />} />
 
                         </Route>
 
