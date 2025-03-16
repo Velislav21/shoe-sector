@@ -63,3 +63,8 @@
     border: none;
     background: none;
 }
+.buttonsContainer {
+    display: flex;
+    margin-top: 2em;
+    gap: 0.5em
+}

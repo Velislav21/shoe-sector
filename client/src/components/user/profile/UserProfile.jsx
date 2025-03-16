@@ -1,13 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPen } from "@fortawesome/free-solid-svg-icons"
-
 import styles from './UserProfile.module.css'
 import useGetProfile from "../../../hooks/useGetProfile"
+import EditButton from "../../reusable-buttons/edit-button/EditButton";
+import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton";
 
 
 export default function UserProfile() {
 
     const [profileData, setProfileData] = useGetProfile();
+
+    async function deleteHandler() {
+
+    }
 
     return (
         <div className={styles.profilePage}>
@@ -22,12 +25,17 @@ export default function UserProfile() {
             <div className={styles.infoSection}>
                 <div className={styles.infoRow}>
                     <p className={styles.label}>Name</p>
-                    <p className={styles.value}>{profileData.name} <button><FontAwesomeIcon icon={faPen} /></button></p>
+                    <p className={styles.value}>{profileData.name} </p>
                 </div>
                 <div className={styles.infoRow}>
                     <p className={styles.label}>Email</p>
-                    <p className={styles.value}>{profileData.email} <button><FontAwesomeIcon icon={faPen} /></button></p>
+                    <p className={styles.value}>{profileData.email}</p>
                 </div>
+            </div>
+
+            <div className={styles.buttonsContainer}>
+                <EditButton redirect={`/profile/${profileData._id}/edit`} />
+                <DeleteButton deleteHandler={deleteHandler}/>
             </div>
         </div >
     )

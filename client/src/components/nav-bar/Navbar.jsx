@@ -1,4 +1,4 @@
-import { Link, } from "react-router"
+import { Link, useNavigate, } from "react-router"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
@@ -10,10 +10,12 @@ import userService from "../../services/userService"
 export default function Navbar() {
 
     const { user, dispatch } = useAuthContext()
+    const navigate = useNavigate();
 
     function logoutHandler() {
         dispatch({ type: "LOGOUT" })
         userService.logout(); // or just ... localStorage.removeItem("user")
+        navigate('/login')
     }
 
     return (
@@ -34,7 +36,7 @@ export default function Navbar() {
                                     <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
                                 </button>
                             </li>
-                            <li><Link to={`/profile/${user._id}`}>Profile</Link></li>
+                            <li><Link to={`/profile/${user._id}`}>{user.name}' Profile</Link></li>
                             <li><button onClick={logoutHandler}>Logout</button></li>
                         </>
                         :

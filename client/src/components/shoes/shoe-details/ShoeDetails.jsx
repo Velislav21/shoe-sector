@@ -35,7 +35,7 @@ export default function ShoeDetails() {
                 </div>
                 {isOwner &&
                     <div className={styles["buttons-container"]}>
-                        <EditButton id={shoeData._id}>EDIT</EditButton>
+                        <EditButton redirect={`/shoes/${shoeData._id}/edit`}>EDIT</EditButton>
                         <DeleteButton deleteHandler={deleteHandler}>DELETE</DeleteButton>
                     </div>
                 }
