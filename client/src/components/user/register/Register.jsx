@@ -1,7 +1,7 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router"
 
-import styles from "./Register.module.css"
+import styles from "../UserForm.module.css"
 import ErrorMessage from "../../errors/ErrorMessage"
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import userService from "../../../services/userService"
@@ -13,7 +13,6 @@ export default function Register() {
     const [values, setValues] = useState(initialFormValues)
     const { dispatch } = useAuthContext()
     const navigate = useNavigate();
-
 
     function handleInputChange(e) {
         setValues((prevValues) => ({
@@ -36,11 +35,11 @@ export default function Register() {
 
 
     return (
-        <form onSubmit={handleFormSubmit} className={styles["register-form"]}>
+        <form onSubmit={handleFormSubmit} className={styles["user-form"]}>
             <h1>Register</h1>
             <p>Please, fill in this form to create an acoount.</p>
             <div className={styles["inputs-container"]}>
-                <div className={styles["register-input-container"]}>
+                <div className={styles["user-input-container"]}>
                     <input
                         type="text"
                         placeholder="e.g. John Doe"
@@ -52,7 +51,7 @@ export default function Register() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["register-input-container"]}>
+                <div className={styles["user-input-container"]}>
                     <input
                         type="email"
                         placeholder="e.g. john.doe@gmail.com"
@@ -64,7 +63,7 @@ export default function Register() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["register-input-container"]}>
+                <div className={styles["user-input-container"]}>
                     <input
                         type="password"
                         placeholder="Password"
@@ -76,7 +75,7 @@ export default function Register() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["register-input-container"]}>
+                <div className={styles["user-input-container"]}>
                     <input
                         type="password"
                         placeholder="Repeat Password"
@@ -90,7 +89,7 @@ export default function Register() {
                 </div>
             </div>
 
-            <button className={styles["register-btn"]}>CREATE ACCOUNT</button>
+            <button className={styles["action-btn"]}>CREATE ACCOUNT</button>
             <p>Alrady have an account ? <Link to="/login">Log in</Link></p>
         </form>
     )

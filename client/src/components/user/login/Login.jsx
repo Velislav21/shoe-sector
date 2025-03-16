@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router"
 
-import styles from "./Login.module.css"
+import styles from "../UserForm.module.css"
 import { AuthContext } from "../../../context/AuthContext"
 import  userService  from "../../../services/userService";
 
@@ -35,10 +35,10 @@ export default function Login() {
         // !TODO: add error handling
     }
     return (
-        <form onSubmit={handleFormSubmit} className={styles["login-form"]}>
+        <form onSubmit={handleFormSubmit} className={styles["user-form"]}>
             <h1>Login</h1>
             <div className={styles["inputs-container"]}>
-                <div className={styles["login-input-container"]}>
+                <div className={styles["user-input-container"]}>
                     <input
                         type="email"
                         placeholder="e.g. john.doe@gmail.com"
@@ -50,7 +50,7 @@ export default function Login() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
-                <div className={styles["login-input-container"]}>
+                <div className={styles["user-input-container"]}>
                     <input
                         type="password"
                         placeholder="Password"
@@ -64,7 +64,7 @@ export default function Login() {
                 </div>
             </div>
 
-            <button className={styles["login-btn"]}>LOGIN</button>
+            <button className={styles["action-btn"]}>LOGIN</button>
             <p>You don't have an account ? <Link to="/register">Register here.</Link></p>
         </form>
     )

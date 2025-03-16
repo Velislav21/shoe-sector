@@ -1,4 +1,4 @@
-.login-form {
+.user-form {
     max-width: 30em;
     margin: 3em auto;
     display: flex;
@@ -10,7 +10,7 @@
     padding: 0.5em 1em;
 }
 
-.login-form h1 {
+.user-form h1 {
     font-size: 1.5em;
     color: #4a4a4a;
     margin: 0.5em 0;
@@ -24,11 +24,11 @@
     flex-direction: column;
     width: 100%;
 }
-div.login-input-container {
+div.user-input-container {
     margin-bottom: 1.5em;
 }
 
-div.login-input-container > input {
+div.user-input-container > input {
     display: inline-block;
     width: 100%;
     padding: 0.5em;
@@ -37,7 +37,7 @@ div.login-input-container > input {
     border-bottom: 2px solid rgb(150, 150, 150);
 }
     
-.login-btn {
+.action-btn {
     cursor: pointer;
     border: none;
     background: transparent;
@@ -49,16 +49,16 @@ div.login-input-container > input {
     padding: 0.7em 2em;
     margin-bottom: 1.3em;
 }
-.login-btn:hover {
+.action-btn:hover {
     color: #262626;
 }
-.login-form p:last-of-type {
+.user-form p:last-of-type {
     color: #616161;
     margin-bottom: 1em;
     font-size: 1.1em;
 }
 
-.login-form a {
+.user-form a {
     margin-left: 0.5em;
     color: #4960d6;
     text-decoration: underline;
