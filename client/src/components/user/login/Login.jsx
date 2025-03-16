@@ -4,28 +4,25 @@ import { Link, useNavigate } from "react-router"
 import styles from "../UserForm.module.css"
 import { AuthContext } from "../../../context/AuthContext"
 import userService from "../../../services/userService";
+import useForm from "../../../hooks/useForm";
 
 import ErrorMessage from "../../errors/ErrorMessage"
 
 const initialFormValues = { email: "", password: "" }
 
 export default function Login() {
-    const [values, setValues] = useState(initialFormValues)
-    const [valid, setIsValid] = useState(true);
+
+    const { values, handleInputChange } =
+        useForm(initialFormValues, handleFormSubmit);
+
     const { dispatch } = useContext(AuthContext)
     const navigate = useNavigate();
+    const [valid, setIsValid] = useState(true);
 
-    const pattern = new RegExp("^(?![._])[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$", "i");
-
-    function handleInputChange(e) {
-        setValues((prevValues) => ({
-            ...prevValues,
-            [e.target.name]: e.target.value
-        }))
-    }
+    const emailRegExp = new RegExp("^(?![._])[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$", "i");
 
     function handleInputValidation(e) {
-        const isInputValid = pattern.test(e.target.value);
+        const isInputValid = emailRegExp.test(e.target.value);
         setIsValid(isInputValid);
     }
 
