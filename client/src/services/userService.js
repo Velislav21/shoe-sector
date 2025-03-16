@@ -15,7 +15,7 @@ export default {
     getProfile(userId) {
         return request.get(`${BASE_URL}/users/profile/${userId}`);
     },
-    updateProfile(userId, userData) {
+    editProfile(userId, userData) {
         return request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
     }
 }

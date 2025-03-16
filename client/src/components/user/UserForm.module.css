@@ -31,12 +31,25 @@ div.user-input-container {
 div.user-input-container > input {
     display: inline-block;
     width: 100%;
+    margin-bottom: 0.5em;
     padding: 0.5em;
+    outline: none;
     border: none;
     background: transparent;
     border-bottom: 2px solid rgb(150, 150, 150);
 }
 
+div.user-input-container input.error {
+    color: red;
+    border-bottom: 1.5px solid red;
+
+    &:focus {
+        outline: none;
+        border: 1.5px solid rgb(255, 0, 0);
+        border-radius: 0.3rem;
+        color: #5a5a5a;
+    }
+}
 .action-btn {
     cursor: pointer;
     border: none;

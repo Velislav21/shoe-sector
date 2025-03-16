@@ -19,7 +19,7 @@ export default function UserEdit() {
     }
     async function handleFormSubmit(e) {
         e.preventDefault();
-        const updatedUser = await userService.updateProfile(user._id, userValues);
+        const updatedUser = await userService.editProfile(user._id, userValues);
         console.log(updatedUser)        
 
         localStorage.setItem('user', JSON.stringify(updatedUser));

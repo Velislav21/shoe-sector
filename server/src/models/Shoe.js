@@ -30,9 +30,8 @@ const shoeSchema = new Schema({
         required: true,
     },
     likedList: [{
-        // type: Types.ObjectId,
-        // ref: 'User',
-        typoe: String
+        type: Types.ObjectId,
+        ref: 'User',
     }],
     owner: {
         type: Types.ObjectId,
