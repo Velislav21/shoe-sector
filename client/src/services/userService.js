@@ -12,7 +12,10 @@ export default {
     logout() {
         localStorage.removeItem("user")
     },
+    deleteProfile(userId) {
+        return request.delete(`${BASE_URL}/users/profile/${userId}`);
+    },
     getProfile(userId) {
-        return request.get(`${BASE_URL}/users/profile/${userId}`)
+        return request.get(`${BASE_URL}/users/profile/${userId}`);
     }
 }

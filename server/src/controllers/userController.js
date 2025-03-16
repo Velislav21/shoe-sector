@@ -54,4 +54,15 @@ userController.get('/profile/:userId', isAuth, async (req, res) => {
     }
 })
 
+userController.delete('/profile/:userId', isAuth, async (req, res) => {
+    const userId = req.params.userId
+    try {
+        await userService.delete(userId);
+        res.status(200).json({ message: "User deleted" });
+    } catch (err) {
+        const error = getError(err);
+        res.status(400).json({ message: error })
+    }
+})
+
 export default userController

@@ -37,6 +37,9 @@ const userService = {
             }).select("-password");
         return updatedUser;
     },
+    async delete(userId) {
+        return await User.findByIdAndDelete(userId);
+    },
     async getProfile(userId) {
         return await User.findById(userId).select("-password").lean();
     }
