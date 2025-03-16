@@ -8,7 +8,11 @@
 -   [x] Login Page
 -   [x] Register Page
 -   [x] Create Product Page
--   [ ] Edit Product Page
--   [ ] Edit Profile Page
+-   [x] Edit Product Page
+-   [x] Edit Profile Page
 -   [x] Details Page
--   [ ] Profile Page
+-   [x] Profile Page
+-   [ ] Complete input validation
+-   [ ] Add useForm Hook
+-   [ ] Add tanstack Query ? 
+

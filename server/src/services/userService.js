@@ -35,12 +35,12 @@ const userService = {
     },
 
     async edit(userId, userData) {
-        const updatedUser = User.findByIdAndUpdate(userId, userData,
+        const updatedUser = await User.findByIdAndUpdate(userId, userData,
             {
                 runValidators: true,
                 new: true
             }).select("-password").lean();
-        return updatedUser;
+        return generateResponse(updatedUser);
     },
     async delete(userId) {
         return await User.findByIdAndDelete(userId);

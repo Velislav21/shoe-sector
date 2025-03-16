@@ -20,7 +20,6 @@ export default function UserEdit() {
     async function handleFormSubmit(e) {
         e.preventDefault();
         const updatedUser = await userService.editProfile(user._id, userValues);
-        console.log(updatedUser)        
 
         localStorage.setItem('user', JSON.stringify(updatedUser));
 
@@ -29,7 +28,7 @@ export default function UserEdit() {
         navigate(`/profile/${updatedUser._id}`)
         // !TODO: add error handling
     }
-
+    
     return (
         <form onSubmit={handleFormSubmit} className={styles["user-form"]}>
             <h1>Edit Profile</h1>

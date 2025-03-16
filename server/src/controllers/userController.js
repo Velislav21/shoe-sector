@@ -46,6 +46,7 @@ userController.patch('/edit/:userId', async (req, res) => {
     const userId = req.params.userId
     try {
         const updatedUser = await userService.edit(userId, values);
+        // console.log(updatedUser)
         res.status(200).json(updatedUser);
     } catch (err) {
         const error = getError(err);
