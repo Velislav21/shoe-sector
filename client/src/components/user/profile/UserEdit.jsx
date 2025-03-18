@@ -3,24 +3,17 @@ import { useNavigate } from 'react-router';
 
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import styles from '../../user/UserForm.module.css'
-
-import userService from '../../../services/userService';
+import { useEditProfile } from '../../../api/usersApi';
 
 export default function UserEdit() {
+    const { editProfile } = useEditProfile();
     const navigate = useNavigate();
     const { user, dispatch } = useAuthContext();
-    const [userValues, setUserValues] = useState({ name: user.name, email: user.email });
 
-    function handleInputChange(e) {
-        setUserValues((prevValues) => ({
-            ...prevValues,
-            [e.target.name]: e.target.value
-        }))
-    }
-    async function handleFormSubmit(e) {
-        e.preventDefault();
-        const updatedUser = await userService.editProfile(user._id, userValues);
+    async function handleFormAction(formData) {
+        const updatedValues = Object.fromEntries(formData);
 
+        const updatedUser = await editProfile(user._id, updatedValues);
         localStorage.setItem('user', JSON.stringify(updatedUser));
 
         dispatch({ type: "LOGIN", payload: updatedUser });
@@ -28,9 +21,9 @@ export default function UserEdit() {
         navigate(`/profile/${updatedUser._id}`)
         // !TODO: add error handling
     }
-    
+
     return (
-        <form onSubmit={handleFormSubmit} className={styles["user-form"]}>
+        <form action={handleFormAction} className={styles["user-form"]}>
             <h1>Edit Profile</h1>
             <div className={styles.imgContainer}>
                 <img
@@ -45,8 +38,7 @@ export default function UserEdit() {
                         placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
-                        onChange={handleInputChange}
-                        value={userValues.email}
+                        defaultValue={user.email}
                         required
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
@@ -57,8 +49,7 @@ export default function UserEdit() {
                         placeholder="e.g. John Doe"
                         name="name"
                         id="name"
-                        onChange={handleInputChange}
-                        value={userValues.name}
+                        defaultValue={user.name}
                         required
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}

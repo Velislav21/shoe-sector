@@ -1,21 +1,15 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router"
 
 import styles from "../UserForm.module.css"
-import { AuthContext } from "../../../context/AuthContext"
-import userService from "../../../services/userService";
-import useForm from "../../../hooks/useForm";
+import { useLogin } from "../../../api/usersApi";
 
 import ErrorMessage from "../../errors/ErrorMessage"
 
-const initialFormValues = { email: "", password: "" }
-
 export default function Login() {
 
-    const { values, handleInputChange } =
-        useForm(initialFormValues, handleFormSubmit);
+    const { login } = useLogin();
 
-    const { dispatch } = useContext(AuthContext)
     const navigate = useNavigate();
     const [valid, setIsValid] = useState(true);
 
@@ -26,20 +20,16 @@ export default function Login() {
         setIsValid(isInputValid);
     }
 
-    async function handleFormSubmit(e) {
-        e.preventDefault();
-
-        const user = await userService.login(values);
-
-        localStorage.setItem('user', JSON.stringify(user));
-
-        dispatch({ type: "LOGIN", payload: user });
+    function handleFormAction(formData) {
+        const values = Object.fromEntries(formData);
+        
+        login(values);
 
         navigate('/shoes')
         // !TODO: add error handling
     }
     return (
-        <form onSubmit={handleFormSubmit} className={styles["user-form"]}>
+        <form action={handleFormAction} className={styles["user-form"]}>
             <h1>Login</h1>
             <div className={styles["inputs-container"]}>
                 <div className={styles["user-input-container"]}>
@@ -50,8 +40,7 @@ export default function Login() {
                         id="email"
                         className={!valid ? styles["error"] : ""}
                         onBlur={handleInputValidation}
-                        onChange={handleInputChange}
-                        value={values.email}
+                        defaultValue=""
                         required
                     />
                     {!valid && <ErrorMessage>Error.</ErrorMessage>
@@ -63,8 +52,7 @@ export default function Login() {
                         placeholder="Password"
                         name="password"
                         id="password"
-                        onChange={handleInputChange}
-                        value={values.password}
+                        defaultValue=""
                         required
                     />
                 </div>

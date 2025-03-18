@@ -1,33 +1,17 @@
-import { useState } from "react"
 import { Link, useNavigate } from "react-router"
 
 import styles from "../UserForm.module.css"
 import ErrorMessage from "../../errors/ErrorMessage"
-import { useAuthContext } from "../../../hooks/useAuthContext"
-import userService from "../../../services/userService"
-
-const initialFormValues = { name: "", email: "", password: "", rePassword: "" }
+import { useRegister } from "../../../api/usersApi"
 
 export default function Register() {
-
-    const [values, setValues] = useState(initialFormValues)
-    const { dispatch } = useAuthContext()
+    const { register } = useRegister();
     const navigate = useNavigate();
 
-    function handleInputChange(e) {
-        setValues((prevValues) => ({
-            ...prevValues,
-            [e.target.name]: e.target.value
-        }))
-    }
+    async function handleFormAction(formData) {
+        const values = Object.fromEntries(formData)
 
-    async function handleFormSubmit(e) {
-        e.preventDefault();
-        const user = await userService.register(values);
-
-        localStorage.setItem('user', JSON.stringify(user));
-
-        dispatch({ type: "LOGIN", payload: user });
+        register(values);
 
         navigate('/shoes')
         // !TODO: error handling 
@@ -35,7 +19,7 @@ export default function Register() {
 
 
     return (
-        <form onSubmit={handleFormSubmit} className={styles["user-form"]}>
+        <form action={handleFormAction} className={styles["user-form"]}>
             <h1>Register</h1>
             <p>Please, fill in this form to create an acoount.</p>
             <div className={styles["inputs-container"]}>
@@ -45,8 +29,6 @@ export default function Register() {
                         placeholder="e.g. John Doe"
                         name="name"
                         id="name"
-                        onChange={handleInputChange}
-                        value={values.name}
                         required
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
@@ -57,8 +39,6 @@ export default function Register() {
                         placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
-                        onChange={handleInputChange}
-                        value={values.email}
                         required
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
@@ -69,8 +49,6 @@ export default function Register() {
                         placeholder="Password"
                         name="password"
                         id="password"
-                        onChange={handleInputChange}
-                        value={values.password}
                         required
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
@@ -81,8 +59,6 @@ export default function Register() {
                         placeholder="Repeat Password"
                         name="rePassword"
                         id="rePassword"
-                        onChange={handleInputChange}
-                        value={values.rePassword}
                         required
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}

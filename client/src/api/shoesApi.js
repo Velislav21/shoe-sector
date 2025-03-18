@@ -32,7 +32,6 @@ export function useGetShoe(shoeId) {
     useEffect(() => {
         request.get(`${BASE_URL}/shoes/details/${shoeId}`).then(setShoeData)
     }, [shoeId]);
-
     return { shoeData, setShoeData };
 };
 

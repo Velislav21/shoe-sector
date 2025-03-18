@@ -1,15 +1,16 @@
 import styles from './UserProfile.module.css'
 import EditButton from "../../reusable-buttons/edit-button/EditButton";
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton";
-import userService from '../../../services/userService';
 import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useDeleteProfile } from '../../../api/usersApi';
 
 
 export default function UserProfile() {
     const { user, dispatch } = useAuthContext();
+    const { deleteProfile } = useDeleteProfile();
 
     async function deleteHandler() {
-        await userService.deleteProfile(user._id);
+        deleteProfile(user._id);
 
         dispatch({ type: "LOGOUT" })
     }
