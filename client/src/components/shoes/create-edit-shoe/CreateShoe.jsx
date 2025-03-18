@@ -1,34 +1,16 @@
-import { useState, use } from "react";
-import { useNavigate, useSearchParams } from "react-router"
+import { useState } from "react";
+import { useNavigate } from "react-router"
 import styles from "./CreateShoe.module.css"
-import shoeService from "../../../services/shoeService";
-import { useAuthContext } from "../../../hooks/useAuthContext";
-
-const initialValues = {
-    modelName: "",
-    brand: "",
-    price: "",
-    imageUrl: "",
-    description: "",
-    gender: ""
-}
+import { useCreateShoe } from "../../../api/shoesApi";
 
 export default function CreateShoe() {
-
-    const [values, setValues] = useState(initialValues);
+    const { create: createShoe } = useCreateShoe();
     const navigate = useNavigate();
 
-    function handleInputChange(e) {
-        setValues((prevValues) => ({
-            ...prevValues,
-            [e.target.name]: e.target.value
-        }))
-    }
+    async function handleFormAction(formData) {
 
-    async function handleFormSubmit(e) {
-        e.preventDefault();
-        console.log(values)
-        await shoeService.create(values)
+        const values = Object.fromEntries(formData)
+        createShoe(values)
 
         navigate('/shoes')
         //!TODO add error handling
@@ -36,7 +18,7 @@ export default function CreateShoe() {
 
     return (
 
-        <form onSubmit={handleFormSubmit} className={styles["create-shoe-form"]}>
+        <form action={handleFormAction} className={styles["create-shoe-form"]}>
             <h2 className={styles["form-title"]}>Add New Shoe Model</h2>
 
             <div className={styles["form-group"]}>
@@ -46,8 +28,7 @@ export default function CreateShoe() {
                     placeholder="Enter model name"
                     name="modelName"
                     className={styles["input-field"]}
-                    onChange={handleInputChange}
-                    value={values.email}
+                    defaultValue=""
                     required />
             </div>
 
@@ -58,8 +39,7 @@ export default function CreateShoe() {
                     placeholder="Enter brand"
                     name="brand"
                     className={styles["input-field"]}
-                    onChange={handleInputChange}
-                    value={values.brand}
+                    defaultValue=""
                     required />
             </div>
             <div className={styles["form-group"]}>
@@ -69,8 +49,7 @@ export default function CreateShoe() {
                     placeholder="Enter price"
                     name="price"
                     className={styles["input-field"]}
-                    onChange={handleInputChange}
-                    value={values.price}
+                    defaultValue=""
                     required />
             </div>
 
@@ -80,23 +59,20 @@ export default function CreateShoe() {
                     <label><input
                         type="radio"
                         name="gender"
-                        value="Men"
-                        checked={values.gender === "Men"}
-                        onChange={handleInputChange}
+                        // value="Men"
+                        defaultValue="Men"
                     /> Men</label>
                     <label><input
                         type="radio"
                         name="gender"
-                        value="Women"
-                        checked={values.gender === "Women"}
-                        onChange={handleInputChange}
+                        // value="Women"
+                        defaultValue="Women"
                     /> Women</label>
                     <label><input
                         type="radio"
                         name="gender"
-                        value="Unisex"
-                        checked={values.gender === "Unisex"}
-                        onChange={handleInputChange}
+                        // value="Unisex"
+                        defaultValue="Unisex"
                     /> Unisex</label>
                 </div>
             </div>
@@ -107,8 +83,7 @@ export default function CreateShoe() {
                     placeholder="Enter image URL"
                     name="imageUrl"
                     className={styles["input-field"]}
-                    onChange={handleInputChange}
-                    value={values.imageUrl}
+                    defaultValue=""
                     required />
             </div>
 
@@ -118,8 +93,7 @@ export default function CreateShoe() {
                     placeholder="Enter description"
                     name="description"
                     className={styles["textarea-field"]}
-                    onChange={handleInputChange}
-                    value={values.description}
+                    defaultValue=""
                     required
                 ></textarea>
             </div>

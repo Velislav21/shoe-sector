@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from "react-router"
 import styles from "./CreateShoe.module.css"
-import shoeService from "../../../services/shoeService";
-import { useGetShoe } from "../../../api/shoesApi";
+import { useGetShoe, useEditShoe } from "../../../api/shoesApi";
 
 export default function EditShoe() {
     const navigate = useNavigate();
     const { shoeId } = useParams();
-    const [shoeData, setShoeData] = useGetShoe(shoeId);
+    const { shoeData, setShoeData } = useGetShoe(shoeId);
+    const { edit } = useEditShoe();
 
     function handleInputChange(e) {
         setShoeData((prevValues) => ({
@@ -17,7 +17,7 @@ export default function EditShoe() {
     async function handleFormSubmit(e) {
         e.preventDefault();
 
-        await shoeService.edit(shoeData);
+        edit(shoeData);
 
         navigate(`/shoes/${shoeData._id}/details`);
         //!TODO add error handling

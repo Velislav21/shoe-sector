@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { useParams, Link, useNavigate } from "react-router"
+import { useParams, useNavigate } from "react-router"
 
 import styles from './ShoeDetails.module.css'
 
 import { useAuthContext } from "../../../hooks/useAuthContext"
-import { useGetShoe } from "../../../api/shoesApi"
+import { useDeleteShoe, useGetShoe } from "../../../api/shoesApi"
 import EditButton from "../../reusable-buttons/edit-button/EditButton"
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton"
 
@@ -14,12 +14,13 @@ export default function ShoeDetails() {
     const navigate = useNavigate();
     const { shoeId } = useParams();
     const { user } = useAuthContext();
-    const [shoeData] = useGetShoe(shoeId);
+    const { shoeData } = useGetShoe(shoeId);
+    const { deleteShoe } = useDeleteShoe();
 
     const isOwner = user?._id === shoeData.owner;
 
     async function deleteHandler() {
-        await shoeService.delete(shoeId);
+        deleteShoe(shoeId)
         navigate("/shoes")
     }
 
