@@ -1,15 +1,14 @@
 import { BASE_URL } from "../constants/constants";
-import request from "../api/requester";
+import request from "../utils/requester";
 
 export default {
     getAll() {
         return request.get(`${BASE_URL}/shoes`);
     },
-    getOne(shoeId) {
-        return request.get(`${BASE_URL}/shoes/details/${shoeId}`)
-    },
+    // getOne(shoeId) {
+    //     return request.get(`${BASE_URL}/shoes/details/${shoeId}`)
+    // },
     create(shoeData) {
-        console.log(`in service`,shoeData)
         return request.post(`${BASE_URL}/shoes/create`, shoeData)
     },
     edit(shoeData) {

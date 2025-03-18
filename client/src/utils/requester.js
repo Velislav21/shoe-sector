@@ -1,4 +1,4 @@
-import { getAccessToken } from "../utils/authUtil";
+import { getAccessToken } from "./authUtil";
 
 async function request(method, url, data) {
 
@@ -12,7 +12,6 @@ async function request(method, url, data) {
             'Authorization': `Bearer ${accessToken}`,
         }
     }
-
 
     if (method !== 'GET') {
         options.method = method

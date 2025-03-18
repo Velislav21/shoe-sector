@@ -1,5 +1,5 @@
 import { BASE_URL } from "../constants/constants";
-import request from "../api/requester";
+import request from "../utils/requester";
 
 
 export default {
@@ -18,4 +18,4 @@ export default {
     editProfile(userId, userData) {
         return request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
     }
-}
+}   

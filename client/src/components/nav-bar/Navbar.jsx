@@ -5,7 +5,6 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
 
 import styles from "./Navbar.module.css"
 import { useAuthContext } from "../../hooks/useAuthContext"
-import userService from "../../services/userService"
 
 export default function Navbar() {
 
@@ -14,7 +13,7 @@ export default function Navbar() {
 
     function logoutHandler() {
         dispatch({ type: "LOGOUT" })
-        localStorage.removeItem("user")
+        // localStorage.removeItem("user")
         navigate('/login')
     }
 

@@ -5,8 +5,7 @@ import { useParams, Link, useNavigate } from "react-router"
 import styles from './ShoeDetails.module.css'
 
 import { useAuthContext } from "../../../hooks/useAuthContext"
-import shoeService from "../../../services/shoeService"
-import useGetShoe from "../../../hooks/useGetShoe"
+import { useGetShoe } from "../../../api/shoesApi"
 import EditButton from "../../reusable-buttons/edit-button/EditButton"
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton"
 
@@ -15,7 +14,7 @@ export default function ShoeDetails() {
     const navigate = useNavigate();
     const { shoeId } = useParams();
     const { user } = useAuthContext();
-    const [shoeData] = useGetShoe();
+    const [shoeData] = useGetShoe(shoeId);
 
     const isOwner = user?._id === shoeData.owner;
 

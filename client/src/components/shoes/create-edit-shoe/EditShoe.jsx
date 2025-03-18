@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import styles from "./CreateShoe.module.css"
 import shoeService from "../../../services/shoeService";
-import useGetShoe from "../../../hooks/useGetShoe";
+import { useGetShoe } from "../../../api/shoesApi";
 
 export default function EditShoe() {
     const navigate = useNavigate();
-
-    const [shoeData, setShoeData] = useGetShoe();
+    const { shoeId } = useParams();
+    const [shoeData, setShoeData] = useGetShoe(shoeId);
 
     function handleInputChange(e) {
         setShoeData((prevValues) => ({

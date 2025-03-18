@@ -39,7 +39,7 @@ const userService = {
             {
                 runValidators: true,
                 new: true
-            }).select("-password").lean();
+            }).select("-password");
         return generateResponse(updatedUser);
     },
     async delete(userId) {
