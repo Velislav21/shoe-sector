@@ -1,5 +1,4 @@
-import { useState, useEffect, use } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useState, useEffect } from "react";
 
 import request from "../utils/requester";
 import { BASE_URL } from "../constants/constants";
@@ -16,13 +15,17 @@ const initialShoeData = {
 };
 
 export function useAllShoes() {
+    const [pending, setIsPending] = useState(true);
     const [shoes, setShoes] = useState([]);
 
     useEffect(() => {
-        request.get(`${BASE_URL}/shoes`).then(setShoes);
+        request.get(`${BASE_URL}/shoes`).then((res) => {
+            setShoes(res);
+            setIsPending(false);
+        });
     }, []);
 
-    return { shoes }
+    return { shoes, pending }
 };
 
 export function useGetShoe(shoeId) {

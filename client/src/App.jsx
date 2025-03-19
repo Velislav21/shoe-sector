@@ -10,6 +10,7 @@ import UserProfile from "./components/user/profile/UserProfile"
 import CreateShoe from "./components/shoes/create-edit-shoe/CreateShoe"
 import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
 import UserEdit from "./components/user/profile/UserEdit"
+import Spinner from "./components/spinner/Spinner"
 
 import AuthorizedRoutes from "./route-guards/AuthorizedRoutes"
 import UnAuthorizedRoutes from "./route-guards/UnAuthorizedRoutes"
@@ -23,7 +24,6 @@ function App() {
             <AuthContextProvider>
 
                 <Navbar />
-
                 <main>
                     <Routes>
                         <Route path="/shoes" element={<ShoesList />} />

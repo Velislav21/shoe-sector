@@ -19,4 +19,5 @@
 -   [ ] Disable Buttons during fetching
 -   [ ] Footer
 -   [ ] The Cart / on the back end as well
+-   [ ] Overall Error Handling from Backend
 
