@@ -1,20 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router"
-import styles from "./CreateShoe.module.css"
+import { useNavigate } from "react-router";
+import styles from "./CreateShoe.module.css";
 import { useCreateShoe } from "../../../api/shoesApi";
 
 export default function CreateShoe() {
-    const { create: createShoe } = useCreateShoe();
+    const { create: createShoe, isPending } = useCreateShoe();
     const navigate = useNavigate();
 
     async function handleFormAction(formData) {
 
-        const values = Object.fromEntries(formData)
-        createShoe(values)
+        const values = Object.fromEntries(formData);
 
-        navigate('/shoes')
-        //!TODO add error handling
-    }
+        createShoe(values).finally(() => {
+            navigate('/shoes');
+        });
+    };
 
     return (
 
@@ -59,19 +58,16 @@ export default function CreateShoe() {
                     <label><input
                         type="radio"
                         name="gender"
-                        // value="Men"
                         defaultValue="Men"
                     /> Men</label>
                     <label><input
                         type="radio"
                         name="gender"
-                        // value="Women"
                         defaultValue="Women"
                     /> Women</label>
                     <label><input
                         type="radio"
                         name="gender"
-                        // value="Unisex"
                         defaultValue="Unisex"
                     /> Unisex</label>
                 </div>
@@ -97,7 +93,7 @@ export default function CreateShoe() {
                     required
                 ></textarea>
             </div>
-            <button className={styles["submit-button"]}>ADD MODEL</button>
+            <button disabled={isPending} className={styles["submit-button"]}>ADD MODEL</button>
         </form>
     )
 }

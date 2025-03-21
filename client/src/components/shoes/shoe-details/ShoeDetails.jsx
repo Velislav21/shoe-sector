@@ -15,13 +15,14 @@ export default function ShoeDetails() {
     const { shoeId } = useParams();
     const { user } = useAuthContext();
     const { shoeData } = useGetShoe(shoeId);
-    const { deleteShoe } = useDeleteShoe();
+    const { deleteShoe, isPending } = useDeleteShoe();
 
     const isOwner = user?._id === shoeData.owner;
 
     async function deleteHandler() {
-        deleteShoe(shoeId)
-        navigate("/shoes")
+        deleteShoe(shoeId).finally(() => {
+            navigate("/shoes")
+        })
     }
 
     return (
@@ -35,8 +36,8 @@ export default function ShoeDetails() {
                 </div>
                 {isOwner &&
                     <div className={styles["buttons-container"]}>
-                        <EditButton redirect={`/shoes/${shoeData._id}/edit`}>EDIT</EditButton>
-                        <DeleteButton deleteHandler={deleteHandler}>DELETE</DeleteButton>
+                        <EditButton disabled={isPending} redirect={`/shoes/${shoeData._id}/edit`}>EDIT</EditButton>
+                        <DeleteButton disabled={isPending} deleteHandler={deleteHandler}>DELETE</DeleteButton>
                     </div>
                 }
             </div>

@@ -39,36 +39,49 @@ export function useGetShoe(shoeId) {
 };
 
 export function useCreateShoe() {
+    const [isPending, setIsPending] = useState(false);
 
-    function create(shoeData) {
-        request.post(`${BASE_URL}/shoes/create`, shoeData)
+    async function create(shoeData) {
+        setIsPending(true)
+        await request.post(`${BASE_URL}/shoes/create`, shoeData)
+        setIsPending(false);
     }
 
     return {
-        create
+        create,
+        isPending
     }
 
 };
 
 export function useDeleteShoe() {
+    const [isPending, setIsPending] = useState(false);
 
-    function deleteShoe(shoeId) {
-        request.delete(`${BASE_URL}/shoes/delete/${shoeId}`)
+    async function deleteShoe(shoeId) {
+        setIsPending(true)
+        await request.delete(`${BASE_URL}/shoes/delete/${shoeId}`)
+        setIsPending(false);
     }
 
     return {
-        deleteShoe
+        deleteShoe,
+        isPending
     }
 
 };
 
 export function useEditShoe() {
 
-    function edit(shoeData) {
-        request.patch(`${BASE_URL}/shoes/update/${shoeData._id}`, shoeData);
+    const [isPending, setIsPending] = useState(false);
+
+    async function edit(shoeData) {
+        setIsPending(true);
+        await request.patch(`${BASE_URL}/shoes/update/${shoeData._id}`, shoeData);
+        setIsPending(false);
     }
 
     return {
         edit,
+        isPending
     };
 };

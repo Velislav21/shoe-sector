@@ -29,12 +29,11 @@
 .textarea-field {
     width: 100%;
     padding: 0.5em 1em;
-    background-color:transparent;
+    background-color: transparent;
     border: 1.5px solid #ffffff;
     border-radius: 999px;
     outline: none;
 }
-
 
 .textarea-field {
     border-radius: 0.3rem;
@@ -65,8 +64,14 @@
     border-radius: 999px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
 
-.submit-button:hover {
-    background-color: #e73337;
+    &:hover {
+        background-color: #e73337;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        color: rgb(222, 198, 198);
+        background-color: #867b7b;
+    }
 }

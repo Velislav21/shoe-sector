@@ -7,7 +7,7 @@ export default function EditShoe() {
 
     const { shoeId } = useParams();
     const { shoeData, setShoeData } = useGetShoe(shoeId);
-    const { edit } = useEditShoe();
+    const { edit, isPending } = useEditShoe();
 
 
     function handleInputChange(e) {
@@ -19,10 +19,10 @@ export default function EditShoe() {
     function handleFormSubmit(e) {
         e.preventDefault();
 
-        edit(shoeData);
+        edit(shoeData).finally(() => {
 
-        navigate(`/shoes/${shoeData._id}/details`);
-        //!TODO add error handling
+            navigate(`/shoes/${shoeData._id}/details`);
+        });
     }
 
     return (
@@ -114,7 +114,7 @@ export default function EditShoe() {
                     required
                 ></textarea>
             </div>
-            <button className={styles["submit-button"]}>EDIT MODEL</button>
+            <button disabled={isPending} className={styles["submit-button"]}>EDIT MODEL</button>
         </form>
     )
 }

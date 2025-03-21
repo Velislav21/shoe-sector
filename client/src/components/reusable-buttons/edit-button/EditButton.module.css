@@ -6,6 +6,7 @@ a.edit-btn {
     }
 
     &.disabled {
+        pointer-events: none;
         cursor: not-allowed;
         color: rgb(222, 198, 198);
         background-color: #867b7b;

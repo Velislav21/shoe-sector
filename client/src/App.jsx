@@ -10,7 +10,6 @@ import UserProfile from "./components/user/profile/UserProfile"
 import CreateShoe from "./components/shoes/create-edit-shoe/CreateShoe"
 import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
 import UserEdit from "./components/user/profile/UserEdit"
-import Spinner from "./components/spinner/Spinner"
 
 import AuthorizedRoutes from "./components/route-guards/AuthorizedRoutes"
 import UnAuthorizedRoutes from "./components/route-guards/UnAuthorizedRoutes"
@@ -19,34 +18,30 @@ import { AuthContextProvider } from "./context/AuthContext"
 function App() {
 
     return (
-        <>
-            <AuthContextProvider>
+        <AuthContextProvider>
+            <Navbar />
+            <main>
+                <Routes>
+                    <Route path="/shoes" element={<ShoesList />} />
+                    <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
 
-                <Navbar />
-                <main>
-                    <Routes>
-                        <Route path="/shoes" element={<ShoesList />} />
-                        <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
+                    <Route element={<UnAuthorizedRoutes />}>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Route>
 
-                        <Route element={<UnAuthorizedRoutes />}>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                        </Route>
+                    <Route element={<AuthorizedRoutes />}>
+                        <Route path="/shoes/create" element={<CreateShoe />} />
+                        <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
 
-                        <Route element={<AuthorizedRoutes />}>
-                            <Route path="/shoes/create" element={<CreateShoe />} />
-                            <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
+                        <Route path="/profile/:userId" element={<UserProfile />} />
+                        <Route path="/profile/:userId/edit" element={<UserEdit />} />
 
-                            <Route path="/profile/:userId" element={<UserProfile />} />
-                            <Route path="/profile/:userId/edit" element={<UserEdit />} />
-
-                        </Route>
-                    </Routes>
-                </main>
-
-                <Footer />
-            </AuthContextProvider>
-        </>
+                    </Route>
+                </Routes>
+            </main>
+            <Footer />
+        </AuthContextProvider>
     )
 }
 

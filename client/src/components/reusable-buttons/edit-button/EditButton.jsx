@@ -8,8 +8,6 @@ export default function EditButton({ redirect, disabled }) {
     if (disabled) {
         stylingClasses += ` ${styles.disabled}`
     }
-    console.log(stylingClasses)
-    console.log(styles)
     return <Link
         to={redirect}
         className={stylingClasses}
