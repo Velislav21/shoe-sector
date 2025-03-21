@@ -1,22 +1,17 @@
-import { Link, useNavigate } from "react-router"
+import { Link } from "react-router"
 
 import styles from "../UserForm.module.css"
 import ErrorMessage from "../../errors/ErrorMessage"
 import { useRegister } from "../../../api/usersApi"
 
 export default function Register() {
-    const { register } = useRegister();
-    const navigate = useNavigate();
+    const { register, error, isPending } = useRegister();
 
     async function handleFormAction(formData) {
         const values = Object.fromEntries(formData)
 
         register(values);
-
-        navigate('/shoes')
-        // !TODO: error handling 
     }
-
 
     return (
         <form action={handleFormAction} className={styles["user-form"]}>
@@ -63,9 +58,10 @@ export default function Register() {
                     />
                     {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
             </div>
 
-            <button className={styles["action-btn"]}>CREATE ACCOUNT</button>
+            <button disabled={isPending} className={styles["action-btn"]}>CREATE ACCOUNT</button>
             <p>Alrady have an account ? <Link to="/login">Log in</Link></p>
         </form>
     )

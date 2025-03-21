@@ -13,11 +13,18 @@ export function useLogin() {
 
         try {
             setIsPending(true);
+
             const user = await request.post(`${BASE_URL}/users/login`, userData);
             dispatch({ type: "LOGIN", payload: user });
+
             setIsPending(false)
         } catch (err) {
             setError(err.message);
+
+            setTimeout(() => {
+                setError(null);
+            }, 5000);
+
             setIsPending(false)
         }
     }
@@ -31,15 +38,35 @@ export function useLogin() {
 export function useRegister() {
 
     const { dispatch } = useAuthContext();
+    const [error, setError] = useState(null)
+    const [isPending, setIsPending] = useState(false);
 
     async function register(userData) {
-        const newUser = await request.post(`${BASE_URL}/users/register`, userData);
 
-        dispatch({ type: "LOGIN", payload: newUser });
+        try {
+            setIsPending(true);
+
+            const newUser = await request.post(`${BASE_URL}/users/register`, userData);
+            dispatch({ type: "LOGIN", payload: newUser });
+
+            setIsPending(false);
+        } catch (err) {
+            setError(err.message);
+
+            setTimeout(() => {
+                setError(null);
+            }, 5000);
+            // If needed i can wrap the timeout function in another one and send it to the component to be executed on demand.
+            setIsPending(false);
+        }
+
     }
 
     return {
-        register
+        register,
+        setError,
+        error,
+        isPending
     }
 }
 export function useDeleteProfile() {

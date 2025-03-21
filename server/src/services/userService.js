@@ -8,7 +8,7 @@ const userService = {
         const user = await User.findOne({ email }).select('email');
 
         if (user) {
-            throw new Error('User is already registered');
+            throw new Error('This email is already registered');
         }
         if (password !== rePassword) {
             throw new Error('Passwords must match!');

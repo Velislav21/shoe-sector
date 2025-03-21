@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router"
+import { Link } from "react-router"
 
 import styles from "../UserForm.module.css"
 import { useLogin } from "../../../api/usersApi";
@@ -9,13 +9,12 @@ export default function Login() {
 
     const { login, error, isPending } = useLogin();
 
-    const navigate = useNavigate();
     const [valid, setIsValid] = useState(true);
 
     const emailRegExp = new RegExp("^(?![._])[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$", "i");
 
     function handleInputValidation(e) {
-        
+
         const isInputValid = emailRegExp.test(e.target.value);
         setIsValid(isInputValid);
     }
@@ -24,9 +23,6 @@ export default function Login() {
         const values = Object.fromEntries(formData);
 
         login(values);
-        console.log(error)
-        // navigate('/shoes')
-        // !TODO: add error handling
     }
     return (
         <form action={handleFormAction} className={styles["user-form"]}>
