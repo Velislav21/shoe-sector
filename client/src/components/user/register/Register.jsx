@@ -2,6 +2,7 @@ import { Link } from "react-router"
 
 import styles from "../UserForm.module.css"
 import ErrorMessage from "../../errors/ErrorMessage"
+import { emailRegExp } from "../../../utils/emailRegExp"
 import { useRegister } from "../../../api/usersApi"
 
 export default function Register() {

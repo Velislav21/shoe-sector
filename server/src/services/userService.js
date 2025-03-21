@@ -21,7 +21,7 @@ const userService = {
 
         const user = await User.findOne({ email });
         if (!user) {
-            throw new Error('Invalid email address!');
+            throw new Error('This email is not registered!');
         }
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {

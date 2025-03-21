@@ -25,7 +25,7 @@ export default function Navbar() {
             <nav>
                 <ul className={styles["nav-list"]}>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/shoes">All Products</Link></li>
+                    <li><Link to="/shoes">Catalog</Link></li>
                     {user ?
                         <>
                             <li><Link to="/shoes/create">Create</Link></li>

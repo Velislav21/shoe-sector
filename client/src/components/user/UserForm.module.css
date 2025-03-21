@@ -64,8 +64,8 @@ div.user-input-container input.error {
 
     &:disabled {
         cursor: not-allowed;
-        color: #d4c9c9;
-        background-color: rgb(167, 167, 167);
+        color: #959595;
+        background-color: rgb(187, 187, 187);
     }
 }
 .action-btn:hover {

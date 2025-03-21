@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router"
 
 import styles from "../UserForm.module.css"
+import { emailRegExp } from "../../../utils/emailRegExp";
 import { useLogin } from "../../../api/usersApi";
 import ErrorMessage from "../../errors/ErrorMessage"
 
@@ -10,8 +11,6 @@ export default function Login() {
     const { login, error, isPending } = useLogin();
 
     const [valid, setIsValid] = useState(true);
-
-    const emailRegExp = new RegExp("^(?![._])[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$", "i");
 
     function handleInputValidation(e) {
 
