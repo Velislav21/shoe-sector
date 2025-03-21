@@ -3,10 +3,11 @@ import { useState } from "react";
 import request from "../utils/requester";
 import { BASE_URL } from "../constants/constants";
 import { useAuthContext } from "../hooks/useAuthContext";
+import useError from "../hooks/useError";
 
 export function useLogin() {
     const { dispatch } = useAuthContext();
-    const [error, setError] = useState(null)
+    const { error, customSetError } = useError(null);
     const [isPending, setIsPending] = useState(false);
 
     async function login(userData) {
@@ -19,12 +20,7 @@ export function useLogin() {
 
             setIsPending(false)
         } catch (err) {
-            setError(err.message);
-
-            setTimeout(() => {
-                setError(null);
-            }, 5000);
-
+            customSetError(err.message, 5000)
             setIsPending(false)
         }
     }
@@ -38,7 +34,7 @@ export function useLogin() {
 export function useRegister() {
 
     const { dispatch } = useAuthContext();
-    const [error, setError] = useState(null)
+    const { error, customSetError } = useError(null);
     const [isPending, setIsPending] = useState(false);
 
     async function register(userData) {
@@ -51,12 +47,8 @@ export function useRegister() {
 
             setIsPending(false);
         } catch (err) {
-            setError(err.message);
 
-            setTimeout(() => {
-                setError(null);
-            }, 5000);
-            // If needed i can wrap the timeout function in another one and send it to the component to be executed on demand.
+            customSetError(err.message, 5000);
             setIsPending(false);
         }
 
@@ -64,7 +56,6 @@ export function useRegister() {
 
     return {
         register,
-        setError,
         error,
         isPending
     }

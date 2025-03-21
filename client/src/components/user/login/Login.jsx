@@ -36,7 +36,6 @@ export default function Login() {
                         id="email"
                         className={!valid ? styles["error"] : ""}
                         onBlur={handleInputValidation}
-                        defaultValue=""
                         required
                     />
                     {!valid && <ErrorMessage>Please enter valid email address.</ErrorMessage>
@@ -48,7 +47,6 @@ export default function Login() {
                         placeholder="Password"
                         name="password"
                         id="password"
-                        defaultValue=""
                         required
                     />
                 </div>
