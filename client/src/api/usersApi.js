@@ -59,13 +59,21 @@ export function useRegister() {
     }
 }
 export function useDeleteProfile() {
+    const { dispatch } = useAuthContext();
+    const [isPending, setIsPending] = useState(false);
 
     async function deleteProfile(id) {
+        setIsPending(true)
+
         await request.delete(`${BASE_URL}/users/profile/${id}`);
+        dispatch({ type: "LOGOUT" })
+        
+        setIsPending(false);
     }
 
     return {
-        deleteProfile
+        deleteProfile,
+        isPending
     }
 }
 export function useEditProfile() {

@@ -4,4 +4,10 @@ a.edit-btn {
     &:hover {
         background-color: rgb(201, 178, 148);
     }
+
+    &.disabled {
+        cursor: not-allowed;
+        color: rgb(222, 198, 198);
+        background-color: #867b7b;
+    }
 }

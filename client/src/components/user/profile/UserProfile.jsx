@@ -6,13 +6,11 @@ import { useDeleteProfile } from '../../../api/usersApi';
 
 
 export default function UserProfile() {
-    const { user, dispatch } = useAuthContext();
-    const { deleteProfile } = useDeleteProfile();
+    const { user } = useAuthContext();
+    const { deleteProfile, isPending } = useDeleteProfile();
 
     async function deleteHandler() {
         deleteProfile(user._id);
-
-        dispatch({ type: "LOGOUT" })
     }
 
     return (
@@ -37,8 +35,8 @@ export default function UserProfile() {
             </div>
 
             <div className={styles.buttonsContainer}>
-                <EditButton redirect={`/profile/${user._id}/edit`} />
-                <DeleteButton deleteHandler={deleteHandler} />
+                <EditButton disabled={isPending} redirect={`/profile/${user._id}/edit`} />
+                <DeleteButton disabled={isPending} deleteHandler={deleteHandler} />
             </div>
         </div >
     )
