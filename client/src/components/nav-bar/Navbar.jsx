@@ -13,7 +13,6 @@ export default function Navbar() {
 
     function logoutHandler() {
         dispatch({ type: "LOGOUT" })
-        // localStorage.removeItem("user")
         navigate('/login')
     }
 

@@ -15,9 +15,9 @@
 -   [ ] Complete input validation
 -   [ ] Complete useForm Hook
 -   [ ] Add tanstack Query ? 
--   [ ] Add Spinner // Maybe use external library ??
--   [ ] Disable Buttons during fetching
+-   [x] Add Spinner // Maybe use external library ??
+-   [x] Disable Buttons during fetching
 -   [ ] Footer
 -   [ ] The Cart / on the back end as well
--   [ ] Overall Error Handling from Backend
+-   [x] Overall Error Handling from Backend
 

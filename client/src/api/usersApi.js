@@ -14,7 +14,6 @@ export function useLogin() {
 
         try {
             setIsPending(true);
-
             const user = await request.post(`${BASE_URL}/users/login`, userData);
             dispatch({ type: "LOGIN", payload: user });
 
@@ -24,7 +23,6 @@ export function useLogin() {
             setIsPending(false)
         }
     }
-
     return {
         login,
         error,
@@ -72,11 +70,20 @@ export function useDeleteProfile() {
 }
 export function useEditProfile() {
 
+    const [isPending, setIsPending] = useState(false);
+    const { dispatch } = useAuthContext()
+
     async function editProfile(userId, userData) {
-        const updatedUser = await request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
-        return updatedUser;
+
+        setIsPending(true);
+        const updatedUser =
+            await request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
+        dispatch({ type: "LOGIN", payload: updatedUser })
+        setIsPending(false);
+
     }
     return {
-        editProfile
+        editProfile,
+        isPending
     }
 }

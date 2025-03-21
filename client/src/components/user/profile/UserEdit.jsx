@@ -6,21 +6,15 @@ import { useEditProfile } from '../../../api/usersApi';
 
 export default function UserEdit() {
     const navigate = useNavigate();
-    const { editProfile } = useEditProfile();
-    const { user, dispatch } = useAuthContext();
+    const { editProfile, isPending } = useEditProfile();
+    const { user } = useAuthContext();
 
     async function handleFormAction(formData) {
         const updatedValues = Object.fromEntries(formData);
-
-        const updatedUser = await editProfile(user._id, updatedValues);
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-
-        dispatch({ type: "LOGIN", payload: updatedUser });
-
-        navigate(`/profile/${updatedUser._id}`)
-        // !TODO: add error handling
+        editProfile(user._id, updatedValues).finally(() => {
+            navigate(`/profile/${user._id}`)
+        });
     }
-
     return (
         <form action={handleFormAction} className={styles["user-form"]}>
             <h1>Edit Profile</h1>
@@ -37,10 +31,9 @@ export default function UserEdit() {
                         placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
-                        defaultValue={user.email}
+                        defaultValue={isPending ? "" : user.email}
                         required
                     />
-                    {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
                 <div className={styles["user-input-container"]}>
                     <input
@@ -48,14 +41,13 @@ export default function UserEdit() {
                         placeholder="e.g. John Doe"
                         name="name"
                         id="name"
-                        defaultValue={user.name}
+                        defaultValue={isPending ? "" : user.name}
                         required
                     />
-                    {/* <ErrorMessage>Error.</ErrorMessage> */}
                 </div>
             </div>
 
-            <button className={styles["action-btn"]}>EDIT YOUR PROFILE</button>
+            <button disabled={isPending} className={styles["action-btn"]}>EDIT YOUR PROFILE</button>
         </form>
     )
 }
