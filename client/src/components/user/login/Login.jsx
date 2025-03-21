@@ -3,13 +3,11 @@ import { Link, useNavigate } from "react-router"
 
 import styles from "../UserForm.module.css"
 import { useLogin } from "../../../api/usersApi";
-
 import ErrorMessage from "../../errors/ErrorMessage"
-import Spinner from "../../spinner/Spinner";
 
 export default function Login() {
 
-    const { login, error } = useLogin();
+    const { login, error, isPending } = useLogin();
 
     const navigate = useNavigate();
     const [valid, setIsValid] = useState(true);
@@ -17,6 +15,7 @@ export default function Login() {
     const emailRegExp = new RegExp("^(?![._])[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$", "i");
 
     function handleInputValidation(e) {
+        
         const isInputValid = emailRegExp.test(e.target.value);
         setIsValid(isInputValid);
     }
@@ -57,8 +56,9 @@ export default function Login() {
                         required
                     />
                 </div>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
             </div>
-            <button className={styles["action-btn"]}>LOGIN</button>
+            <button disabled={isPending} className={styles["action-btn"]}>LOGIN</button>
             <p>You don't have an account ? <Link to="/register">Register here.</Link></p>
         </form >
     )

@@ -1,26 +1,31 @@
-import { BASE_URL } from "../constants/constants";
-import request from "../utils/requester";
-
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
+
+import request from "../utils/requester";
+import { BASE_URL } from "../constants/constants";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export function useLogin() {
     const { dispatch } = useAuthContext();
-    const [error, setError] = useState("test");
+    const [error, setError] = useState(null)
+    const [isPending, setIsPending] = useState(false);
 
     async function login(userData) {
 
         try {
+            setIsPending(true);
             const user = await request.post(`${BASE_URL}/users/login`, userData);
             dispatch({ type: "LOGIN", payload: user });
+            setIsPending(false)
         } catch (err) {
-            setError(err.message)
+            setError(err.message);
+            setIsPending(false)
         }
     }
 
     return {
         login,
-        error
+        error,
+        isPending
     }
 }
 export function useRegister() {

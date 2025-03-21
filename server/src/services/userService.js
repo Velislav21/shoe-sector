@@ -21,7 +21,7 @@ const userService = {
 
         const user = await User.findOne({ email });
         if (!user) {
-            throw new Error('Incorrect email address!');
+            throw new Error('Invalid email address!');
         }
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
@@ -53,8 +53,6 @@ async function generateResponse(user) {
         name: user.name,
         email: user.email,
     }
-
-    console.log(user.name, user.email, user._id)
 
     const header = { expiresIn: '1d' };
 
