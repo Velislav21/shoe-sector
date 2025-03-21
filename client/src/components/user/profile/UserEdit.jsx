@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { useAuthContext } from '../../../hooks/useAuthContext'
 import styles from '../../user/UserForm.module.css'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 import { useEditProfile } from '../../../api/usersApi';
 
 export default function UserEdit() {
-    const { editProfile } = useEditProfile();
     const navigate = useNavigate();
+    const { editProfile } = useEditProfile();
     const { user, dispatch } = useAuthContext();
 
     async function handleFormAction(formData) {

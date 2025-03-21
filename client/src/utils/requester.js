@@ -25,18 +25,14 @@ async function request(method, url, data) {
         options.body = JSON.stringify(data)
     }
 
-
     const response = await fetch(url, options);
 
     if (!response.ok) {
-        const error = new Error('An error has occured during fetching!')
-        error.code = response.status;
-        error.info = await response.json();
-        throw error;
+        const { message } = await response.json();
+        throw new Error(message)
     }
     const result = await response.json();
-    return result;
-
+    return result
 };
 
 export default {

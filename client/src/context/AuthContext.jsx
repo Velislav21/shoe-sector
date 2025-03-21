@@ -6,6 +6,7 @@ export function authReducer(state, action) {
 
     switch (action.type) {
         case "LOGIN":
+            localStorage.setItem('user', JSON.stringify(action.payload));
             return { user: action.payload };
 
         case "LOGOUT":

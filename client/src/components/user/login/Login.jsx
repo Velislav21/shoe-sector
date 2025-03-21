@@ -5,10 +5,11 @@ import styles from "../UserForm.module.css"
 import { useLogin } from "../../../api/usersApi";
 
 import ErrorMessage from "../../errors/ErrorMessage"
+import Spinner from "../../spinner/Spinner";
 
 export default function Login() {
 
-    const { login } = useLogin();
+    const { login, error } = useLogin();
 
     const navigate = useNavigate();
     const [valid, setIsValid] = useState(true);
@@ -22,10 +23,10 @@ export default function Login() {
 
     function handleFormAction(formData) {
         const values = Object.fromEntries(formData);
-        
-        login(values);
 
-        navigate('/shoes')
+        login(values);
+        console.log(error)
+        // navigate('/shoes')
         // !TODO: add error handling
     }
     return (
@@ -43,7 +44,7 @@ export default function Login() {
                         defaultValue=""
                         required
                     />
-                    {!valid && <ErrorMessage>Error.</ErrorMessage>
+                    {!valid && <ErrorMessage>Please enter valid email address.</ErrorMessage>
                     }
                 </div>
                 <div className={styles["user-input-container"]}>
@@ -57,7 +58,6 @@ export default function Login() {
                     />
                 </div>
             </div>
-
             <button className={styles["action-btn"]}>LOGIN</button>
             <p>You don't have an account ? <Link to="/register">Register here.</Link></p>
         </form >
