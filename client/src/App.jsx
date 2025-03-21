@@ -12,9 +12,8 @@ import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
 import UserEdit from "./components/user/profile/UserEdit"
 import Spinner from "./components/spinner/Spinner"
 
-import AuthorizedRoutes from "./route-guards/AuthorizedRoutes"
-import UnAuthorizedRoutes from "./route-guards/UnAuthorizedRoutes"
-import RecordOwnerRoutes from "./route-guards/RecordOwnerRoutes"
+import AuthorizedRoutes from "./components/route-guards/AuthorizedRoutes"
+import UnAuthorizedRoutes from "./components/route-guards/UnAuthorizedRoutes"
 import { AuthContextProvider } from "./context/AuthContext"
 
 function App() {
@@ -42,10 +41,6 @@ function App() {
                             <Route path="/profile/:userId/edit" element={<UserEdit />} />
 
                         </Route>
-
-                        {/* <Route element={<RecordOwnerRoutes />}> */}
-                        {/* </Route> */}
-
                     </Routes>
                 </main>
 
