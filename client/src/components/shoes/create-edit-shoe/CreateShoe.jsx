@@ -10,9 +10,8 @@ export default function CreateShoe() {
 
         const values = Object.fromEntries(formData);
 
-        createShoe(values).finally(() => {
-            navigate('/shoes');
-        });
+        createShoe(values)
+            .finally(() => navigate('/shoes'));
     };
 
     return (

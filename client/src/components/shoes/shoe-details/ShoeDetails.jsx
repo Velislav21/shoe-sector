@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router"
 
 import styles from './ShoeDetails.module.css'
 
+import fallBackImg from "../../../assets/fall-back-img.webp"
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import { useDeleteShoe, useGetShoe } from "../../../api/shoesApi"
 import EditButton from "../../reusable-buttons/edit-button/EditButton"
@@ -14,8 +15,8 @@ export default function ShoeDetails() {
     const navigate = useNavigate();
     const { shoeId } = useParams();
     const { user } = useAuthContext();
-    const { shoeData } = useGetShoe(shoeId);
-    const { deleteShoe, isPending } = useDeleteShoe();
+    const { shoeData, isShoePending } = useGetShoe(shoeId);
+    const { deleteShoe, isDeletePending } = useDeleteShoe();
 
     const isOwner = user?._id === shoeData.owner;
 
@@ -24,20 +25,19 @@ export default function ShoeDetails() {
             navigate("/shoes")
         })
     }
-
     return (
         <article className={styles["shoe-details-container"]}>
             <div>
                 <div className={styles["img-container"]}>
                     <img
                         src={shoeData.imageUrl || null}
-                        alt="Invalid Image Url"
+                        alt={isShoePending ? "Image is Loading" : "Invalid Image Url"}
                     />
                 </div>
                 {isOwner &&
                     <div className={styles["buttons-container"]}>
-                        <EditButton disabled={isPending} redirect={`/shoes/${shoeData._id}/edit`}>EDIT</EditButton>
-                        <DeleteButton disabled={isPending} deleteHandler={deleteHandler}>DELETE</DeleteButton>
+                        <EditButton disabled={isDeletePending} redirect={`/shoes/${shoeData._id}/edit`}>EDIT</EditButton>
+                        <DeleteButton disabled={isDeletePending} deleteHandler={deleteHandler}>DELETE</DeleteButton>
                     </div>
                 }
             </div>

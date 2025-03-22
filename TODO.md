@@ -10,10 +10,10 @@
 -   [x] Details Page
 -   [x] Profile Page
 -   [ ] Complete input validation
--   [ ] Complete useForm Hook
 -   [x] Add Spinner // Maybe use external library ??
 -   [x] Disable Buttons during fetching
--   [ ] Footer
+-   [x] Footer
 -   [ ] The Cart 
 -   [x] Overall Error Handling from Backend
+-   [ ] Try to fix the img loading in details
 

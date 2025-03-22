@@ -1,5 +1,4 @@
 .site-header {
-    /* !TODO return max-width to 90em, for now is set to 110 to fit all links */
     max-width: 110em;
     margin: 0 auto;
     display: flex;
@@ -25,7 +24,6 @@
 }
 .nav-list li {
     cursor: pointer;
-    padding: 0.5em 0.7em;
     border-radius: 0.3rem;
     border: 1px solid #a59b9b;
 
@@ -47,8 +45,9 @@
         color: #707070;
     }
 }
-
+.nav-list button,
 .nav-list li > a {
+    padding: 0.5em 0.7em;
     display: block;
     color: #5c5c5c;
 }

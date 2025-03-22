@@ -1,19 +1,19 @@
 import styles from "./ShoesList.module.css";
 
 import ShoeItem from "../shoe-item/ShoeItem";
-import { useAllShoes } from "../../../api/shoesApi";
 import Spinner from "../../spinner/Spinner";
+import { useAllShoes } from "../../../api/shoesApi";
 
 export default function ShoesList() {
 
-    const { shoes, pending } = useAllShoes();
+    const { shoes, isPending } = useAllShoes();
 
     return (
         <section className={styles["shoe-items-container"]}>
 
-            {!pending && shoes.length === 0 && <p>No shoes yet.</p>}
+            {!isPending && shoes.length === 0 && <p>No shoes yet.</p>}
 
-            {pending
+            {isPending
                 ?
                 <Spinner/>
                 :

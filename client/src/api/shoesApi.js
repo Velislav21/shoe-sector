@@ -15,27 +15,30 @@ const initialShoeData = {
 };
 
 export function useAllShoes() {
-    const [pending, setIsPending] = useState(true);
+    const [isPending, setIsPending] = useState(true);
     const [shoes, setShoes] = useState([]);
 
     useEffect(() => {
-        request.get(`${BASE_URL}/shoes`).then((res) => {
-            setShoes(res);
-            setIsPending(false);
-        });
+        request.get(`${BASE_URL}/shoes`)
+            .then(setShoes)
+            .finally(setIsPending)
     }, []);
 
-    return { shoes, pending }
+    return { shoes, isPending }
 };
 
 export function useGetShoe(shoeId) {
+    const [isShoePending, setIsShoePending] = useState(true);
 
     const [shoeData, setShoeData] = useState(initialShoeData)
 
     useEffect(() => {
-        request.get(`${BASE_URL}/shoes/details/${shoeId}`).then(setShoeData)
+        request.get(`${BASE_URL}/shoes/details/${shoeId}`)
+            .then(setShoeData)
+            .finally(setIsShoePending(false))
     }, [shoeId]);
-    return { shoeData, setShoeData };
+    
+    return { shoeData, setShoeData, isShoePending };
 };
 
 export function useCreateShoe() {
@@ -55,7 +58,7 @@ export function useCreateShoe() {
 };
 
 export function useDeleteShoe() {
-    const [isPending, setIsPending] = useState(false);
+    const [isDeletePending, setIsPending] = useState(false);
 
     async function deleteShoe(shoeId) {
         setIsPending(true)
@@ -65,7 +68,7 @@ export function useDeleteShoe() {
 
     return {
         deleteShoe,
-        isPending
+        isDeletePending
     }
 
 };
