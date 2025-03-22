@@ -25,9 +25,12 @@ body {
 div#root {
   display: flex;
   flex-direction: column;
-}
-body {
   min-height: 100dvh;
+}
+main {
+  flex: 1; 
+  position: relative;
+  z-index: 0;
 }
 h1,
 h2,

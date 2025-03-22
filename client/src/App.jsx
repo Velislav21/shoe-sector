@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router"
-
+import Home from "./components/home/Home"
 import Footer from "./components/footer/Footer"
 import Navbar from "./components/nav-bar/Navbar"
 import ShoesList from "./components/shoes/shoes-list/ShoesList"
@@ -22,6 +22,7 @@ function App() {
             <Navbar />
             <main>
                 <Routes>
+                    <Route path="/" element={<Home />} />
                     <Route path="/shoes" element={<ShoesList />} />
                     <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />
 
