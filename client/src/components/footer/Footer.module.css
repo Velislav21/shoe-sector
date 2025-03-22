@@ -1,7 +1,15 @@
-footer {
-    font-size: 1.2em;
+.siteFooter {
+    display: flex;
+    justify-content: center;
     margin-top: auto;
-    margin-bottom: 2em;
-    text-align: center;
+    gap: 10em;
+    font-size: 1em;
+    padding: 2em;
+    text-align: start;
     width: 100%;
+    line-height: 2em;
+    box-shadow: 0em 0.1em 0.3em rgba(0,0,0, 0.5);
+}
+.link {
+    color: #6e6e6e;
 }

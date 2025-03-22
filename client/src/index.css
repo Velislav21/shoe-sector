@@ -25,6 +25,8 @@ body {
 div#root {
   display: flex;
   flex-direction: column;
+}
+body {
   min-height: 100dvh;
 }
 h1,

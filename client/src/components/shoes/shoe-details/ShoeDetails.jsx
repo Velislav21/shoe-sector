@@ -19,7 +19,7 @@ export default function ShoeDetails() {
 
     const isOwner = user?._id === shoeData.owner;
 
-    async function deleteHandler() {
+    function deleteHandler() {
         deleteShoe(shoeId).finally(() => {
             navigate("/shoes")
         })
