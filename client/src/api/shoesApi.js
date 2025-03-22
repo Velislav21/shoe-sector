@@ -44,14 +44,14 @@ export function useGetShoe(shoeId) {
 export function useCreateShoe() {
     const [isPending, setIsPending] = useState(false);
 
-    async function create(shoeData) {
+    async function createShoe(shoeData) {
         setIsPending(true)
         await request.post(`${BASE_URL}/shoes/create`, shoeData)
         setIsPending(false);
     }
 
     return {
-        create,
+        createShoe,
         isPending
     }
 

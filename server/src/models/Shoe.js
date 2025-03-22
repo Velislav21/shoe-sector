@@ -3,7 +3,7 @@ import { model, Schema, Types } from 'mongoose';
 const shoeSchema = new Schema({
     modelName: {
         type: String,
-        // minLength: 2,
+        minLength: 2,
         required: true,
     },
     brand: {
@@ -18,15 +18,16 @@ const shoeSchema = new Schema({
     imageUrl: {
         type: String,
         required: true,
-        // validate: /^https?:\/\//
+        validate: /^https?:\/\//
     },
     description: {
         type: String,
-        // minLength: 10,
+        minLength: 10,
         required: true,
     },
     price: {
         type: Number,
+        min: 1,
         required: true,
     },
     likedList: [{

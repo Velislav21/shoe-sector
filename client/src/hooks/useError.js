@@ -5,9 +5,8 @@ export default function useError(initialErrorState) {
 
     function customSetError(errorMessage, hideAfterMilliSeconds) {
         setError(errorMessage);
-        setTimeout(() => {
-            setError(null);
-        }, hideAfterMilliSeconds);
+
+        setTimeout(() => setError(null), hideAfterMilliSeconds);
     }
 
     return {
