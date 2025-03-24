@@ -11,4 +11,10 @@
 }
 .link {
     color: #6e6e6e;
+    padding: 0.2em 0.7em;
+
+    &:hover {
+        border-radius: 0.3rem;
+        box-shadow: 0.1em 0.1em 0.5em rgba(0,0,0, 0.5);
+    }
 }
