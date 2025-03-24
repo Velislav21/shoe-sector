@@ -40,11 +40,10 @@ div.user-input-container > input {
 }
 
 div.user-input-container input.error {
-    color: red;
     border-bottom: 1.5px solid red;
 
     &:focus {
-        outline: none;
+        color: red;
         border: 1.5px solid rgb(255, 0, 0);
         border-radius: 0.3rem;
         color: #5a5a5a;
