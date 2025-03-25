@@ -1,31 +1,16 @@
 import { useState } from "react";
-import * as yup from "yup";
 
-import { emailRegExp } from "../utils/emailRegExp";
-
-const schema = yup.object().shape({
-    email:
-        yup.string()
-            .required("Please enter your email address.")
-            .matches(emailRegExp, "Invalid email format.")
-            .min(10, "The email must be longer"),
-    password:
-        yup.string().required("Please enter your password.")
-})
-
-
-export default function useInputValidation() {
+export default function useInputValidation(schema) {
 
     const [validationErrors, setValidationErrors] = useState({});
 
     async function validationFn(values) {
         try {
-            const result = await schema.validate(values, { abortEarly: false });
-            return result;
+            const validValues = await schema.validate(values, { abortEarly: false });
+            return validValues;
 
         } catch (err) {
             const errors = {};
-
             err.inner
                 .forEach((currentError) => {
                     if (!errors[currentError.path]) {

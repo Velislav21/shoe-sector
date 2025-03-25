@@ -2,17 +2,26 @@ import { Link } from "react-router"
 
 import styles from "../UserForm.module.css"
 import ErrorMessage from "../../errors/ErrorMessage"
-import { emailRegExp } from "../../../utils/emailRegExp"
 import { useRegister } from "../../../api/usersApi"
+import useInputValidation from "../../../hooks/useInputValidation"
+import { registerSchema } from "../../../utils/yupSchemas"
 
 export default function Register() {
-    const { register, error, isPending } = useRegister();
+    const { register, error: fetchError, isPending } = useRegister();
+
+    const { validationErrors, validationFn } = useInputValidation(registerSchema);
 
     async function handleFormAction(formData) {
-        const values = Object.fromEntries(formData)
 
-        register(values);
+        const values = Object.fromEntries(formData)
+        const validValues = await validationFn(values);
+
+        if (!validValues) {
+            return;
+        }
+        register(validValues);
     }
+    console.log(validationErrors)
 
     return (
         <form action={handleFormAction} className={styles["user-form"]}>
@@ -25,9 +34,10 @@ export default function Register() {
                         placeholder="e.g. John Doe"
                         name="name"
                         id="name"
-                        required
                     />
-                    {/* <ErrorMessage>Error.</ErrorMessage> */}
+                    {validationErrors.name
+                        && validationErrors.name
+                            .map((errorMessage, i) => <ErrorMessage key={i}>{errorMessage}</ErrorMessage>)}
                 </div>
                 <div className={styles["user-input-container"]}>
                     <input
@@ -35,9 +45,10 @@ export default function Register() {
                         placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
-                        required
                     />
-                    {/* <ErrorMessage>Error.</ErrorMessage> */}
+                    {validationErrors.email
+                        && validationErrors.email
+                            .map((errorMessage, i) => <ErrorMessage key={i}>{errorMessage}</ErrorMessage>)}
                 </div>
                 <div className={styles["user-input-container"]}>
                     <input
@@ -45,9 +56,10 @@ export default function Register() {
                         placeholder="Password"
                         name="password"
                         id="password"
-                        required
                     />
-                    {/* <ErrorMessage>Error.</ErrorMessage> */}
+                    {validationErrors.password
+                        && validationErrors.password
+                            .map((errorMessage, i) => <ErrorMessage key={i}>{errorMessage}</ErrorMessage>)}
                 </div>
                 <div className={styles["user-input-container"]}>
                     <input
@@ -55,15 +67,16 @@ export default function Register() {
                         placeholder="Repeat Password"
                         name="rePassword"
                         id="rePassword"
-                        required
                     />
-                    {/* <ErrorMessage>Error.</ErrorMessage> */}
+                    {validationErrors.rePassword
+                        && validationErrors.rePassword
+                            .map((errorMessage, i) => <ErrorMessage key={i}>{errorMessage}</ErrorMessage>)}
                 </div>
-                {error && <ErrorMessage>{error}</ErrorMessage>}
+                {fetchError && <ErrorMessage>{fetchError}</ErrorMessage>}
             </div>
 
             <button disabled={isPending} className={styles["action-btn"]}>CREATE ACCOUNT</button>
-            <p>Alrady have an account ? <Link to="/login">Log in</Link></p>
+            <p className={styles["redirect"]}>Alrady have an account ? <Link to="/login">Log in</Link></p>
         </form>
     )
 }

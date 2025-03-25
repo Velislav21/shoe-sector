@@ -11,9 +11,9 @@ export function useLogin() {
     const [isPending, setIsPending] = useState(false);
 
     async function login(userData) {
-
         try {
             setIsPending(true);
+
             const user = await request.post(`${BASE_URL}/users/login`, userData);
             dispatch({ type: "LOGIN", payload: user });
 
@@ -26,6 +26,7 @@ export function useLogin() {
     return {
         login,
         error,
+        customSetError,
         isPending
     }
 }
@@ -58,6 +59,16 @@ export function useRegister() {
         isPending
     }
 }
+export function useLogout() {
+
+    const { dispatch } = useAuthContext()
+
+    function logout() {
+
+        dispatch({ type: "LOGOUT" })
+    }
+    return { logout };
+}
 export function useDeleteProfile() {
     const { dispatch } = useAuthContext();
     const [isPending, setIsPending] = useState(false);
@@ -67,7 +78,7 @@ export function useDeleteProfile() {
 
         await request.delete(`${BASE_URL}/users/profile/${id}`);
         dispatch({ type: "LOGOUT" })
-        
+
         setIsPending(false);
     }
 
