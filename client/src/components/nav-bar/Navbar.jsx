@@ -8,13 +8,7 @@ import { useAuthContext } from "../../hooks/useAuthContext"
 
 export default function Navbar() {
 
-    const { user, dispatch } = useAuthContext()
-    const navigate = useNavigate();
-
-    function logoutHandler() {
-        dispatch({ type: "LOGOUT" })
-        navigate('/login')
-    }
+    const { user } = useAuthContext()
 
     return (
         <header className={styles["site-header"]}>
@@ -34,8 +28,8 @@ export default function Navbar() {
                                     <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
                                 </button>
                             </li>
-                            <li><Link to={`/profile/${user._id}`}>{user.name}' Profile</Link></li>
-                            <li><button onClick={logoutHandler}>Logout</button></li>
+                            <li><Link to={`/profile/${user._id}`}>{user.name} Profile</Link></li>
+                            <li><Link to="/logout">Logout</Link></li>
                         </>
                         :
                         <>

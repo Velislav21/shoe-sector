@@ -6,8 +6,6 @@ export function useLogout() {
 
     function logout() {
 
-        localStorage.removeItem("user")
-
         dispatch({ type: "LOGOUT" })
     }
     return { logout };

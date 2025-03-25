@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router"
+import * as yup from "yup"
 
 import styles from "../UserForm.module.css"
 import { emailRegExp } from "../../../utils/emailRegExp";
@@ -17,10 +18,9 @@ export default function Login() {
         const isInputValid = emailRegExp.test(e.target.value);
         setIsValid(isInputValid);
     }
-
     function handleFormAction(formData) {
-        const values = Object.fromEntries(formData);
 
+        const values = Object.fromEntries(formData);
         login(values);
     }
     return (
@@ -34,11 +34,8 @@ export default function Login() {
                         name="email"
                         id="email"
                         className={!valid ? styles["error"] : ""}
-                        onBlur={handleInputValidation}
-                        required
                     />
-                    {!valid && <ErrorMessage>Please enter valid email address.</ErrorMessage>
-                    }
+                    {!valid && <ErrorMessage>{error}</ErrorMessage>}
                 </div>
                 <div className={styles["user-input-container"]}>
                     <input
@@ -46,7 +43,6 @@ export default function Login() {
                         placeholder="Password"
                         name="password"
                         id="password"
-                        required
                     />
                 </div>
                 {error && <ErrorMessage>{error}</ErrorMessage>}

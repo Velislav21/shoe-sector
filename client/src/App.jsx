@@ -14,6 +14,7 @@ import UserEdit from "./components/user/profile/UserEdit"
 import AuthorizedRoutes from "./components/route-guards/AuthorizedRoutes"
 import UnAuthorizedRoutes from "./components/route-guards/UnAuthorizedRoutes"
 import { AuthContextProvider } from "./context/AuthContext"
+import Logout from "./components/user/logout/Logout"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                     </Route>
 
                     <Route element={<AuthorizedRoutes />}>
+                        <Route path="/logout" element={<Logout />} />
                         <Route path="/shoes/create" element={<CreateShoe />} />
                         <Route path="/shoes/:shoeId/edit" element={<EditShoe />} />
 
