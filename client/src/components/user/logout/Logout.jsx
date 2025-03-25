@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import { useLogout } from "../../../hooks/useLogout";
+import { useLogout } from "../../../api/usersApi";
 import { useEffect } from "react";
 
 export default function Logout() {
