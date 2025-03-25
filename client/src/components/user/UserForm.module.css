@@ -70,7 +70,7 @@ div.user-input-container input.error {
 .action-btn:hover {
     color: #262626;
 }
-.user-form p:last-of-type {
+.user-form p.redirect {
     color: #616161;
     margin-bottom: 1em;
     font-size: 1.1em;

@@ -1,4 +1,4 @@
-div p.error-msg:last-of-type {
+p.error-msg {
     font-size: 0.9em;
     font-weight: 500;
     display: inline-block;
