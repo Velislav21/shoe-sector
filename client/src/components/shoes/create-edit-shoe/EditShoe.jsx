@@ -1,14 +1,19 @@
 import { useNavigate, useParams } from "react-router"
+
 import styles from "./CreateShoe.module.css"
+
 import { useEditShoe, useGetShoe } from "../../../api/shoesApi";
+import { shoeSchema } from "../../../utils/yupSchemas";
+import useInputValidation from "../../../hooks/useInputValidation";
+import ErrorMessage from "../../errors/ErrorMessage";
 
 export default function EditShoe() {
     const navigate = useNavigate();
 
     const { shoeId } = useParams();
     const { shoeData, setShoeData } = useGetShoe(shoeId);
-    const { edit, isPending } = useEditShoe();
-
+    const { edit, isPending, fetchError } = useEditShoe();
+    const { validationErrors, validationFn } = useInputValidation(shoeSchema)
 
     function handleInputChange(e) {
         setShoeData((prevValues) => ({
@@ -16,11 +21,17 @@ export default function EditShoe() {
             [e.target.name]: e.target.value
         }))
     }
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
         e.preventDefault();
 
-        edit(shoeData)
-            .finally(() => navigate(`/shoes/${shoeData._id}/details`));
+        const validValues = await validationFn(shoeData);
+
+        if (!validValues) {
+            return;
+        }
+        const isSuccessful = await edit(validValues);
+
+        isSuccessful && navigate(`/shoes/${shoeId}/details`);
     }
 
     return (
@@ -37,7 +48,9 @@ export default function EditShoe() {
                     className={styles["input-field"]}
                     onChange={handleInputChange}
                     value={shoeData.modelName}
-                    required />
+                />
+                {validationErrors.modelName &&
+                    validationErrors.modelName.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
             </div>
 
             <div className={styles["form-group"]}>
@@ -49,7 +62,9 @@ export default function EditShoe() {
                     className={styles["input-field"]}
                     onChange={handleInputChange}
                     value={shoeData.brand}
-                    required />
+                />
+                {validationErrors.brand &&
+                    validationErrors.brand.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
             </div>
             <div className={styles["form-group"]}>
                 <label>Price</label>
@@ -60,7 +75,9 @@ export default function EditShoe() {
                     className={styles["input-field"]}
                     onChange={handleInputChange}
                     value={shoeData.price}
-                    required />
+                />
+                {validationErrors.price &&
+                    validationErrors.price.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
             </div>
 
             <div className={styles["form-group"]}>
@@ -87,6 +104,8 @@ export default function EditShoe() {
                         checked={shoeData.gender === "Unisex"}
                         onChange={handleInputChange}
                     /> Unisex</label>
+                    {validationErrors.gender &&
+                        validationErrors.gender.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
                 </div>
             </div>
             <div className={styles["form-group"]}>
@@ -98,7 +117,9 @@ export default function EditShoe() {
                     className={styles["input-field"]}
                     onChange={handleInputChange}
                     value={shoeData.imageUrl}
-                    required />
+                />
+                {validationErrors.imageUrl &&
+                    validationErrors.imageUrl.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
             </div>
 
             <div className={styles["form-group"]}>
@@ -109,8 +130,11 @@ export default function EditShoe() {
                     className={styles["textarea-field"]}
                     onChange={handleInputChange}
                     value={shoeData.description}
-                    required
-                ></textarea>
+                >
+                </textarea>
+                {validationErrors.description &&
+                    validationErrors.description.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
+                {fetchError && <ErrorMessage className={styles["error-msg"]}>{fetchError}</ErrorMessage>}
             </div>
             <button disabled={isPending} className={styles["submit-button"]}>EDIT MODEL</button>
         </form>

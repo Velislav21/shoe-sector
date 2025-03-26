@@ -1,6 +1,7 @@
 import * as yup from "yup";
 
 import { emailRegExp } from "../utils/emailRegExp";
+import { httpRegExp } from "./httpsRegExp";
 
 export const loginSchema = yup.object().shape({
     email:
@@ -23,7 +24,7 @@ export const registerSchema = yup.object().shape({
             .min(10, "The email must be at least 10 characters."),
     password:
         yup.string().required("Please enter your password."),
-    rePassword: 
+    rePassword:
         yup.string().required("Repeat password is required").oneOf([yup.ref("password"), null], "Passwords must match")
 
 })
@@ -33,6 +34,6 @@ export const shoeSchema = yup.object().shape({
     brand: yup.string().required("Please enter the brand name."),
     price: yup.number().positive("The price can't be negative number").required("Please enter the price."),
     gender: yup.string().required("Please select gender"),
-    imageUrl: yup.string().required("Please provide image URL."),
+    imageUrl: yup.string().required("Please provide image URL.").matches(httpRegExp, "Invalid URL format"),
     description: yup.string().required("Please enter the description.")
 })

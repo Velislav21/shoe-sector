@@ -58,7 +58,7 @@ export function useCreateShoe() {
         } catch (err) {
             setCustomError(err.message, 5000)
             setIsPending(false)
-            
+
             return false;
         }
     }
@@ -89,16 +89,27 @@ export function useDeleteShoe() {
 
 export function useEditShoe() {
 
+    const { error: fetchError, setCustomError } = useError(null);
     const [isPending, setIsPending] = useState(false);
 
     async function edit(shoeData) {
-        setIsPending(true);
-        await request.patch(`${BASE_URL}/shoes/update/${shoeData._id}`, shoeData);
-        setIsPending(false);
+        try {
+            setIsPending(true);
+            await request.patch(`${BASE_URL}/shoes/update/${shoeData._id}`, shoeData);
+            setIsPending(false);
+            
+            return true;
+        } catch (err) {
+            setCustomError(err.message, 5000)
+            setIsPending(false)
+
+            return false;
+        }
     }
 
     return {
         edit,
-        isPending
+        isPending,
+        fetchError
     };
 };

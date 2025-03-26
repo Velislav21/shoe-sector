@@ -8,6 +8,7 @@ const shoeSchema = new Schema({
     },
     brand: {
         type: String,
+        minLength: [2, "Brand name must be at least 2 characters long"],
         required: true,
     },
     gender: {
@@ -22,12 +23,12 @@ const shoeSchema = new Schema({
     },
     description: {
         type: String,
-        minLength: 10,
+        minLength: [10, "Description must be at least 10 characters long"],
         required: true,
     },
     price: {
         type: Number,
-        min: 1,
+        min: [1, "The price can't be lower than 1"],
         required: true,
     },
     likedList: [{
