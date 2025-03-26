@@ -7,7 +7,7 @@ import useError from "../hooks/useError";
 
 export function useLogin() {
     const { dispatch } = useAuthContext();
-    const { error: fetchError, setCustomError} = useError(null);
+    const { error: fetchError, setCustomError } = useError(null);
     const [isPending, setIsPending] = useState(false);
 
     async function login(userData) {
@@ -89,20 +89,29 @@ export function useDeleteProfile() {
 }
 export function useEditProfile() {
 
+    const { error: fetchError, setCustomError } = useError(null);
     const [isPending, setIsPending] = useState(false);
     const { dispatch } = useAuthContext()
 
     async function editProfile(userId, userData) {
 
-        setIsPending(true);
-        const updatedUser =
-            await request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
-        dispatch({ type: "LOGIN", payload: updatedUser })
-        setIsPending(false);
+        try {
+            setIsPending(true);
+            const updatedUser = await request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
+            dispatch({ type: "LOGIN", payload: updatedUser })
+            setIsPending(false);
 
+            return true;
+        } catch (err) {
+            setIsPending(false);
+            setCustomError(err.message, 5000);
+
+            return false;
+        }
     }
     return {
         editProfile,
+        fetchError,
         isPending
     }
 }

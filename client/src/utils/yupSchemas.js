@@ -37,3 +37,16 @@ export const shoeSchema = yup.object().shape({
     imageUrl: yup.string().required("Please provide image URL.").matches(httpsRegExp, "Invalid URL"),
     description: yup.string().required("Please enter the description.")
 })
+
+export const userEditSchema = yup.object().shape({
+
+    email:
+        yup.string()
+            .required("Please enter your email address.")
+            .matches(emailRegExp, "Invalid email format.")
+            .min(10, "The email must be at least 10 characters."),
+
+    name:
+        yup.string()
+            .required("Please enter your name.")
+})

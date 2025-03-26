@@ -3,18 +3,31 @@ import { useNavigate } from 'react-router';
 import styles from '../../user/UserForm.module.css'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { useEditProfile } from '../../../api/usersApi';
+import useInputValidation from '../../../hooks/useInputValidation';
+import { userEditSchema } from '../../../utils/yupSchemas';
+import ErrorMessage from '../../errors/ErrorMessage';
 
 export default function UserEdit() {
     const navigate = useNavigate();
-    const { editProfile, isPending } = useEditProfile();
     const { user } = useAuthContext();
+    const { validationErrors, validationFn } = useInputValidation(userEditSchema)
+    const { editProfile, isPending, fetchError } = useEditProfile();
 
     async function handleFormAction(formData) {
         const updatedValues = Object.fromEntries(formData);
-        editProfile(user._id, updatedValues).finally(() => {
-            navigate(`/profile/${user._id}`)
-        });
+
+        const validValues = await validationFn(updatedValues);
+
+        if (!validValues) {
+            return;
+        }
+
+        const isSuccessful = await editProfile(user._id, validValues);
+
+        isSuccessful && navigate(`/profile/${user._id}`);
     }
+    console.log(fetchError)
+    console.log(validationErrors)
     return (
         <form action={handleFormAction} className={styles["user-form"]}>
             <h1>Edit Profile</h1>
@@ -32,8 +45,9 @@ export default function UserEdit() {
                         name="email"
                         id="email"
                         defaultValue={isPending ? "" : user.email}
-                        required
                     />
+                    {validationErrors.email &&
+                        validationErrors.email.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
                 </div>
                 <div className={styles["user-input-container"]}>
                     <input
@@ -42,8 +56,9 @@ export default function UserEdit() {
                         name="name"
                         id="name"
                         defaultValue={isPending ? "" : user.name}
-                        required
                     />
+                    {validationErrors.name &&
+                        validationErrors.name.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
                 </div>
             </div>
 
