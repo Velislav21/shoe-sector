@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function useError(initialErrorState) {
     const [error, setError] = useState(initialErrorState);
 
-    function customSetError(errorMessage, hideAfterMilliSeconds) {
+    function setCustomError(errorMessage, hideAfterMilliSeconds) {
         setError(errorMessage);
 
         setTimeout(() => setError(null), hideAfterMilliSeconds);
@@ -11,6 +11,6 @@ export default function useError(initialErrorState) {
 
     return {
         error,
-        customSetError
+        setCustomError
     }
 }

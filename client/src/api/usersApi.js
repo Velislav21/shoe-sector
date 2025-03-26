@@ -7,7 +7,7 @@ import useError from "../hooks/useError";
 
 export function useLogin() {
     const { dispatch } = useAuthContext();
-    const { error, customSetError } = useError(null);
+    const { error: fetchError, setCustomError} = useError(null);
     const [isPending, setIsPending] = useState(false);
 
     async function login(userData) {
@@ -19,21 +19,21 @@ export function useLogin() {
 
             setIsPending(false)
         } catch (err) {
-            customSetError(err.message, 5000)
+            setCustomError(err.message, 5000)
             setIsPending(false)
         }
     }
     return {
         login,
-        error,
-        customSetError,
+        fetchError,
+        setCustomError,
         isPending
     }
 }
 export function useRegister() {
 
     const { dispatch } = useAuthContext();
-    const { error, customSetError } = useError(null);
+    const { error: fetchError, setCustomError } = useError(null);
     const [isPending, setIsPending] = useState(false);
 
     async function register(userData) {
@@ -47,7 +47,7 @@ export function useRegister() {
             setIsPending(false);
         } catch (err) {
 
-            customSetError(err.message, 5000);
+            setCustomError(err.message, 5000);
             setIsPending(false);
         }
 
@@ -55,7 +55,7 @@ export function useRegister() {
 
     return {
         register,
-        error,
+        fetchError,
         isPending
     }
 }

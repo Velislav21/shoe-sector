@@ -3,7 +3,7 @@ import { model, Schema, Types } from 'mongoose';
 const shoeSchema = new Schema({
     modelName: {
         type: String,
-        minLength: 2,
+        minLength: [2, "Model name must be at least 2 characters long"],
         required: true,
     },
     brand: {

@@ -7,7 +7,7 @@ import useInputValidation from "../../../hooks/useInputValidation"
 import { registerSchema } from "../../../utils/yupSchemas"
 
 export default function Register() {
-    const { register, error: fetchError, isPending } = useRegister();
+    const { register, fetchError, isPending } = useRegister();
 
     const { validationErrors, validationFn } = useInputValidation(registerSchema);
 

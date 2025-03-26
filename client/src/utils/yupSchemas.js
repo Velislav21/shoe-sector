@@ -27,3 +27,12 @@ export const registerSchema = yup.object().shape({
         yup.string().required("Repeat password is required").oneOf([yup.ref("password"), null], "Passwords must match")
 
 })
+
+export const shoeSchema = yup.object().shape({
+    modelName: yup.string().required("Please enter a model name."),
+    brand: yup.string().required("Please enter the brand name."),
+    price: yup.number().positive("The price can't be negative number").required("Please enter the price."),
+    gender: yup.string().required("Please select gender"),
+    imageUrl: yup.string().required("Please provide image URL."),
+    description: yup.string().required("Please enter the description.")
+})
