@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+import useError from "../hooks/useError";
 import request from "../utils/requester";
 import { BASE_URL } from "../constants/constants";
 
@@ -37,22 +38,35 @@ export function useGetShoe(shoeId) {
             .then(setShoeData)
             .finally(setIsShoePending(false))
     }, [shoeId]);
-    
+
     return { shoeData, setShoeData, isShoePending };
 };
 
 export function useCreateShoe() {
+
+    const { error: fetchError, setCustomError } = useError(null);
     const [isPending, setIsPending] = useState(false);
 
     async function createShoe(shoeData) {
-        setIsPending(true)
-        await request.post(`${BASE_URL}/shoes/create`, shoeData)
-        setIsPending(false);
+
+        try {
+            setIsPending(true)
+            await request.post(`${BASE_URL}/shoes/create`, shoeData)
+            setIsPending(false);
+
+            return true;
+        } catch (err) {
+            setCustomError(err.message, 5000)
+            setIsPending(false)
+            
+            return false;
+        }
     }
 
     return {
         createShoe,
-        isPending
+        isPending,
+        fetchError
     }
 
 };

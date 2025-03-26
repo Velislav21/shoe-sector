@@ -20,6 +20,8 @@ export default function useInputValidation(schema) {
                 })
             setValidationErrors(errors);
             setTimeout(() => setValidationErrors({}), 10000)
+
+            return null;
         }
 
     };
