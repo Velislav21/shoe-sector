@@ -18,7 +18,7 @@ const shoeSchema = new Schema({
     imageUrl: {
         type: String,
         required: true,
-        validate: /^https?:\/\//
+        validate: [/^https?:\/\//, "Invalid URL"]
     },
     description: {
         type: String,

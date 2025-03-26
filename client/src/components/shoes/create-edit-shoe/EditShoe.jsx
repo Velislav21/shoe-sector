@@ -19,10 +19,8 @@ export default function EditShoe() {
     function handleFormSubmit(e) {
         e.preventDefault();
 
-        edit(shoeData).finally(() => {
-
-            navigate(`/shoes/${shoeData._id}/details`);
-        });
+        edit(shoeData)
+            .finally(() => navigate(`/shoes/${shoeData._id}/details`));
     }
 
     return (
