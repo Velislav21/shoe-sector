@@ -12,7 +12,7 @@ export default function EditShoe() {
 
     const { shoeId } = useParams();
     const { shoeData, setShoeData } = useGetShoe(shoeId);
-    const { edit, isPending, fetchError } = useEditShoe();
+    const { isPending, fetchError, edit } = useEditShoe();
     const { validationErrors, validationFn } = useInputValidation(shoeSchema)
 
     function handleInputChange(e) {

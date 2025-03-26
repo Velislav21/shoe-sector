@@ -1,2 +1,2 @@
-export const httpRegExp =
-    new RegExp("https:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)$", "i");
+export const httpsRegExp =
+    new RegExp("^https:\/\/.+\.[a-zA-Z]{2,}$", "i");
