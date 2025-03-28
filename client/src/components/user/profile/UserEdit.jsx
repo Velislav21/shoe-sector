@@ -26,8 +26,6 @@ export default function UserEdit() {
 
         isSuccessful && navigate(`/profile/${user._id}`);
     }
-    console.log(fetchError)
-    console.log(validationErrors)
     return (
         <form action={handleFormAction} className={styles["user-form"]}>
             <h1>Edit Profile</h1>
@@ -59,6 +57,7 @@ export default function UserEdit() {
                     />
                     {validationErrors.name &&
                         validationErrors.name.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
+                    {fetchError && <ErrorMessage>{fetchError}</ErrorMessage>}
                 </div>
             </div>
 
