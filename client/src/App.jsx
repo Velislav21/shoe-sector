@@ -15,6 +15,7 @@ import AuthorizedRoutes from "./components/route-guards/AuthorizedRoutes"
 import UnAuthorizedRoutes from "./components/route-guards/UnAuthorizedRoutes"
 import { AuthContextProvider } from "./context/AuthContext"
 import Logout from "./components/user/logout/Logout"
+import Cart from "./components/cart/Cart"
 
 function App() {
 
@@ -39,6 +40,8 @@ function App() {
 
                         <Route path="/profile/:userId" element={<UserProfile />} />
                         <Route path="/profile/:userId/edit" element={<UserEdit />} />
+
+                        <Route path="/cart" element={<Cart />} />
 
                     </Route>
                 </Routes>

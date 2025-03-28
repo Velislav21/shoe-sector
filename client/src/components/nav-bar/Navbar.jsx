@@ -23,10 +23,10 @@ export default function Navbar() {
                         <>
                             <li><Link to="/shoes/create">Create</Link></li>
                             <li>
-                                <button>
+                                <Link to="/cart">
                                     My Cart
                                     <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
-                                </button>
+                                </Link>
                             </li>
                             <li><Link to={`/profile/${user._id}`}>{user.name} Profile</Link></li>
                             <li><Link to="/logout">Logout</Link></li>

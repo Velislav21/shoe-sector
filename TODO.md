@@ -9,7 +9,7 @@
 -   [x] Edit Profile Page
 -   [x] Details Page
 -   [x] Profile Page
--   [ ] Complete input validation
+-   [x] Complete input validation
 -   [x] Add Spinner // Maybe use external library ??
 -   [x] Disable Buttons during fetching
 -   [x] Footer
