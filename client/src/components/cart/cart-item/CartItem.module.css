@@ -49,6 +49,11 @@ div.quantity-buttons {
 div.price {
     text-align: right;
     margin-top: 2em;
+
+    & p {
+        font-weight: bold;
+        color: rgb(53, 52, 52)
+    }
 }
 
 button.remove-btn {

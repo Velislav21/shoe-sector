@@ -1,9 +1,6 @@
 
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"
 import styles from "./CartItem.module.css";
-
 
 export default function CartItem({ _id, imageUrl, brand, modelName, quantity, gender, price }) {
     return (

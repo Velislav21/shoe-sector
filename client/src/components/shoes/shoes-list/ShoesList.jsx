@@ -1,5 +1,4 @@
 import styles from "./ShoesList.module.css";
-
 import ShoeItem from "../shoe-item/ShoeItem";
 import Spinner from "../../spinner/Spinner";
 import { useAllShoes } from "../../../api/shoesApi";
@@ -7,7 +6,6 @@ import { useAllShoes } from "../../../api/shoesApi";
 export default function ShoesList() {
 
     const { shoes, isPending } = useAllShoes();
-
     return (
         <section className={styles["shoe-items-container"]}>
 
