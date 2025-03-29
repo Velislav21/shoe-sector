@@ -23,15 +23,23 @@ cartController.post("/add/:shoeId", isAuth, async (req, res) => {
     const userId = req.user._id;
     try {
         const cart = await cartService.addToCart(userId, shoeId);
-
-        res.json(cart); // maybe this is unecessary ?
+        console.log(cart)
+        res.json(cart);
     } catch (error) {
         res.status(400).json(getError(error));
     }
 });
 
 
-cartController.patch("/increase", isAuth, async (req, res) => {
+cartController.patch("/edit/quantity", isAuth, async (req, res) => {
+    const userId = req.user._id
+    const { operationType, shoeId } = req.body
 
+    try {
+        const { shoes } = await cartService.updateQuantity(userId, shoeId, operationType)
+        res.status(200).json(shoes)
+    } catch (error) {
+        res.status(400).json(getError(error))
+    }
 })
 export default cartController

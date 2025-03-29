@@ -4,7 +4,7 @@ import styles from "./CartItem.module.css";
 import requester from "../../../utils/requester";
 import { BASE_URL } from "../../../constants/constants";
 import { useCartContext } from "../../../hooks/useCartContext";
-import { useIncreaseQuantity } from "../../../api/cartApi";
+import { useDecreaseQuantity, useIncreaseQuantity } from "../../../api/cartApi";
 
 export default function CartItem({
     _id,
@@ -16,7 +16,8 @@ export default function CartItem({
     price
 }) {
 
-    const { increaseQuantity, isPending } = useIncreaseQuantity();
+    const { increaseQuantity, isPending: increasePending } = useIncreaseQuantity();
+    const { decreaseQuantity, isPending: decreasePending } = useDecreaseQuantity();
 
     return (
         <article className={styles["cart-item"]}>
@@ -28,13 +29,21 @@ export default function CartItem({
             <div className={styles["details"]}>
                 <h2>{modelName}</h2>
                 <p>{brand}</p>
+                <p>For {gender}</p>
             </div>
 
             <div className={styles["quantity-buttons"]}>
 
-                <button onClick={() => increaseQuantity(_id)} className={styles["circular-btn"]}> + </button>
+                <button
+                    className={styles["circular-btn"]}
+                    onClick={() => increaseQuantity(_id)}
+                > + </button>
+
                 <span>{quantity}</span>
-                <button onClick={() => {}} className={styles["circular-btn"]}> - </button>
+                
+                <button onClick={() => decreaseQuantity(_id)}
+                    className={styles["circular-btn"]}
+                > - </button>
 
             </div>
 
