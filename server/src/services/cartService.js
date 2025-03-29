@@ -25,11 +25,31 @@ const cartService = {
 
         if (shoe) {
             shoe.quantity++;
-            return await cart.save();
+            await cart.save();
+            return cart.populate('shoes.shoeId')
         }
 
         cart.shoes.push({ shoeId, quantity: 1 });
         return await cart.save();
+    },
+
+    async updateQuantity(userId, shoeId, operationType) {
+
+        const cart = await Cart.findOne({ owner: userId });
+        const shoe = cart.shoes.find(s => s.shoeId.toString() === shoeId);
+
+        if (operationType === "increase") {
+            shoe.quantity++;
+        } else {
+            
+            if (shoe.quantity === 0) {
+                return cart.populate('shoes.shoeId')
+            }
+            shoe.quantity--;
+        }
+
+        await cart.save();
+        return cart.populate('shoes.shoeId')
     }
 
 };
