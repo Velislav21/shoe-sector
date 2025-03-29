@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from '../jwt.js';
 import User from '../models/User.js'
+import Cart from '../models/Cart.js';
 
 const userService = {
     async register(name, email, password, rePassword) {
@@ -28,7 +29,7 @@ const userService = {
             throw new Error('Invalid password!')
         }
         return generateResponse(user);
-    }, 
+    },
 
     async getProfile(userId) {
         return await User.findById(userId).select("-password").lean();
@@ -43,10 +44,12 @@ const userService = {
         return generateResponse(updatedUser);
     },
     async delete(userId) {
-        return await User.findByIdAndDelete(userId);
+        await User.findByIdAndDelete(userId);
+        await Cart.findOneAndDelete({ owner: userId })
+        return
     },
 }
- 
+
 async function generateResponse(user) {
     const payload = {
         _id: user._id,

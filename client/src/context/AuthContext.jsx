@@ -2,7 +2,7 @@ import { createContext, useEffect, useReducer } from "react";
 
 export const AuthContext = createContext(); // This creates wrapper component, which will wrap the components that need the auth state of the app
 
-export function authReducer(state, action) {
+function authReducer(state, action) {
 
     switch (action.type) {
         case "LOGIN":

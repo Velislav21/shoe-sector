@@ -3,7 +3,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import requester from "../utils/requester";
 import { BASE_URL } from "../constants/constants";
 
-export  function useGetCart() {
+export function useGetCart() {
 
     const [cart, setCart] = useState([]);
 

@@ -25,7 +25,7 @@ export default function Cart() {
                 <div className={styles["checkout"]}>
                     <div>
                         <p className={styles["total"]}>Total: <span>BGN 0.00</span></p>
-                        <p className={styles["items-count"]}>Items count: </p>
+                        <p className={styles["items-count"]}>Products count: </p>
                     </div>
                     <div>
                         <button className={styles["checkout-btn"]}>Checkout</button>

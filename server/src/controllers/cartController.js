@@ -18,8 +18,8 @@ cartController.get("/", isAuth, async (req, res) => {
     }
 })
 
-cartController.post("/add", isAuth, async (req, res) => {
-    const { shoeId } = req.body;
+cartController.post("/add/:shoeId", isAuth, async (req, res) => {
+    const shoeId = req.params.shoeId;
     const userId = req.user._id;
     try {
         const cart = await cartService.addToCart(userId, shoeId);
@@ -30,4 +30,8 @@ cartController.post("/add", isAuth, async (req, res) => {
     }
 });
 
+
+cartController.patch("/increase", isAuth, async (req, res) => {
+
+})
 export default cartController
