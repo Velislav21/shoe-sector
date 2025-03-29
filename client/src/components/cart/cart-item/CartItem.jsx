@@ -1,4 +1,4 @@
-
+import { Link } from "react-router"
 
 import styles from "./CartItem.module.css";
 
@@ -6,9 +6,9 @@ export default function CartItem({ _id, imageUrl, brand, modelName, quantity, ge
     return (
         <article className={styles["cart-item"]}>
 
-            <div className={styles["image-container"]}>
+            <Link to={`/shoes/${_id}/details`} className={styles["image-container"]}>
                 <img src={imageUrl} alt="" />
-            </div>
+            </Link>
 
             <div className={styles["details"]}>
                 <h2>{modelName}</h2>
