@@ -1,17 +1,35 @@
 import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useCartContext } from "../hooks/useCartContext";
 import requester from "../utils/requester";
 import { BASE_URL } from "../constants/constants";
 
 export function useGetCart() {
-
-    const [cart, setCart] = useState([]);
+    const { cart, isPending, dispatch } = useCartContext()
 
     useEffect(() => {
-        requester.get(`${BASE_URL}/cart`).then(setCart)
+        async function getCart() {
+            const cart = await requester.get(`${BASE_URL}/cart`);
+            dispatch({ type: "GET_CART", payload: cart })
+        }
+        getCart();
     }, [])
-    
-    return {
-        cart
+
+    return { cart, isPending };
+}
+
+export function useIncreaseQuantity() {
+    const { dispatch, isPending } = useCartContext();
+
+    async function increaseQuantity(id) {
+        // dispatch({ type: "PENDING", payload: null })
+        // const cart = await requester.post(`${BASE_URL}/cart/add/${id}`, {})
+        // dispatch({ type: "GET_CART", payload: cart.shoes })
+        const result = await requester.patch(`${BASE_URL}/cart/edit/quantity`, { type: "increase" })
+        console.log(result)
     }
+
+    return {
+        increaseQuantity, isPending
+    };
 }

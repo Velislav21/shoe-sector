@@ -1,8 +1,23 @@
 import { Link } from "react-router"
 
 import styles from "./CartItem.module.css";
+import requester from "../../../utils/requester";
+import { BASE_URL } from "../../../constants/constants";
+import { useCartContext } from "../../../hooks/useCartContext";
+import { useIncreaseQuantity } from "../../../api/cartApi";
 
-export default function CartItem({ _id, imageUrl, brand, modelName, quantity, gender, price }) {
+export default function CartItem({
+    _id,
+    imageUrl,
+    brand,
+    modelName,
+    quantity,
+    gender,
+    price
+}) {
+
+    const { increaseQuantity, isPending } = useIncreaseQuantity();
+
     return (
         <article className={styles["cart-item"]}>
 
@@ -16,9 +31,11 @@ export default function CartItem({ _id, imageUrl, brand, modelName, quantity, ge
             </div>
 
             <div className={styles["quantity-buttons"]}>
-                <button className={styles["circular-btn"]}> + </button>
+
+                <button onClick={() => increaseQuantity(_id)} className={styles["circular-btn"]}> + </button>
                 <span>{quantity}</span>
-                <button className={styles["circular-btn"]}> - </button>
+                <button onClick={() => {}} className={styles["circular-btn"]}> - </button>
+
             </div>
 
             <div className={styles["price"]}>

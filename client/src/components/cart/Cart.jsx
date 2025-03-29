@@ -6,8 +6,7 @@ import { useGetCart } from "../../api/cartApi"
 
 export default function Cart() {
 
-    const { cart } = useGetCart();
-
+    const { cart, isPending } = useGetCart();
     return (
         <>
             <section className={styles["cart-container"]}>
