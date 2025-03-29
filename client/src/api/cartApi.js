@@ -18,8 +18,22 @@ export function useGetCart() {
     return { cart, isPending };
 }
 
+export function useAddToCart() {
+
+    const { isPending } = useCartContext();
+
+    async function addToCart(id) {
+        requester.post(`${BASE_URL}/cart/add/${id}`, {})
+    }
+
+    return {
+        addToCart,
+        isPending
+    }
+}
+
 export function useIncreaseQuantity() {
-    const { dispatch, isPending } = useCartContext();
+    const { dispatch, isPending: increasePending } = useCartContext();
 
     async function increaseQuantity(id) {
 
@@ -34,11 +48,11 @@ export function useIncreaseQuantity() {
     }
 
     return {
-        increaseQuantity, isPending
+        increaseQuantity, increasePending
     };
 }
 export function useDecreaseQuantity() {
-    const { dispatch, isPending } = useCartContext();
+    const { dispatch, isPending: decreasePending } = useCartContext();
 
     async function decreaseQuantity(id) {
 
@@ -53,6 +67,6 @@ export function useDecreaseQuantity() {
     }
 
     return {
-        decreaseQuantity, isPending
+        decreaseQuantity, decreasePending
     };
 }

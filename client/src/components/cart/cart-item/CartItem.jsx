@@ -16,8 +16,8 @@ export default function CartItem({
     price
 }) {
 
-    const { increaseQuantity, isPending: increasePending } = useIncreaseQuantity();
-    const { decreaseQuantity, isPending: decreasePending } = useDecreaseQuantity();
+    const { increaseQuantity, increasePending } = useIncreaseQuantity();
+    const { decreaseQuantity, decreasePending } = useDecreaseQuantity();
 
     return (
         <article className={styles["cart-item"]}>
@@ -40,7 +40,7 @@ export default function CartItem({
                 > + </button>
 
                 <span>{quantity}</span>
-                
+
                 <button onClick={() => decreaseQuantity(_id)}
                     className={styles["circular-btn"]}
                 > - </button>
