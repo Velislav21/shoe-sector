@@ -12,7 +12,10 @@ export default function Cart() {
             <section className={styles["cart-container"]}>
                 <header className={styles["cart-header"]}>
                     <h1 className={styles["cart-heading"]}>Your Shopping Cart</h1>
-                    <button className={styles["clear-btn"]}>Clear Cart</button>
+                    <button
+                        className={styles["clear-btn"]}
+                        disabled={isPending}
+                    >Clear Cart</button>
                 </header>
                 {cart.map((cartItem) =>
                     <CartItem
@@ -27,7 +30,10 @@ export default function Cart() {
                         <p className={styles["items-count"]}>Products count: </p>
                     </div>
                     <div>
-                        <button className={styles["checkout-btn"]}>Checkout</button>
+                        <button
+                        disabled={isPending}
+                        className={styles["checkout-btn"]}
+                        >Checkout</button>
                     </div>
                 </div>
 

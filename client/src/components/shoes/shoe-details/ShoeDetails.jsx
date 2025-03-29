@@ -4,13 +4,10 @@ import { useParams, useNavigate } from "react-router"
 
 import styles from './ShoeDetails.module.css'
 
-import fallBackImg from "../../../assets/fall-back-img.webp"
 import { useAuthContext } from "../../../hooks/useAuthContext"
 import { useDeleteShoe, useGetShoe } from "../../../api/shoesApi"
 import EditButton from "../../reusable-buttons/edit-button/EditButton"
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton"
-import requester from "../../../utils/requester"
-import { BASE_URL } from "../../../constants/constants"
 import { useAddToCart } from "../../../api/cartApi"
 
 export default function ShoeDetails() {
@@ -19,7 +16,7 @@ export default function ShoeDetails() {
     const { shoeId } = useParams();
     const { user } = useAuthContext();
     const { shoeData, isShoePending } = useGetShoe(shoeId);
-    const { addToCart, isPending: isAddToCartPending } = useAddToCart();
+    const { addToCart, isPending } = useAddToCart();
     const { deleteShoe, isDeletePending } = useDeleteShoe();
 
     const isOwner = user?._id === shoeData.owner;
@@ -199,7 +196,11 @@ export default function ShoeDetails() {
                     </label>
                 </div>
                 <div className={styles["buttons-container"]}>
-                    <button onClick={() => addToCart(shoeId)} className={styles["shoe-details-btn"]}>
+                    <button
+                        onClick={() => addToCart(shoeId)}
+                        className={styles["shoe-details-btn"]}
+                        disabled={isPending}
+                    >
                         Add to Cart
                         <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                     </button>

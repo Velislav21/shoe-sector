@@ -50,6 +50,11 @@ div.quantity-buttons {
     &:hover {
         background-color: #f0d7d7;
     }
+    &:disabled {
+        cursor: not-allowed;
+        background-color: rgb(205, 205, 205);
+        color: #5c5c5c;
+    }
 }
 div.price {
     text-align: right;
@@ -57,7 +62,7 @@ div.price {
 
     & p {
         font-weight: bold;
-        color: rgb(53, 52, 52)
+        color: rgb(53, 52, 52);
     }
 }
 
@@ -67,6 +72,12 @@ button.remove-btn {
     color: red;
     cursor: pointer;
     font-size: 0.8em;
-    text-decoration: underline;
     letter-spacing: 0.1em;
+    border-bottom: 1.5px solid red;
+
+    &:disabled {
+        cursor: not-allowed;
+        color: rgb(100, 100, 100);
+        border-bottom-color: rgb(100, 100, 100);
+    }
 }

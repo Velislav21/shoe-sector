@@ -20,53 +20,52 @@ export function useGetCart() {
 
 export function useAddToCart() {
 
-    const { isPending } = useCartContext();
+    const { isPending, dispatch } = useCartContext();
 
     async function addToCart(id) {
-        requester.post(`${BASE_URL}/cart/add/${id}`, {})
+        dispatch({ type: "PENDING", payload: null })
+        const cart = await requester.post(`${BASE_URL}/cart/add/${id}`, {})
+        dispatch({ type: "GET_CART", payload: cart.shoes })
     }
 
     return {
-        addToCart,
-        isPending
+        addToCart, isPending
     }
 }
 
 export function useIncreaseQuantity() {
-    const { dispatch, isPending: increasePending } = useCartContext();
+    const { dispatch } = useCartContext();
 
     async function increaseQuantity(id) {
 
         dispatch({ type: "PENDING", payload: null })
 
-        const result = await requester.patch(`${BASE_URL}/cart/edit/quantity`, {
+        const shoes = await requester.patch(`${BASE_URL}/cart/edit/quantity`, {
             operationType: "increase",
             shoeId: id
         })
 
-        dispatch({ type: "GET_CART", payload: result })
+        dispatch({ type: "GET_CART", payload: shoes })
     }
 
     return {
-        increaseQuantity, increasePending
+        increaseQuantity
     };
 }
 export function useDecreaseQuantity() {
-    const { dispatch, isPending: decreasePending } = useCartContext();
+    const { dispatch } = useCartContext();
 
     async function decreaseQuantity(id) {
 
         dispatch({ type: "PENDING", payload: null })
-
-        const result = await requester.patch(`${BASE_URL}/cart/edit/quantity`, {
+        const shoes = await requester.patch(`${BASE_URL}/cart/edit/quantity`, {
             operationType: "decrease",
             shoeId: id
         })
-
-        dispatch({ type: "GET_CART", payload: result })
+        dispatch({ type: "GET_CART", payload: shoes })
     }
 
     return {
-        decreaseQuantity, decreasePending
+        decreaseQuantity
     };
 }

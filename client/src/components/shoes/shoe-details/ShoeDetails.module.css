@@ -93,6 +93,10 @@ p.price {
     &:hover {
         transform: translateY(-0.5em);
     }
+    &:disabled {
+        color: rgb(134, 123, 111);
+        cursor: not-allowed
+    }
 }
 .buttons-container button.shoe-details-btn:hover {
     box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.6);

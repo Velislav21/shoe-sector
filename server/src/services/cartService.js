@@ -41,7 +41,7 @@ const cartService = {
         if (operationType === "increase") {
             shoe.quantity++;
         } else {
-            
+
             if (shoe.quantity === 0) {
                 return cart.populate('shoes.shoeId')
             }

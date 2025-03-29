@@ -1,6 +1,4 @@
 import { createContext, useEffect, useReducer } from "react";
-import requester from "../utils/requester";
-import { BASE_URL } from "../constants/constants";
 
 export const CartContext = createContext();
 

@@ -1,8 +1,6 @@
 import { Link } from "react-router"
 
 import styles from "./CartItem.module.css";
-import requester from "../../../utils/requester";
-import { BASE_URL } from "../../../constants/constants";
 import { useCartContext } from "../../../hooks/useCartContext";
 import { useDecreaseQuantity, useIncreaseQuantity } from "../../../api/cartApi";
 
@@ -16,8 +14,9 @@ export default function CartItem({
     price
 }) {
 
-    const { increaseQuantity, increasePending } = useIncreaseQuantity();
-    const { decreaseQuantity, decreasePending } = useDecreaseQuantity();
+    const { isPending } = useCartContext();
+    const { increaseQuantity } = useIncreaseQuantity();
+    const { decreaseQuantity } = useDecreaseQuantity();
 
     return (
         <article className={styles["cart-item"]}>
@@ -36,13 +35,16 @@ export default function CartItem({
 
                 <button
                     className={styles["circular-btn"]}
+                    disabled={isPending}
                     onClick={() => increaseQuantity(_id)}
                 > + </button>
 
                 <span>{quantity}</span>
 
-                <button onClick={() => decreaseQuantity(_id)}
+                <button
                     className={styles["circular-btn"]}
+                    disabled={isPending}
+                    onClick={() => decreaseQuantity(_id)}
                 > - </button>
 
             </div>
@@ -50,7 +52,7 @@ export default function CartItem({
             <div className={styles["price"]}>
                 <p>BGN {price}</p>
 
-                <button className={styles["remove-btn"]}>Remove</button>
+                <button disabled={isPending} className={styles["remove-btn"]}>Remove</button>
             </div>
 
         </article>
