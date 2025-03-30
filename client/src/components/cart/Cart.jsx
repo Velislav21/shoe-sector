@@ -1,11 +1,10 @@
-
 import { Link } from "react-router";
 import styles from "./Cart.module.css"
 
 import CartItem from "./cart-item/CartItem";
-import { useDeleteCart, useGetCart } from "../../api/cartApi"
 import Spinner from "../spinner/Spinner"
 import ErrorMessage from "../errors/ErrorMessage";
+import { useDeleteCart, useGetCart } from "../../api/cartApi"
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Cart() {

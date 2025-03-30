@@ -66,9 +66,7 @@ const cartService = {
     },
 
     async deleteCart(userId) {
-        await Cart.findOneAndDelete(
-            { owner: userId }
-        )
+        await Cart.findOneAndDelete({ owner: userId })
     }
 
 };

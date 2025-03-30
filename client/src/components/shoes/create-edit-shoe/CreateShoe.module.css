@@ -6,6 +6,11 @@
     border-radius: 0.3rem;
     width: 100%;
     max-width: 30em;
+    
+    & span {
+        margin: 0 auto;
+        display: flex;
+    }
 }
 
 .form-title {

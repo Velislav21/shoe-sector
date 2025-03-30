@@ -22,24 +22,24 @@ export function useAllShoes() {
     useEffect(() => {
         request.get(`${BASE_URL}/shoes`)
             .then(setShoes)
-            .finally(setIsPending)
+            .finally(() => setIsPending(false))
     }, []);
 
     return { shoes, isPending }
 };
 
 export function useGetShoe(shoeId) {
-    const [isShoePending, setIsShoePending] = useState(true);
+    const [isShoeDataPending, setIsShoeDataPending] = useState(true);
 
     const [shoeData, setShoeData] = useState(initialShoeData)
 
     useEffect(() => {
         request.get(`${BASE_URL}/shoes/details/${shoeId}`)
             .then(setShoeData)
-            .finally(setIsShoePending(false))
+            .finally(() => setIsShoeDataPending(false))
     }, [shoeId]);
 
-    return { shoeData, setShoeData, isShoePending };
+    return { shoeData, setShoeData, isShoeDataPending };
 };
 
 export function useCreateShoe() {
@@ -97,7 +97,7 @@ export function useEditShoe() {
             setIsPending(true);
             await request.patch(`${BASE_URL}/shoes/update/${shoeData._id}`, shoeData);
             setIsPending(false);
-            
+
             return true;
         } catch (err) {
             setCustomError(err.message, 5000)

@@ -10,7 +10,7 @@
     border-radius: 0.3rem;
 
     & span {
-        text-align: center;
+        margin: 0 auto;
     }
 
     & p.error-msg {

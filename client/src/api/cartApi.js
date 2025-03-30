@@ -86,7 +86,7 @@ export function useDeleteCart() {
     async function deleteCart(userId) {
         dispatch({ type: "PENDING", payload: null })
         await requester.delete(`${BASE_URL}/cart/delete`);
-        dispatch({ type: "CLEAR_CART", payload: null })
+        dispatch({type: "CLEAR_CART", payload: null})
     }
     return {
         deleteCart
