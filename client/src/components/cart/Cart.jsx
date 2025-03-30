@@ -34,6 +34,7 @@ export default function Cart() {
                                 key={cartItem._id}
                                 {...cartItem.shoeId}
                                 quantity={cartItem.quantity}
+                                cartItemId={cartItem._id}
                             />
                         ))}
                         {/* shoeId holds the actual shoe data after being populated on the backend */}

@@ -37,8 +37,8 @@ export function useAddToCart() {
 
     async function addToCart(id) {
         dispatch({ type: "PENDING", payload: null })
-        const cart = await requester.post(`${BASE_URL}/cart/add/${id}`, {})
-        dispatch({ type: "GET_CART", payload: cart.shoes })
+        const { shoes } = await requester.post(`${BASE_URL}/cart/add/${id}`, {})
+        dispatch({ type: "GET_CART", payload: shoes })
     }
 
     return {
@@ -53,9 +53,8 @@ export function useUpdateQuantity() {
 
         dispatch({ type: "PENDING", payload: null })
 
-        const shoes = await requester.patch(`${BASE_URL}/cart/edit/quantity`, {
+        const shoes = await requester.patch(`${BASE_URL}/cart/edit/quantity/${id}`, {
             operationType,
-            shoeId: id
         })
 
         dispatch({ type: "GET_CART", payload: shoes })
@@ -64,4 +63,19 @@ export function useUpdateQuantity() {
     return {
         updateQuantity
     };
+}
+export function useRemoveShoeFromCart() {
+    const { dispatch } = useCartContext();
+
+    async function removeShoeFromCart(cartItemId) {
+
+        dispatch({ type: "PENDING", payload: null })
+        const shoes = await requester.patch(`${BASE_URL}/cart/remove/${cartItemId}`)
+        dispatch({ type: "GET_CART", payload: shoes })
+    }
+
+    return {
+        removeShoeFromCart
+    }
+
 }

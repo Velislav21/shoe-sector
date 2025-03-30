@@ -2,10 +2,11 @@ import { Link } from "react-router"
 
 import styles from "./CartItem.module.css";
 import { useCartContext } from "../../../hooks/useCartContext";
-import { useUpdateQuantity } from "../../../api/cartApi";
+import { useUpdateQuantity, useRemoveShoeFromCart } from "../../../api/cartApi";
 
 export default function CartItem({
-    _id,
+    cartItemId,
+    _id: shoeId,
     imageUrl,
     brand,
     modelName,
@@ -13,14 +14,14 @@ export default function CartItem({
     gender,
     price
 }) {
-
     const { isPending } = useCartContext();
     const { updateQuantity } = useUpdateQuantity();
+    const { removeShoeFromCart } = useRemoveShoeFromCart();
 
     return (
         <article className={styles["cart-item"]}>
 
-            <Link to={`/shoes/${_id}/details`} className={styles["image-container"]}>
+            <Link to={`/shoes/${shoeId}/details`} className={styles["image-container"]}>
                 <img src={imageUrl} alt="" />
             </Link>
 
@@ -35,7 +36,7 @@ export default function CartItem({
                 <button
                     className={styles["circular-btn"]}
                     disabled={isPending}
-                    onClick={() => updateQuantity(_id, "increase")}
+                    onClick={() => updateQuantity(shoeId, "increase")}
                 > + </button>
 
                 <span>{quantity}</span>
@@ -43,7 +44,7 @@ export default function CartItem({
                 <button
                     className={styles["circular-btn"]}
                     disabled={isPending}
-                    onClick={() => updateQuantity(_id, "decrease")}
+                    onClick={() => updateQuantity(shoeId, "decrease")}
                 > - </button>
 
             </div>
@@ -52,7 +53,11 @@ export default function CartItem({
                 <p className={styles["price"]}>BGN {price}</p>
                 <p className={styles["sub-total"]}>Sub-total {(price * quantity).toFixed(2)}</p>
 
-                <button disabled={isPending} className={styles["remove-btn"]}>Remove</button>
+                <button
+                    onClick={() => removeShoeFromCart(cartItemId)}
+                    className={styles["remove-btn"]}
+                    disabled={isPending}
+                >Remove</button>
             </div>
 
         </article>

@@ -10,7 +10,7 @@ cartController.get("/", isAuth, async (req, res) => {
     const userId = req.user._id;
     try {
         const { shoes } = await cartService.getCart(userId);
-        res.json(shoes);
+        res.status(200).json(shoes);
 
     } catch (error) {
         const err = getError(error)
@@ -24,22 +24,37 @@ cartController.post("/add/:shoeId", isAuth, async (req, res) => {
     try {
         const cart = await cartService.addToCart(userId, shoeId);
         console.log(cart)
-        res.json(cart);
+        res.status(200).json(cart);
     } catch (error) {
         res.status(400).json(getError(error));
     }
 });
 
 
-cartController.patch("/edit/quantity", isAuth, async (req, res) => {
+cartController.patch("/edit/quantity/:shoeId", isAuth, async (req, res) => {
     const userId = req.user._id
-    const { operationType, shoeId } = req.body
+    const shoeId = req.params.shoeId
+    const { operationType } = req.body
 
     try {
         const { shoes } = await cartService.updateQuantity(userId, shoeId, operationType)
+        console.log(shoes)
         res.status(200).json(shoes)
     } catch (error) {
         res.status(400).json(getError(error))
     }
 })
+
+cartController.patch("/remove/:cartItemId", isAuth, async (req, res) => {
+    const userId = req.user._id;
+    const cartItemId = req.params.cartItemId
+
+    try {
+        const { shoes } = await cartService.removeFromCart(cartItemId, userId)
+        res.status(200).json(shoes)
+    } catch (err) {
+        res.status(400).json(getError(err))
+    }
+})
+
 export default cartController

@@ -54,6 +54,15 @@ const cartService = {
 
         await cart.save();
         return cart.populate('shoes.shoeId')
+    },
+
+    async removeFromCart(cartItemId, userId) {
+        const updatedCart = await Cart.findOneAndUpdate(
+            { owner: userId },
+            { $pull: { shoes: { _id: cartItemId } } },
+            { new: true }
+        )
+        return updatedCart.populate('shoes.shoeId')
     }
 
 };
