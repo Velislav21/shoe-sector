@@ -20,4 +20,3 @@ export default function ShoesList() {
         </section>
     )
 }
-// !TODO: add no shoes yet message
