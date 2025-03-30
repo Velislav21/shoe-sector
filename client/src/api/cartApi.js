@@ -12,13 +12,17 @@ export function useGetCart() {
     useEffect(() => {
 
         async function getCart() {
-            setIsFetching(true)
+            try {
+                setIsFetching(true)
 
-            const cart = await requester.get(`${BASE_URL}/cart`);
+                const cart = await requester.get(`${BASE_URL}/cart`);
 
-            dispatch({ type: "GET_CART", payload: cart })
+                dispatch({ type: "GET_CART", payload: cart })
 
-            setIsFetching(false);
+                setIsFetching(false);
+            } catch (err) {
+                setIsFetching(false);
+            }
         }
         getCart();
     }, [])
