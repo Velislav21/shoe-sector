@@ -1,4 +1,5 @@
 
+import { Link } from "react-router";
 import styles from "./Cart.module.css"
 
 import CartItem from "./cart-item/CartItem";
@@ -12,7 +13,12 @@ export default function Cart() {
         <section className={styles["cart-container"]}>
 
             {isFetching ? <Spinner /> :
-                cart.length === 0 ? <ErrorMessage>Your cart is empty!</ErrorMessage> : (
+                cart.length === 0 ? (
+                    <>
+                        <ErrorMessage>Your cart is empty!</ErrorMessage>
+                        <Link to="/shoes" className={styles["redirect"]}>Check out the store</Link>
+                    </>
+                ) : (
                     <>
                         <header className={styles["cart-header"]}>
                             <h1 className={styles["cart-heading"]}>Your Shopping Cart</h1>

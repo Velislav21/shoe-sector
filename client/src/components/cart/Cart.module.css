@@ -8,8 +8,25 @@
     width: 100%;
     padding: 2em;
     border-radius: 0.3rem;
+
     & span {
-        margin: 0 auto;
+        text-align: center;
+    }
+
+    & p.error-msg {
+        justify-content: center;
+    }
+
+    & a.redirect{
+        width: fit-content;
+        display: inline-block;
+        border-bottom: 1px solid rgb(0, 0, 0);
+        padding: 0.5em;
+        &:hover {
+            border-bottom-color: transparent;
+            border-radius: 0.3rem;
+            box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.2);
+        }
     }
 }
 header.cart-header {
