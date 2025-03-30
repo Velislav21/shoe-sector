@@ -20,8 +20,8 @@
         - [x] Redirect when clicking on the image.
         - [x] Add validation on the details page when adding to cart succeeds.
         - [x] Change button styles when request is pending.
-        - [] Calculate the prices for each shoe.
-        - [] Calculate the price for the whole cart.
+        - [x] Calculate the prices for each shoe.
+        - [x] Calculate the price for the whole cart.
     -   [] Back-end
         -  [x] Controller 
             - [x] get route for getting the whole cart.
