@@ -56,13 +56,18 @@ div.quantity-buttons {
         color: #5c5c5c;
     }
 }
-div.price {
+div.price-info {
     text-align: right;
-    margin-top: 2em;
+    margin-top: 1em;
 
-    & p {
+    & p.price {
         font-weight: bold;
         color: rgb(53, 52, 52);
+    }
+    & p.sub-total {
+        margin: 0.3em 0;
+        font-size: 0.8em;
+        font-weight: 600;
     }
 }
 

@@ -49,8 +49,9 @@ export default function CartItem({
 
             </div>
 
-            <div className={styles["price"]}>
-                <p>BGN {price}</p>
+            <div className={styles["price-info"]}>
+                <p className={styles["price"]}>BGN {price}</p>
+                <p className={styles["sub-total"]}>Sub-total {(price * quantity).toFixed(2)}</p>
 
                 <button disabled={isPending} className={styles["remove-btn"]}>Remove</button>
             </div>

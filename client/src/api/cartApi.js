@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useEffect } from "react";
 import { useCartContext } from "../hooks/useCartContext";
 import requester from "../utils/requester";
 import { BASE_URL } from "../constants/constants";
+import { calculateCartPrice } from "../utils/calculateCartPrice";
 
 export function useGetCart() {
     const { cart, isPending, dispatch } = useCartContext()
@@ -15,7 +15,9 @@ export function useGetCart() {
         getCart();
     }, [])
 
-    return { cart, isPending };
+    const cartData = calculateCartPrice(cart)
+    console.log(cartData)
+    return { cart, isPending, cartData };
 }
 
 export function useAddToCart() {

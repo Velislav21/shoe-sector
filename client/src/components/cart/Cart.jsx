@@ -6,7 +6,8 @@ import { useGetCart } from "../../api/cartApi"
 
 export default function Cart() {
 
-    const { cart, isPending } = useGetCart();
+    const { cart, cartData, isPending } = useGetCart();
+
     return (
         <>
             <section className={styles["cart-container"]}>
@@ -26,13 +27,13 @@ export default function Cart() {
                 {/* shoeId holds the actual shoe data after being populated on the backend */}
                 <div className={styles["checkout"]}>
                     <div>
-                        <p className={styles["total"]}>Total: <span>BGN 0.00</span></p>
-                        <p className={styles["items-count"]}>Products count: </p>
+                        <p className={styles["total"]}>Total: <span>BGN {cartData.totalCartPrice}</span></p>
+                        <p className={styles["items-count"]}>Products count: {cartData.totalCartItemsCount} </p>
                     </div>
                     <div>
                         <button
-                        disabled={isPending}
-                        className={styles["checkout-btn"]}
+                            disabled={isPending}
+                            className={styles["checkout-btn"]}
                         >Checkout</button>
                     </div>
                 </div>
