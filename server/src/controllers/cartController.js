@@ -38,7 +38,6 @@ cartController.patch("/edit/quantity/:shoeId", isAuth, async (req, res) => {
 
     try {
         const { shoes } = await cartService.updateQuantity(userId, shoeId, operationType)
-        console.log(shoes)
         res.status(200).json(shoes)
     } catch (error) {
         res.status(400).json(getError(error))
@@ -52,6 +51,17 @@ cartController.patch("/remove/:cartItemId", isAuth, async (req, res) => {
     try {
         const { shoes } = await cartService.removeFromCart(cartItemId, userId)
         res.status(200).json(shoes)
+    } catch (err) {
+        res.status(400).json(getError(err))
+    }
+})
+
+cartController.delete("/delete", isAuth, async (req, res) => {
+    const userId = req.user._id;
+
+    try {
+        await cartService.deleteCart(userId);
+        res.status(200).json({ message: "Cart is deleted" })
     } catch (err) {
         res.status(400).json(getError(err))
     }

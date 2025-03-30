@@ -6,11 +6,11 @@ import { useCartContext } from "../../../hooks/useCartContext";
 export default function Logout() {
 
     const { logout } = useLogout();
-    const { _, dispatch } = useCartContext();
+    const { dispatch } = useCartContext();
 
     useEffect(() => {
         logout();
-        dispatch({type: "CLEAR_CART", payload: null})
+        dispatch({ type: "CLEAR_CART", payload: null })
     }, [])
 
     return <Navigate to="/login" />

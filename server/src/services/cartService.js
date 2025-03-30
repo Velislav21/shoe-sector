@@ -5,7 +5,7 @@ const cartService = {
     async getCart(userId) {
 
         const cart = await Cart.findOne({ owner: userId }).populate('shoes.shoeId');
-
+        console.log(cart)
         if (!cart) {
             throw new Error('Your cart is empty!');
         }
@@ -63,6 +63,12 @@ const cartService = {
             { new: true }
         )
         return updatedCart.populate('shoes.shoeId')
+    },
+
+    async deleteCart(userId) {
+        await Cart.findOneAndDelete(
+            { owner: userId }
+        )
     }
 
 };

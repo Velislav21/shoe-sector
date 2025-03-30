@@ -79,3 +79,16 @@ export function useRemoveShoeFromCart() {
     }
 
 }
+
+export function useDeleteCart() {
+    const { dispatch } = useCartContext()
+
+    async function deleteCart(userId) {
+        dispatch({ type: "PENDING", payload: null })
+        await requester.delete(`${BASE_URL}/cart/delete`);
+        dispatch({ type: "CLEAR_CART", payload: null })
+    }
+    return {
+        deleteCart
+    }
+}

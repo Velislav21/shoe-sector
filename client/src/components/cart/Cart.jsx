@@ -3,12 +3,17 @@ import { Link } from "react-router";
 import styles from "./Cart.module.css"
 
 import CartItem from "./cart-item/CartItem";
-import { useGetCart } from "../../api/cartApi"
+import { useDeleteCart, useGetCart } from "../../api/cartApi"
 import Spinner from "../spinner/Spinner"
 import ErrorMessage from "../errors/ErrorMessage";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function Cart() {
+
+    const { _id: userId } = useAuthContext();
     const { cart, cartData, isPending, isFetching } = useGetCart();
+    const { deleteCart } = useDeleteCart();
+    
     return (
         <section className={styles["cart-container"]}>
 
@@ -25,6 +30,7 @@ export default function Cart() {
                             <button
                                 className={styles["clear-btn"]}
                                 disabled={isPending}
+                                onClick={() => deleteCart(userId)}
                             >
                                 Clear Cart
                             </button>
