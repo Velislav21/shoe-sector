@@ -1,23 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCartContext } from "../hooks/useCartContext";
 import requester from "../utils/requester";
 import { BASE_URL } from "../constants/constants";
 import { calculateCartPrice } from "../utils/calculateCartPrice";
 
 export function useGetCart() {
-    const { cart, isPending, dispatch } = useCartContext()
+
+    const { cart, isPending, dispatch } = useCartContext();
+    const [isFetching, setIsFetching] = useState(false);
 
     useEffect(() => {
+
         async function getCart() {
+            setIsFetching(true)
+
             const cart = await requester.get(`${BASE_URL}/cart`);
+
             dispatch({ type: "GET_CART", payload: cart })
+
+            setIsFetching(false);
         }
         getCart();
     }, [])
 
     const cartData = calculateCartPrice(cart)
-    console.log(cartData)
-    return { cart, isPending, cartData };
+    return { cart, isPending, cartData, isFetching };
 }
 
 export function useAddToCart() {
@@ -35,15 +42,15 @@ export function useAddToCart() {
     }
 }
 
-export function useIncreaseQuantity() {
+export function useUpdateQuantity() {
     const { dispatch } = useCartContext();
 
-    async function increaseQuantity(id) {
+    async function updateQuantity(id, operationType) {
 
         dispatch({ type: "PENDING", payload: null })
 
         const shoes = await requester.patch(`${BASE_URL}/cart/edit/quantity`, {
-            operationType: "increase",
+            operationType,
             shoeId: id
         })
 
@@ -51,23 +58,6 @@ export function useIncreaseQuantity() {
     }
 
     return {
-        increaseQuantity
-    };
-}
-export function useDecreaseQuantity() {
-    const { dispatch } = useCartContext();
-
-    async function decreaseQuantity(id) {
-
-        dispatch({ type: "PENDING", payload: null })
-        const shoes = await requester.patch(`${BASE_URL}/cart/edit/quantity`, {
-            operationType: "decrease",
-            shoeId: id
-        })
-        dispatch({ type: "GET_CART", payload: shoes })
-    }
-
-    return {
-        decreaseQuantity
+        updateQuantity
     };
 }

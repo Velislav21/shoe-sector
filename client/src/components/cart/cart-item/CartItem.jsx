@@ -2,7 +2,7 @@ import { Link } from "react-router"
 
 import styles from "./CartItem.module.css";
 import { useCartContext } from "../../../hooks/useCartContext";
-import { useDecreaseQuantity, useIncreaseQuantity } from "../../../api/cartApi";
+import { useUpdateQuantity } from "../../../api/cartApi";
 
 export default function CartItem({
     _id,
@@ -15,8 +15,7 @@ export default function CartItem({
 }) {
 
     const { isPending } = useCartContext();
-    const { increaseQuantity } = useIncreaseQuantity();
-    const { decreaseQuantity } = useDecreaseQuantity();
+    const { updateQuantity } = useUpdateQuantity();
 
     return (
         <article className={styles["cart-item"]}>
@@ -36,7 +35,7 @@ export default function CartItem({
                 <button
                     className={styles["circular-btn"]}
                     disabled={isPending}
-                    onClick={() => increaseQuantity(_id)}
+                    onClick={() => updateQuantity(_id, "increase")}
                 > + </button>
 
                 <span>{quantity}</span>
@@ -44,13 +43,13 @@ export default function CartItem({
                 <button
                     className={styles["circular-btn"]}
                     disabled={isPending}
-                    onClick={() => decreaseQuantity(_id)}
+                    onClick={() => updateQuantity(_id, "decrease")}
                 > - </button>
 
             </div>
 
             <div className={styles["price-info"]}>
-                <p className={styles["price"]}>BGN {price}</p>
+                <p className={styles["price"]}>BGN {price.toFixed(2)}</p>
                 <p className={styles["sub-total"]}>Sub-total {(price * quantity).toFixed(2)}</p>
 
                 <button disabled={isPending} className={styles["remove-btn"]}>Remove</button>
