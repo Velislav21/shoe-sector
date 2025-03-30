@@ -42,8 +42,12 @@ const cartService = {
             shoe.quantity++;
         } else {
 
-            if (shoe.quantity === 0) {
-                return cart.populate('shoes.shoeId')
+            if (shoe.quantity === 1) {
+                const updatedCart = await Cart.findOneAndUpdate(
+                    { _id: cart._id },
+                    { $pull: { shoes: { _id: shoe._id } } },
+                    { new: true })
+                return updatedCart.populate('shoes.shoeId')
             }
             shoe.quantity--;
         }
