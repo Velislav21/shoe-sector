@@ -15,7 +15,6 @@ const userService = {
             throw new Error('Passwords must match!');
         }
         const newUser = await User.create({ name, email, password });
-
         return generateResponse(newUser)
     },
     async login(email, password) {
