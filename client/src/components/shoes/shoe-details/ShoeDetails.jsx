@@ -11,6 +11,7 @@ import Spinner from "../../spinner/Spinner"
 import EditButton from "../../reusable-buttons/edit-button/EditButton"
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton"
 import SuccessMessage from "../../success-message/SuccessMessage"
+import ErrorMessage from "../../errors/ErrorMessage"
 
 export default function ShoeDetails() {
 
@@ -207,14 +208,16 @@ export default function ShoeDetails() {
                         </label>
                     </div>
                     <div className={styles["buttons-container"]}>
-                        <button
-                            onClick={() => addToCart(shoeId)}
-                            className={styles["shoe-details-btn"]}
-                            disabled={isAddToCartPending}
-                        >
-                            Add to Cart
-                            <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-                        </button>
+                        {user &&
+                            <button
+                                onClick={() => addToCart(shoeId)}
+                                className={styles["shoe-details-btn"]}
+                                disabled={isAddToCartPending || !user}
+                            >
+                                Add to Cart
+                                <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+                            </button>
+                        }
                     </div>
                     {isSuccessful && <SuccessMessage>Successfully included in your cart!</SuccessMessage>}
                     <p className={styles["description"]}>{shoeData.description}</p>
