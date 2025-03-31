@@ -7,7 +7,7 @@ import { authMiddleware } from './middlewares/authMiddleware.js';
 const app = express();
 
 const uri = process.env.MONGO_CONNECTION_STRING;
-mongoose.connect(uri, { dbName: "shoe-sector" })
+mongoose.connect(uri)
     .then(() => console.log('Db successfully connected'))
     .catch((err) => console.log(`DB failed: ${err}`))
 
