@@ -73,6 +73,7 @@ export default function EditShoe() {
                         type="number"
                         placeholder="Enter price"
                         name="price"
+                        step="0.01"
                         className={styles["input-field"]}
                         onChange={handleInputChange}
                         value={shoeData.price}

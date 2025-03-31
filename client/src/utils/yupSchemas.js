@@ -31,7 +31,7 @@ export const shoeSchema = yup.object().shape({
     modelName: yup.string().required("Please enter a model name."),
     brand: yup.string().required("Please enter the brand name."),
 
-    price: yup.number()
+    price: yup.number("Please enter a number")
         .transform((value, originalValue) => {
             return originalValue === "" ? undefined : value;
         }).required("Please enter the price."),

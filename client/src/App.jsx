@@ -12,6 +12,7 @@ import CreateShoe from "./components/shoes/create-edit-shoe/CreateShoe"
 import EditShoe from "./components/shoes/create-edit-shoe/EditShoe"
 import UserEdit from "./components/user/profile/UserEdit"
 import Cart from "./components/cart/Cart"
+import ErrorPage from "./components/error-page/ErrorPage"
 import AuthorizedRoutes from "./components/route-guards/AuthorizedRoutes"
 import UnAuthorizedRoutes from "./components/route-guards/UnAuthorizedRoutes"
 
@@ -27,6 +28,8 @@ function App() {
                 <Navbar />
                 <main>
                     <Routes>
+                        <Route path="*" element={<ErrorPage />} />
+
                         <Route path="/" element={<Home />} />
                         <Route path="/shoes" element={<ShoesList />} />
                         <Route path="/shoes/:shoeId/details" element={<ShoeDetails />} />

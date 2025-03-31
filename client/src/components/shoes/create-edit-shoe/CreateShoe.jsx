@@ -56,6 +56,7 @@ export default function CreateShoe() {
                 <label>Price</label>
                 <input
                     type="number"
+                    step="0.01"
                     placeholder="e.g. 99.99"
                     name="price"
                     className={styles["input-field"]}
