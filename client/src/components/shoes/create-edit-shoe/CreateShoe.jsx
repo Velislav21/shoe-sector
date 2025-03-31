@@ -14,13 +14,14 @@ export default function CreateShoe() {
     async function handleFormAction(formData) {
 
         const values = Object.fromEntries(formData);
+
         const validValues = await validationFn(values);
 
         if (!validValues) {
             return;
         }
         const isSuccessful = await createShoe(validValues);
-        
+
         isSuccessful && navigate("/shoes");
     };
     return (
@@ -64,7 +65,7 @@ export default function CreateShoe() {
             </div>
 
             <div className={styles["form-group"]}>
-                <label>Gender</label>
+                <label>For</label>
                 <div className={styles["checkbox-group"]}>
                     <label><input
                         type="radio"

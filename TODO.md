@@ -13,8 +13,8 @@
 -   [x] Add Spinner // Maybe use external library ??
 -   [x] Disable Buttons during fetching
 -   [x] Footer
--   [ ] The Cart
-    -   [] Front-End
+-   [x] The Cart
+    -   [x] Front-End
         - [x] Add shoe to the cart.
         - [x] Increase / decrease shoe quantity the cart.
         - [x] Redirect when clicking on the image.
@@ -22,12 +22,11 @@
         - [x] Change button styles when request is pending.
         - [x] Calculate the prices for each shoe.
         - [x] Calculate the price for the whole cart.
-    -   [] Back-end
+    -   [x] Back-end
         -  [x] Controller 
             - [x] get route for getting the whole cart.
             - [x] post route for adding to the cart.
             - [x] patch route for updating the quantity.
-            - [] delete route for deleting a single item from the cart.
-            - [] delete route for clearing the whole user cart
+            - [x] delete route for deleting a single item from the cart.
+            - [x] delete route for clearing the whole user cart
     -   [x] Overall Error Handling from Backend
--   [ ] Try to fix the img loading in details

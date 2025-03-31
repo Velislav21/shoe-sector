@@ -10,6 +10,7 @@ import { useAddToCart } from "../../../api/cartApi"
 import Spinner from "../../spinner/Spinner"
 import EditButton from "../../reusable-buttons/edit-button/EditButton"
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton"
+import SuccessMessage from "../../success-message/SuccessMessage"
 
 export default function ShoeDetails() {
 
@@ -17,7 +18,7 @@ export default function ShoeDetails() {
     const { shoeId } = useParams();
     const { user } = useAuthContext();
     const { shoeData, isShoeDataPending } = useGetShoe(shoeId);
-    const { addToCart, isPending: isAddToCartPending } = useAddToCart();
+    const { addToCart, isPending: isAddToCartPending, isSuccessful } = useAddToCart();
     const { deleteShoe, isDeletePending } = useDeleteShoe();
 
     const isOwner = user?._id === shoeData.owner;
@@ -26,7 +27,6 @@ export default function ShoeDetails() {
         deleteShoe(shoeId)
             .finally(() => navigate("/shoes"))
     }
-    console.log(isShoeDataPending)
     return (
         <article className={styles["shoe-details-container"]}>
             {isShoeDataPending ? <Spinner /> : (<>
@@ -216,6 +216,7 @@ export default function ShoeDetails() {
                             <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
                         </button>
                     </div>
+                    {isSuccessful && <SuccessMessage>Successfully included in your cart!</SuccessMessage>}
                     <p className={styles["description"]}>{shoeData.description}</p>
                 </div>
             </>)}

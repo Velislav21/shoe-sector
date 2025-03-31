@@ -21,7 +21,6 @@ export default function Register() {
         }
         register(validValues);
     }
-    console.log(validationErrors)
 
     return (
         <form action={handleFormAction} className={styles["user-form"]}>

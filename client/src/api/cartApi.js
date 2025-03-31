@@ -34,15 +34,19 @@ export function useGetCart() {
 export function useAddToCart() {
 
     const { isPending, dispatch } = useCartContext();
+    const [isSuccessful, setIsSuccessfull] = useState(false)
 
     async function addToCart(id) {
-        dispatch({ type: "PENDING", payload: null })
+        dispatch({ type: "PENDING", payload: null });
         const { shoes } = await requester.post(`${BASE_URL}/cart/add/${id}`, {})
-        dispatch({ type: "GET_CART", payload: shoes })
+        dispatch({ type: "GET_CART", payload: shoes });
+        setIsSuccessfull(true);
+
+        setTimeout(() => setIsSuccessfull(false), 5000)
     }
 
     return {
-        addToCart, isPending
+        addToCart, isPending, isSuccessful
     }
 }
 
@@ -86,7 +90,7 @@ export function useDeleteCart() {
     async function deleteCart(userId) {
         dispatch({ type: "PENDING", payload: null })
         await requester.delete(`${BASE_URL}/cart/delete`);
-        dispatch({type: "CLEAR_CART", payload: null})
+        dispatch({ type: "CLEAR_CART", payload: null })
     }
     return {
         deleteCart

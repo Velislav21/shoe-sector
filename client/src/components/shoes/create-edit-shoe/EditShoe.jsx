@@ -34,7 +34,6 @@ export default function EditShoe() {
 
         isSuccessful && navigate(`/shoes/${shoeId}/details`);
     }
-    console.log(isShoeDataPending)
     return (
 
         <form onSubmit={handleFormSubmit} className={styles["create-shoe-form"]}>
@@ -83,7 +82,7 @@ export default function EditShoe() {
                 </div>
 
                 <div className={styles["form-group"]}>
-                    <label>Gender</label>
+                    <label>For</label>
                     <div className={styles["checkbox-group"]}>
                         <label><input
                             type="radio"

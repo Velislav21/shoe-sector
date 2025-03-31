@@ -6,7 +6,6 @@ import { useAllShoes } from "../../../api/shoesApi";
 export default function ShoesList() {
 
     const { shoes, isPending } = useAllShoes();
-    console.log(isPending)
     return (
         <section className={styles["shoe-items-container"]}>
 

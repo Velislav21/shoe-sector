@@ -57,7 +57,7 @@ export default function Cart() {
                                     disabled={isPending}
                                     className={styles["checkout-btn"]}
                                 >
-                                    Checkout
+                                    Purchase
                                 </button>
                             </div>
                         </div>

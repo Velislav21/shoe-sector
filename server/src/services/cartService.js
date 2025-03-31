@@ -5,7 +5,6 @@ const cartService = {
     async getCart(userId) {
 
         const cart = await Cart.findOne({ owner: userId }).populate('shoes.shoeId');
-        console.log(cart)
         if (!cart) {
             throw new Error('Your cart is empty!');
         }

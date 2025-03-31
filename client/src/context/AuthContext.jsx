@@ -31,7 +31,6 @@ export function AuthContextProvider({ children }) {
     }, []);
 
     console.log("Auth Context state: ", state);
-
     return (
         // spreading the "state" even tho it has only one property as of now, but in the future it may have more than one.
         <AuthContext.Provider value={{ ...state, dispatch }}>

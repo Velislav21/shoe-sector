@@ -13,7 +13,7 @@ export default function ShoeItem({ _id, imageUrl, modelName, gender, price }) {
             </Link>
             <div>
                 <h2 className={styles["model-name"]}>{modelName}</h2>
-                <p className={styles["type"]}>{gender}</p>
+                <p className={styles["type"]}>For {gender}</p>
                 <p className={styles["price"]}>BGN {price}</p>
             </div>
         </article>
