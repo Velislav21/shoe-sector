@@ -13,20 +13,24 @@
 -   [x] Add Spinner // Maybe use external library ??
 -   [x] Disable Buttons during fetching
 -   [x] Footer
+-   [x] Overall Error Handling from Backend
 -   [x] The Cart
+    -   [x] Cart component
+    -   [x] Cart item component
+
     -   [x] Front-End
-        - [x] Add shoe to the cart.
-        - [x] Increase / decrease shoe quantity the cart.
-        - [x] Redirect when clicking on the image.
-        - [x] Add validation on the details page when adding to cart succeeds.
-        - [x] Change button styles when request is pending.
-        - [x] Calculate the prices for each shoe.
-        - [x] Calculate the price for the whole cart.
+        -   [x] Add shoe to the cart.
+        -   [x] Increase / decrease shoe quantity the cart.
+        -   [x] Redirect when clicking on the image.
+        -   [x] Add validation on the details page when adding to cart succeeds.
+        -   [x] Change button styles when request is pending.
+        -   [x] Calculate the prices for each shoe.
+        -   [x] Calculate the price for the whole cart.
+
     -   [x] Back-end
-        -  [x] Controller 
-            - [x] get route for getting the whole cart.
-            - [x] post route for adding to the cart.
-            - [x] patch route for updating the quantity.
-            - [x] delete route for deleting a single item from the cart.
-            - [x] delete route for clearing the whole user cart
-    -   [x] Overall Error Handling from Backend
+        -   [x] Controller
+            -   [x] get route for getting the whole cart.
+            -   [x] post route for adding to the cart.
+            -   [x] patch route for updating the quantity.
+            -   [x] delete route for deleting a single item from the cart.
+            -   [x] delete route for clearing the whole user cart

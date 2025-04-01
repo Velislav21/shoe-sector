@@ -19,6 +19,8 @@ import UnAuthorizedRoutes from "./components/route-guards/UnAuthorizedRoutes"
 import { AuthContextProvider } from "./context/AuthContext"
 import { CartContextProvider } from "./context/CartContext"
 
+console.log(import.meta.env.VITE_APP_SERVER_URL)
+console.log("we are in: ", import.meta.env.MODE, " mode")
 
 function App() {
 
