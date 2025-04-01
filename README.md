@@ -1,5 +1,5 @@
 # SoftUni React Project Defense
-### THE APPLICATION IS HOSTED ON **https://ss-server-455514.web.app** , using docker, firebase and GCP
+### THE APPLICATION IS HOSTED ON **https://ss-server-455514.web.app** , using docker, firebase and GCP (hopefully nothing has broken when someone tries to see it...)
 This is a **SoftUni React project defense** application. The project is a **Full Stack Application** using the following technologies:
 
 - **Frontend:** React 19  
