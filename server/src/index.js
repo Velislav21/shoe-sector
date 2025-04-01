@@ -13,12 +13,12 @@ mongoose.connect(uri)
     .catch((err) => console.log(`DB failed: ${err}`))
 
 app.use(cors({
-    origin: '*', // 'http://localhost:5173'
+    origin: '*',  // 'http://localhost:5173'
     credentials: true,
 }))
 
 app.use(express.json())
-app.use(authMiddleware)
-app.use(routes)
+app.use(authMiddleware);
+app.use(routes);
 
 app.listen(8080, () => console.log(`Server is listening on http://localhost:${process.env.PORT || 8080}`))
