@@ -1,12 +1,12 @@
 # SoftUni React Project Defense
-### THE APPLICATION IS HOSTED ON **https://ss-server-455514.web.app** , using docker, mongoDB atlas, firebase and GCP (hopefully nothing has broken when someone tries to see it...)
+### The application is hosted [here](https://ss-server-455514.web.app**) using docker, mongoDB atlas, firebase and GCP (hopefully nothing has broken when someone tries to see it...)
 This is a **SoftUni React project defense** application. The project is a **Full Stack Application** using the following technologies:
 
 - **Frontend:** React 19  
 - **Backend:** Node.js, Express.js, MongoDB
 
 ---
-**You need to log in to check out the authenticated user functionalities.**
+**You need to log in to check out all functionalities.**
 ## Project Structure
 
 The project contains two main subfolders:
