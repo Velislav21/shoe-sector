@@ -1,7 +1,7 @@
 .profilePage {
     padding: 2em;
     border-radius: 0.3em;
-    width: 30em;
+    max-width: clamp(300px, 12px + 35vw, 450px);
     margin: 3em auto;
     text-align: center;
     background-color: transparent;

@@ -19,7 +19,7 @@ export function cartReducer(state, action) {
             return { ...state, cart: action.payload, isPending: false }
 
         case "CLEAR_CART":
-            return {...state, cart: [], isPending: false}
+            return {...state, cart: [], isPending: false, error: action.payload}
 
         case "FAILED_TO_GET_CART":
             return { ...state, isPending: false, error: action.payload }

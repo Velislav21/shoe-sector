@@ -13,7 +13,7 @@
 }
 div.img-container > img {
     padding: 0;
-    width: 450px;
+    width: clamp(150px, 12px + 35vw, 450px);
     height: auto;
     aspect-ratio: 1/1;
     border-radius: 0.3rem;
@@ -98,7 +98,7 @@ p.price {
     }
     &:disabled {
         color: rgb(134, 123, 111);
-        cursor: not-allowed
+        cursor: not-allowed;
     }
 }
 .buttons-container button.shoe-details-btn:hover {
@@ -112,8 +112,14 @@ p.description {
 
 button.delete-btn {
     background-color: rgb(218, 45, 45);
-    
+
     &:hover {
         background-color: rgb(169, 46, 46);
     }
+}
+@media (width <= 400px) {
+    article.shoe-details-container {
+        flex-wrap: wrap;
+        max-width: 330px;
+    }    
 }

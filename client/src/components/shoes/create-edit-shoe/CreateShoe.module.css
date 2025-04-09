@@ -4,8 +4,7 @@
     box-shadow: 0.1em 0.1em 0.5em 0.3em rgba(0, 0, 0, 0.1);
     padding: 2em;
     border-radius: 0.3rem;
-    width: 100%;
-    max-width: 30em;
+    max-width: clamp(300px, 12px + 35vw, 450px);
     
     & span {
         margin: 0 auto;

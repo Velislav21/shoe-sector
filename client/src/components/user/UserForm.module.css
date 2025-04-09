@@ -1,6 +1,6 @@
 .user-form {
-    max-width: 30em;
-    margin: 3em auto;
+    max-width: clamp(300px, 12px + 35vw, 450px);
+    margin: 5em auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,7 +9,9 @@
     box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.5);
     padding: 0.5em 1em;
 }
-
+.user-form h1 + p {
+    text-align: center;
+}
 .user-form h1 {
     font-size: 1.5em;
     color: #4a4a4a;
@@ -74,6 +76,7 @@ div.user-input-container input.error {
     color: #616161;
     margin-bottom: 1em;
     font-size: 1.1em;
+    text-align: center;
 }
 
 .user-form a {
@@ -88,4 +91,9 @@ div.user-input-container input.error {
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1em;
+}
+@media (width <= 400px) {
+    .user-form p.redirect {
+        max-width: 25ch;
+    }
 }

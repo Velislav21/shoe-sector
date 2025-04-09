@@ -1,6 +1,7 @@
 article.cart-item {
     padding: 1em;
     display: flex;
+    flex-wrap: wrap;
     background-color: rgb(208, 192, 173);
     justify-content: space-between;
 

@@ -11,7 +11,7 @@ import Spinner from "../../spinner/Spinner"
 import EditButton from "../../reusable-buttons/edit-button/EditButton"
 import DeleteButton from "../../reusable-buttons/delete-button/DeleteButton"
 import SuccessMessage from "../../success-message/SuccessMessage"
-import ErrorMessage from "../../errors/ErrorMessage"
+
 
 export default function ShoeDetails() {
 

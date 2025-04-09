@@ -12,7 +12,7 @@ export default function Navbar() {
 
     return (
         <header className={styles["site-header"]}>
-            <div className={styles["logos-container"]}>
+            <div className={styles["logo-container"]}>
                 <Link to="#" className={styles["logo"]}>My Logo</Link>
             </div>
             <nav>

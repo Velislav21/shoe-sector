@@ -1,18 +1,18 @@
 .shoe-items-container {
     max-width: 90em;
-    margin: 1em auto 4em auto;
+    margin: 4em auto;
     display: flex;
     justify-content: center;
     gap: 2em;
     flex-wrap: wrap;
 }
 
-div.img-container img {
+/* div.img-container img {
     width: 450px;
     height: auto;
     aspect-ratio: 1/1;
     border-radius: 0.3rem;
-}
+} */
 
 .shoe-details {
     display: flex;
