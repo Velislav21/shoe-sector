@@ -6,6 +6,7 @@ This is a **SoftUni React project defense** application. The project is a **Full
 - **Backend:** Node.js, Express.js, MongoDB
 
 ---
+**Currently the application has mobile styles only for 360x800 dimensions.** <br>
 **You need to log in to check out all functionalities.**
 ## Project Structure
 
@@ -13,7 +14,7 @@ The project contains two main subfolders:
 
 - `client` — contains the React frontend
 - `server` — contains the Node.js backend
-
+  
 To run the application, open the main project folder (containing both `client` and `server`) in **Visual Studio Code**.
 
 ---
