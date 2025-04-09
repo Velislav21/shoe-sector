@@ -6,7 +6,7 @@ This is a **SoftUni React project defense** application. The project is a **Full
 - **Backend:** Node.js, Express.js, MongoDB
 
 ---
-**Currently the application has mobile styles only for 360x800 dimensions.** <br>
+**Currently the application has mobile styles only for 360x800 dimensions. (at 400px width and more is not styled)** <br>
 **You need to log in to check out all functionalities.**
 ## Project Structure
 
