@@ -52,14 +52,14 @@ export default function Cart() {
                                     Products count: {cartData.totalCartItemsCount}
                                 </p>
                             </div>
-                            <div>
+                            {/* <div>
                                 <button
                                     disabled={isPending}
                                     className={styles["checkout-btn"]}
                                 >
                                     Purchase
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </>
                 )}
