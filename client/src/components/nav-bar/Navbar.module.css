@@ -1,9 +1,8 @@
 .site-header {
-    margin: 0 auto;
     display: flex;
-    gap: 40em;
+    justify-content: space-between;
     align-items: center;
-    padding: 0.8em;
+    padding: 0.8em 4em;
 }
 
 .site-header .logo {
