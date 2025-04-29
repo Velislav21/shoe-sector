@@ -1,5 +1,4 @@
 # Developing steps.
-### THE APPLICATION IS HOSTED ON https://ss-server-455514.web.app, using docker, firebase and GCP
 -   [x] Home Page
 -   [x] All Products Page
 -   [x] Login Page
