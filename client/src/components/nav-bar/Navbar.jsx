@@ -28,7 +28,7 @@ export default function Navbar() {
                                     <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
                                 </Link>
                             </li>
-                            <li><Link to={`/profile/${user._id}`}>{user.name} Profile</Link></li>
+                            <li><Link to={`/profile/${user._id}`}>Profile</Link></li>
                             <li><Link to="/logout">Logout</Link></li>
                         </>
                         :

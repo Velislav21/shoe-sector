@@ -55,4 +55,9 @@
     div.logo-container {
         display: none;
     }
+
+    .site-header {
+        padding: 0.8em 2em;
+        justify-content: center;
+    }
 }
