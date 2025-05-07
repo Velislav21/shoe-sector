@@ -1,32 +1,39 @@
 import { useNavigate } from "react-router";
-
+import { useEffect } from "react";
 import styles from "./CreateShoe.module.css";
 import ErrorMessage from "../../errors/ErrorMessage";
+import useForm from "../../../hooks/useForm";
 import { useCreateShoe } from "../../../api/shoesApi";
 import { shoeSchema } from "../../../utils/yupSchemas";
-import useInputValidation from "../../../hooks/useInputValidation";
+
+const initialValues = {
+    modelName: "",
+    brand: "",
+    price: "",
+    gender: "",
+    imageUrl: "",
+    description: "",
+}
 
 export default function CreateShoe() {
     const navigate = useNavigate();
     const { createShoe, isPending, fetchError } = useCreateShoe();
-    const { validationErrors, validationFn } = useInputValidation(shoeSchema);
+    const {
+        values,
+        handleInputChange,
+        handleSubmit,
+        validationErrors,
+        isSuccessful
+    } = useForm(initialValues, createShoe, shoeSchema)
 
-    async function handleFormAction(formData) {
-
-        const values = Object.fromEntries(formData);
-
-        const validValues = await validationFn(values);
-
-        if (!validValues) {
-            return;
+    useEffect(() => {
+        if (isSuccessful) {
+            navigate("/shoes");
         }
-        const isSuccessful = await createShoe(validValues);
-
-        isSuccessful && navigate("/shoes");
-    };
+    }, [isSuccessful])
     return (
 
-        <form action={handleFormAction} className={styles["create-shoe-form"]}>
+        <form onSubmit={handleSubmit} className={styles["create-shoe-form"]}>
             <h2 className={styles["form-title"]}>ADD NEW SHOE MODEL</h2>
 
             <div className={styles["form-group"]}>
@@ -36,6 +43,8 @@ export default function CreateShoe() {
                     placeholder="e.g. Nike Downshifter"
                     name="modelName"
                     className={styles["input-field"]}
+                    value={values.modelName}
+                    onChange={handleInputChange}
                 />
                 {validationErrors.modelName &&
                     validationErrors.modelName.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
@@ -48,6 +57,8 @@ export default function CreateShoe() {
                     placeholder="e.g. Nike"
                     name="brand"
                     className={styles["input-field"]}
+                    value={values.brand}
+                    onChange={handleInputChange}
                 />
                 {validationErrors.brand &&
                     validationErrors.brand.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
@@ -60,6 +71,8 @@ export default function CreateShoe() {
                     placeholder="e.g. 99.99"
                     name="price"
                     className={styles["input-field"]}
+                    value={values.price}
+                    onChange={handleInputChange}
                 />
                 {validationErrors.price &&
                     validationErrors.price.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
@@ -72,16 +85,22 @@ export default function CreateShoe() {
                         type="radio"
                         name="gender"
                         value="Men"
+                        checked={values.gender === "Men"}
+                        onChange={handleInputChange}
                     /> Men</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Women"
+                        checked={values.gender === "Women"}
+                        onChange={handleInputChange}
                     /> Women</label>
                     <label><input
                         type="radio"
                         name="gender"
                         value="Unisex"
+                        checked={values.gender === "Unisex"}
+                        onChange={handleInputChange}
                     /> Unisex</label>
                 </div>
                 {validationErrors.gender &&
@@ -94,6 +113,8 @@ export default function CreateShoe() {
                     placeholder="e.g. https://..."
                     name="imageUrl"
                     className={styles["input-field"]}
+                    value={values.imageUrl}
+                    onChange={handleInputChange}
                 />
                 {validationErrors.imageUrl &&
                     validationErrors.imageUrl.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
@@ -105,7 +126,8 @@ export default function CreateShoe() {
                     placeholder="e.g. Inspired by the beach but made for city streets, the Nike Air Max Plus Utility gets a rugged upgrade perfect for your urban adventures. "
                     name="description"
                     className={styles["textarea-field"]}
-                    defaultValue=""
+                    value={values.description}
+                    onChange={handleInputChange}
                 >
                 </textarea>
                 {validationErrors.description &&

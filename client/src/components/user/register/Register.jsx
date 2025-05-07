@@ -1,29 +1,32 @@
 import { Link } from "react-router"
 
 import styles from "../UserForm.module.css"
+
 import ErrorMessage from "../../errors/ErrorMessage"
-import { useRegister } from "../../../api/usersApi"
-import useInputValidation from "../../../hooks/useInputValidation"
 import { registerSchema } from "../../../utils/yupSchemas"
+import { useRegister } from "../../../api/usersApi"
+import useForm from "../../../hooks/useForm"
+
+const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    rePassword: ""
+}
 
 export default function Register() {
     const { register, fetchError, isPending } = useRegister();
 
-    const { validationErrors, validationFn } = useInputValidation(registerSchema);
+    const {
+        values,
+        validationErrors,
+        handleInputChange,
+        handleSubmit
+    } = useForm(initialValues, register, registerSchema)
 
-    async function handleFormAction(formData) {
-
-        const values = Object.fromEntries(formData)
-        const validValues = await validationFn(values);
-
-        if (!validValues) {
-            return;
-        }
-        register(validValues);
-    }
 
     return (
-        <form action={handleFormAction} className={styles["user-form"]}>
+        <form onSubmit={handleSubmit} className={styles["user-form"]}>
             <h1>Register</h1>
             <p>Please, fill in this form to create an acoount.</p>
             <div className={styles["inputs-container"]}>
@@ -33,6 +36,8 @@ export default function Register() {
                         placeholder="e.g. John Doe"
                         name="name"
                         id="name"
+                        value={values.name}
+                        onChange={handleInputChange}
                     />
                     {validationErrors.name
                         && validationErrors.name
@@ -44,6 +49,8 @@ export default function Register() {
                         placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
+                        value={values.email}
+                        onChange={handleInputChange}
                     />
                     {validationErrors.email
                         && validationErrors.email
@@ -55,6 +62,8 @@ export default function Register() {
                         placeholder="Password"
                         name="password"
                         id="password"
+                        value={values.password}
+                        onChange={handleInputChange}
                     />
                     {validationErrors.password
                         && validationErrors.password
@@ -66,6 +75,8 @@ export default function Register() {
                         placeholder="Repeat Password"
                         name="rePassword"
                         id="rePassword"
+                        value={values.rePassword}
+                        onChange={handleInputChange}
                     />
                     {validationErrors.rePassword
                         && validationErrors.rePassword

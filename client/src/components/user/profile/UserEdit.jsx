@@ -1,33 +1,36 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import styles from '../../user/UserForm.module.css'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { useEditProfile } from '../../../api/usersApi';
-import useInputValidation from '../../../hooks/useInputValidation';
 import { userEditSchema } from '../../../utils/yupSchemas';
 import ErrorMessage from '../../errors/ErrorMessage';
+import useForm from '../../../hooks/useForm';
 
 export default function UserEdit() {
     const navigate = useNavigate();
     const { user } = useAuthContext();
-    const { validationErrors, validationFn } = useInputValidation(userEditSchema)
     const { editProfile, isPending, fetchError } = useEditProfile();
+    const {
+        values,
+        handleInputChange,
+        handleSubmit,
+        validationErrors,
+        isSuccessful
+    } = useForm(
+        { name: user.name, email: user.email },
+        editProfile,
+        userEditSchema)
 
-    async function handleFormAction(formData) {
-        const updatedValues = Object.fromEntries(formData);
-
-        const validValues = await validationFn(updatedValues);
-
-        if (!validValues) {
-            return;
+    useEffect(() => {
+        if (isSuccessful) {
+            navigate(`/profile/${user._id}`);
         }
+    }, [isSuccessful])
 
-        const isSuccessful = await editProfile(user._id, validValues);
-
-        isSuccessful && navigate(`/profile/${user._id}`);
-    }
     return (
-        <form action={handleFormAction} className={styles["user-form"]}>
+        <form onSubmit={handleSubmit} className={styles["user-form"]}>
             <h1>Edit Profile</h1>
             <div className={styles.imgContainer}>
                 <img
@@ -42,7 +45,8 @@ export default function UserEdit() {
                         placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
-                        defaultValue={isPending ? "" : user.email}
+                        value={values.email}
+                        onChange={handleInputChange}
                     />
                     {validationErrors.email &&
                         validationErrors.email.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}
@@ -53,7 +57,8 @@ export default function UserEdit() {
                         placeholder="e.g. John Doe"
                         name="name"
                         id="name"
-                        defaultValue={isPending ? "" : user.name}
+                        value={values.name}
+                        onChange={handleInputChange}
                     />
                     {validationErrors.name &&
                         validationErrors.name.map((error, i) => <ErrorMessage key={i}>{error}</ErrorMessage>)}

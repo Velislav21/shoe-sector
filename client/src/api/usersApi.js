@@ -18,9 +18,13 @@ export function useLogin() {
             dispatch({ type: "LOGIN", payload: user });
 
             setIsPending(false)
+
+            return true;
         } catch (err) {
             setCustomError(err.message, 5000)
             setIsPending(false)
+
+            return false;
         }
     }
     return {
@@ -45,10 +49,14 @@ export function useRegister() {
             dispatch({ type: "LOGIN", payload: newUser });
 
             setIsPending(false);
+
+            return true;
         } catch (err) {
 
             setCustomError(err.message, 5000);
             setIsPending(false);
+
+            return false;
         }
 
     }
@@ -88,16 +96,16 @@ export function useDeleteProfile() {
     }
 }
 export function useEditProfile() {
-
+    const { user } = useAuthContext();
     const { error: fetchError, setCustomError } = useError(null);
     const [isPending, setIsPending] = useState(false);
     const { dispatch } = useAuthContext()
 
-    async function editProfile(userId, userData) {
+    async function editProfile(userData) {
 
         try {
             setIsPending(true);
-            const updatedUser = await request.patch(`${BASE_URL}/users/edit/${userId}`, userData)
+            const updatedUser = await request.patch(`${BASE_URL}/users/edit/${user._id}`, userData)
             dispatch({ type: "LOGIN", payload: updatedUser })
             setIsPending(false);
 

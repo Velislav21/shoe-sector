@@ -2,26 +2,27 @@ import { Link } from "react-router"
 
 import styles from "../UserForm.module.css"
 import { useLogin } from "../../../api/usersApi";
+import useForm from "../../../hooks/useForm";
 import { loginSchema } from "../../../utils/yupSchemas";
 import ErrorMessage from "../../errors/ErrorMessage"
-import useInputValidation from "../../../hooks/useInputValidation";
+
+const initialValues = {
+    email: "",
+    password: ""
+}
 
 export default function Login() {
     const { login, fetchError, isPending } = useLogin();
-    const { validationErrors, validationFn } = useInputValidation(loginSchema);
+    const {
+        values,
+        handleInputChange,
+        handleSubmit,
+        validationErrors,
+        isSuccessful
+    } = useForm(initialValues, login, loginSchema)
 
-    async function handleFormAction(formData) {
-
-        const values = Object.fromEntries(formData);
-        const validValues = await validationFn(values);
-
-        if (!validValues) {
-            return;
-        }
-        login(validValues);
-    }
     return (
-        <form action={handleFormAction} className={styles["user-form"]}>
+        <form onSubmit={handleSubmit} className={styles["user-form"]}>
             <h1>Login</h1>
             <div className={styles["inputs-container"]}>
                 <div className={styles["user-input-container"]}>
@@ -30,6 +31,8 @@ export default function Login() {
                         placeholder="e.g. john.doe@gmail.com"
                         name="email"
                         id="email"
+                        value={values.email}
+                        onChange={handleInputChange}
                         className={validationErrors.email ? styles["error"] : ""}
                     />
                     {validationErrors.email
@@ -43,6 +46,8 @@ export default function Login() {
                         placeholder="Password"
                         name="password"
                         id="password"
+                        value={values.password}
+                        onChange={handleInputChange}
                         className={validationErrors.password ? styles["error"] : ""}
                     />
                     {validationErrors.password
